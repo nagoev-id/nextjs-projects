@@ -1,0 +1,1 @@
+export {categorizedResults, filterResults} from './utils'

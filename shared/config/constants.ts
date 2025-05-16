@@ -1,0 +1,168 @@
+import { ListOfProjects, ProjectLabel, ProjectLevel } from '@/shared/types/types';
+import { Metadata } from 'next';
+
+export const PROJECTS_METADATA: Metadata = {
+  title: 'Next.js Starter Template',
+  description: 'A Next.js starter template with a minimalistic design and a clean code structure.',
+  keywords: ['Next.js', 'React'],
+  authors: [{ name: 'Alim Nagoev', url: 'https://github.com/nagoev-alim' }],
+};
+
+export const PROJECTS_LIST: ListOfProjects = {
+  [ProjectLabel.Counter]: {
+    title: 'Counter',
+    description: 'A simple and interactive counter application.',
+    href: 'easy/counter',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.ColorGenerator]: {
+    title: 'Color Generator',
+    description: 'A simple color generator tool that creates random HEX colors.',
+    href: 'easy/color-generator',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.Timer]: {
+    title: 'Timer',
+    description: 'An interactive timer application that allows users to set and track custom timers.',
+    href: 'easy/timer',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.DarkTheme]: {
+    title: 'Dark Theme',
+    description: 'Experience our app with customizable dark and light themes for optimal viewing comfort.',
+    href: 'easy/dark-theme',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.CharacterCounter]: {
+    title: 'Character Counter',
+    description: 'A simple character counter application.',
+    href: 'easy/character-counter',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.FlashCards]: {
+    title: 'Flash Cards',
+    description: 'Interactive Flash Cards for React learning.',
+    href: 'easy/flash-cards',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.CompanyStatistics]: {
+    title: 'Company Statistics',
+    description: 'Our company statistics showing successful projects, working hours, and happy clients.',
+    href: 'easy/company-statistics',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.NumberFacts]: {
+    title: 'Number Facts',
+    description: 'Discover interesting facts about numbers with our Number Facts app.',
+    href: 'easy/number-facts',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.TextExpander]: {
+    title: 'Text Expander',
+    description: 'Interactive expandable text component showcasing space travel content.',
+    href: 'easy/text-expander',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.StopWatch]: {
+    title: 'StopWatch',
+    description: 'A simple stopwatch application that allows you to start, pause, and reset time.',
+    href: 'easy/stopwatch',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.Countdown]: {
+    title: 'Countdown',
+    description: 'Interactive countdown timer application.',
+    href: 'easy/countdown',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.UserSearch]: {
+    title: 'User Search',
+    description: 'A dynamic user search application with real-time filtering capabilities.',
+    href: 'easy/user-search',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.KeyEventListener]: {
+    title: 'Key Event Listener',
+    description: 'A simple keyboard event listener that displays pressed key information.',
+    href: 'easy/key-event-listener',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.AlarmClock]: {
+    title: 'Alarm Clock',
+    description: 'An interactive alarm clock application with customizable settings and real-time display.',
+    href: 'easy/alarm-clock',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.RandomUserGenerator]: {
+    title: 'Random User Generator',
+    description: 'Generate random user data with interactive category selection.',
+    href: 'easy/random-user-generator',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.APISearchTool]: {
+    title: 'API Search Tool',
+    description: 'Search and explore various APIs across different categories.',
+    href: 'easy/api-search-tool',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.DateCounter]: {
+    title: 'Date Counter',
+    description: 'Interactive date counter application.',
+    href: 'easy/date-counter',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.DynamicTabs]: {
+    title: 'Dynamic Tabs',
+    description: 'Interactive tab component with vertical and horizontal layouts.',
+    href: 'easy/dynamic-tabs',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.AccordionComponent]: {
+    title: 'Accordion Component',
+    description: 'Interactive accordion component with customizable behavior.',
+    href: 'easy/accordion-component',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.UnitConversionTool]: {
+    title: 'Unit Conversion Tool',
+    description: 'A versatile type converter for weight, temperature, and more. Convert between different units of measurement quickly and easily.',
+    href: 'easy/unit-conversion-tool',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.AccountVerification]: {
+    title: 'Account Verification',
+    description: 'Verify your account by entering the six-digit code.',
+    href: 'easy/account-verification',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.DropdownUI]: {
+    title: 'Dropdown UI',
+    description: 'Interactive dropdown component with various options.',
+    href: 'easy/dropdown-ui',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.TheFacts]: {
+    title: 'The Facts',
+    description: 'Discover random interesting tidbits across various topics.',
+    href: 'easy/the-facts',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.CookieConsent]: {
+    title: 'Cookie Consent',
+    description: 'This website uses cookies to enhance your browsing experience. Manage your cookie preferences.',
+    href: 'easy/cookie-consent',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.ModalWindow]: {
+    title: 'Modal Window',
+    description: 'Interactive modal window component with overlay and content.',
+    href: 'easy/modal-window',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.GuessTheNumber]: {
+    title: 'Guess the Number',
+    description: 'Play the exciting \'Guess the Number\' game. Try to guess a number between 1 and 10 in as few attempts as possible.',
+    href: 'easy/guess-the-number',
+    level: ProjectLevel.easy,
+  },
+};
