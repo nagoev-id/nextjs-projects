@@ -74,7 +74,9 @@ const AccountVerificationPage = (): JSX.Element => {
         {digits.map((digit, index) => (
           <Input
             key={index}
-            ref={el => inputRefs.current[index] = el}
+            ref={(el: HTMLInputElement | null) => {
+              inputRefs.current[index] = el;
+            }}
             className="h-[40px] w-[40px] rounded border-2 px-1 py-1 text-center !text-6xl font-semibold focus:border-blue-400 focus:outline-none md:h-[80px] md:w-[80px]"
             type="text"
             maxLength={1}
