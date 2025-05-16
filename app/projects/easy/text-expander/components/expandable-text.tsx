@@ -97,11 +97,7 @@ const ExpandableText = ({
   }, [children, isExpanded, truncateText]);
 
   return (
-    <div
-      className={cn('border-2 rounded p-3', className)}
-      role="region"
-      aria-expanded={isExpanded}
-    >
+    <div className={cn('border-2 rounded p-3', className)} role="region">
       {/* Контейнер для текста с плавной анимацией высоты */}
       <div className="transition-all duration-300 ease-in-out">
         <span className="leading-[40px] block">

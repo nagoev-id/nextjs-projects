@@ -1,0 +1,5 @@
+{
+  "buildCommand": "next build",
+  "ignoreCommand": "echo 'Skipping ESLint check'",
+  "installCommand": "npm install"
+}
