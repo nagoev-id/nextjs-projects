@@ -38,7 +38,8 @@
 import './styles.css';
 import { JSX, useEffect, useRef, useState } from 'react';
 import { Card } from '@/components/ui/card';
-import { FiBell, FiBook, FiChevronDown, FiFolder, FiPlusCircle, FiSettings, FiUser, IconType } from 'react-icons/fi';
+import { FiBell, FiBook, FiChevronDown, FiFolder, FiPlusCircle, FiSettings, FiUser } from 'react-icons/fi';
+import { IconType } from 'react-icons';
 
 /**
  * Тип для элемента данных выпадающего списка
