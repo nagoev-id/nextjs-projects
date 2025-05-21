@@ -39,9 +39,11 @@ export enum ProjectLabel {
   ModalWindow = 'ModalWindow',
   GuessTheNumber = 'GuessTheNumber',
   GuessTheNumberCLI = 'GuessTheNumberCLI',
-  // Weather = 'Weather',
-  // URLShortener = 'URLShortener',
-  // ExpenseTracker = 'ExpenseTracker',
+  Weather = 'Weather',
+  WeatherWithRedux = 'Weather (Redux)',
+  URLShortener = 'URLShortener',
+  URLShortenerWithRedux = 'URLShortener (Redux)',
+  ExpenseTracker = 'ExpenseTracker',
   // CurrencyConverter = 'CurrencyConverter',
   // SaveTextAsFile = 'SaveTextAsFile',
   // TagInputBox = 'TagInputBox',
@@ -99,6 +101,7 @@ export enum ProjectLabel {
   // EatAndSplit = 'EatAndSplit',
   // FarAway = 'FarAway',
   // PopcornMovies = 'PopcornMovies',
+
 
 }
 

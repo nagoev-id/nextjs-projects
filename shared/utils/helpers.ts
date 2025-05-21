@@ -1,9 +1,28 @@
 import { PROJECTS_LIST, PROJECTS_METADATA } from '@/shared';
 import { toast } from 'sonner';
+import confetti from 'canvas-confetti';
 
 export const HELPERS = {
+  /**
+   * Добавляет ведущий ноль к числу, если оно меньше 10
+   * @param {number|string} number - Число для форматирования
+   * @returns {string} Отформатированная строка с ведущим нулем
+   */
   addLeadingZero: (number: number | string): string => number.toString().padStart(2, '0'),
+
+  /**
+   * Генерирует случайное целое число в заданном диапазоне
+   * @param {number} min - Минимальное значение (включительно)
+   * @param {number} max - Максимальное значение (включительно)
+   * @returns {number} Случайное целое число
+   */
   getRandomNumber: (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1)) + min,
+
+  /**
+   * Копирует текст в буфер обмена с уведомлением о результате
+   * @param {string} textToCopy - Текст для копирования
+   * @returns {Promise<void>}
+   */
   copyToClipboard: async (textToCopy: string): Promise<void> => {
     if (!textToCopy || textToCopy.trim().length === 0) {
       toast.error('Nothing to copy', {
@@ -26,6 +45,11 @@ export const HELPERS = {
       });
     }
   },
+
+  /**
+   * Генерирует случайный HEX-цвет
+   * @returns {string} Строка с HEX-цветом (например, "#A1B2C3")
+   */
   generateRandomHexColor: (): string => {
     const HEX_CHARS: string = '0123456789ABCDEF';
     return '#' + Array(6)
@@ -33,6 +57,12 @@ export const HELPERS = {
       .map(() => HEX_CHARS[Math.floor(Math.random() * HEX_CHARS.length)])
       .join('');
   },
+
+  /**
+   * Конвертирует HEX-цвет в формат RGB
+   * @param {string} hex - HEX-цвет (например, "#A1B2C3")
+   * @returns {string} Строка с RGB-цветом (например, "rgb(161, 178, 195)")
+   */
   convertHexToRgb: (hex: string): string => {
     const cleanHex = hex.replace('#', '');
     const r = parseInt(cleanHex.substring(0, 2), 16);
@@ -40,15 +70,16 @@ export const HELPERS = {
     const b = parseInt(cleanHex.substring(4, 6), 16);
     return `rgb(${r}, ${g}, ${b})`;
   },
+
   /**
-   * Validates a numeric input against specified constraints
-   * @param value - The numeric value to validate
-   * @param options - Validation options
-   * @param options.min - Minimum allowed value (inclusive)
-   * @param options.max - Maximum allowed value (inclusive)
-   * @param options.integer - Whether the value must be an integer
-   * @param options.customMessages - Custom error messages
-   * @returns Error message string or null if valid
+   * Валидирует числовое значение по заданным ограничениям
+   * @param {number} value - Числовое значение для проверки
+   * @param {object} options - Параметры валидации
+   * @param {number} [options.min=1] - Минимальное допустимое значение (включительно)
+   * @param {number} [options.max=Number.MAX_SAFE_INTEGER] - Максимальное допустимое значение (включительно)
+   * @param {boolean} [options.integer=true] - Должно ли значение быть целым числом
+   * @param {object} [options.customMessages] - Пользовательские сообщения об ошибках
+   * @returns {string|null} Сообщение об ошибке или null, если значение валидно
    */
   isValidateNumber: (
     value: number,
@@ -84,16 +115,48 @@ export const HELPERS = {
 
     return null;
   },
+
+  /**
+   * Делает первую букву строки заглавной
+   * @param {string|undefined} str - Исходная строка
+   * @returns {string} Строка с заглавной первой буквой
+   */
   capitalizeFirstLetter: (str: string | undefined): string => {
     if (str === undefined) {
       return '';
     }
     return str.length === 0 ? str : str.charAt(0).toUpperCase() + str.slice(1);
   },
+
+  /**
+   * Получает метаданные проекта по его ключу
+   * @param {keyof typeof PROJECTS_LIST} projectKey - Ключ проекта
+   * @returns {object} Объект с метаданными проекта
+   */
   projectMetadata: (projectKey: keyof typeof PROJECTS_LIST) => ({
     title: PROJECTS_LIST[projectKey]?.title || 'Project',
     description: PROJECTS_LIST[projectKey]?.description || '',
     keywords: PROJECTS_METADATA.keywords,
     authors: PROJECTS_METADATA.authors,
   }),
+
+  /**
+   * Показывает анимацию конфетти на экране
+   * @returns {void}
+   */
+  showConfetti: function(): void {
+    // Используем функцию вместо стрелочной функции, чтобы иметь доступ к this
+    const confettiOptions = {
+      angle: HELPERS.getRandomNumber(55, 125),
+      spread: HELPERS.getRandomNumber(50, 70),
+      particleCount: HELPERS.getRandomNumber(50, 100),
+      origin: { y: 0.6 },
+    };
+
+    confetti(confettiOptions);
+  },
+  formattedDate: () => {
+    const now = new Date();
+    return `${now.getDate()}, ${now.toLocaleString('en-EN', { month: 'short' })}, ${now.getFullYear()}`;
+  },
 };

@@ -21,13 +21,15 @@ type BaseExtraProps = {
  * Базовые свойства для всех компонентов формы
  */
 type BaseFormElementProps<T extends Record<string, unknown>> = {
-  form: UseFormReturn<T>;
-  name: Path<T>;
-  label?: string;
-  placeholder?: string;
-  className?: string;
-  labelClassName?: string;
-  messageClassName?: string;
+  form: UseFormReturn<T>,
+  name: Path<T>,
+  label?: string,
+  placeholder?: string,
+  className?: string,
+  labelClassName?: string,
+  messageClassName?: string,
+  autoComplete?: string
+  disabled?: boolean,
 };
 
 /**
@@ -55,44 +57,46 @@ const FIELD_STYLES = 'bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gr
 
 /**
  * Компонент для текстовых полей ввода в форме
- * 
+ *
  * @example
  * // Базовое текстовое поле
  * <FormInput form={form} name="username" label="Username" />
- * 
+ *
  * @example
  * // Текстовая область с дополнительными свойствами
- * <FormInput 
- *   form={form} 
- *   name="description" 
- *   label="Description" 
- *   type="textarea" 
- *   inputProps={{ rows: 4 }} 
+ * <FormInput
+ *   form={form}
+ *   name="description"
+ *   label="Description"
+ *   type="textarea"
+ *   inputProps={{ rows: 4 }}
  * />
- * 
+ *
  * @example
  * // Поле для ввода даты с минимальным значением
- * <FormInput 
- *   form={form} 
- *   name="startDate" 
- *   label="Start Date" 
- *   type="date" 
- *   min="2023-01-01" 
+ * <FormInput
+ *   form={form}
+ *   name="startDate"
+ *   label="Start Date"
+ *   type="date"
+ *   min="2023-01-01"
  * />
  */
 export function FormInput<T extends Record<string, unknown>>({
-  form,
-  name,
-  label,
-  type = 'input',
-  placeholder,
-  inputProps = {},
-  min,
-  max,
-  className,
-  labelClassName,
-  messageClassName,
-}: FormInputProps<T>) {
+                                                               form,
+                                                               name,
+                                                               label,
+                                                               type = 'input',
+                                                               placeholder,
+                                                               inputProps = {},
+                                                               min,
+                                                               max,
+                                                               className,
+                                                               labelClassName,
+                                                               messageClassName,
+                                                               autoComplete = 'off',
+                                                               disabled = false,
+                                                             }: FormInputProps<T>) {
   return (
     <FormField
       control={form.control}
@@ -100,14 +104,14 @@ export function FormInput<T extends Record<string, unknown>>({
       render={({ field }) => (
         <FormItem className={className}>
           {label && (
-            <FormLabel className={cn("text-gray-700 dark:text-gray-300", labelClassName)}>
+            <FormLabel className={cn('text-gray-700 dark:text-gray-300', labelClassName)}>
               {label}
             </FormLabel>
           )}
           <FormControl>
-            {renderFormElement(type, field, placeholder, inputProps, min, max)}
+            {renderFormElement(type, field, placeholder, inputProps, min, max, autoComplete, disabled)}
           </FormControl>
-          <FormMessage className={cn("text-red-500 dark:text-red-400", messageClassName)} />
+          <FormMessage className={cn('text-red-500 dark:text-red-400', messageClassName)} />
         </FormItem>
       )}
     />
@@ -116,39 +120,39 @@ export function FormInput<T extends Record<string, unknown>>({
 
 /**
  * Компонент для выпадающих списков в форме
- * 
+ *
  * @example
  * // Базовый выпадающий список
- * <FormSelect 
- *   form={form} 
- *   name="country" 
- *   label="Country" 
- *   options={["USA", "Canada", "UK"]} 
+ * <FormSelect
+ *   form={form}
+ *   name="country"
+ *   label="Country"
+ *   options={["USA", "Canada", "UK"]}
  * />
- * 
+ *
  * @example
  * // Выпадающий список с объектами значение/метка
- * <FormSelect 
- *   form={form} 
- *   name="role" 
- *   label="User Role" 
+ * <FormSelect
+ *   form={form}
+ *   name="role"
+ *   label="User Role"
  *   options={[
  *     { value: "admin", label: "Administrator" },
  *     { value: "user", label: "Regular User" }
- *   ]} 
+ *   ]}
  * />
  */
 export function FormSelect<T extends Record<string, unknown>>({
-  form,
-  name,
-  label,
-  placeholder,
-  options,
-  selectProps = {},
-  className,
-  labelClassName,
-  messageClassName,
-}: FormSelectProps<T>) {
+                                                                form,
+                                                                name,
+                                                                label,
+                                                                placeholder,
+                                                                options,
+                                                                selectProps = {},
+                                                                className,
+                                                                labelClassName,
+                                                                messageClassName,
+                                                              }: FormSelectProps<T>) {
   return (
     <FormField
       control={form.control}
@@ -156,7 +160,7 @@ export function FormSelect<T extends Record<string, unknown>>({
       render={({ field }) => (
         <FormItem className={className}>
           {label && (
-            <FormLabel className={cn("text-gray-700 dark:text-gray-300", labelClassName)}>
+            <FormLabel className={cn('text-gray-700 dark:text-gray-300', labelClassName)}>
               {label}
             </FormLabel>
           )}
@@ -167,7 +171,7 @@ export function FormSelect<T extends Record<string, unknown>>({
             {...selectProps}
           >
             <FormControl>
-              <SelectTrigger 
+              <SelectTrigger
                 aria-label={label || String(name)}
                 className={cn(FIELD_STYLES, selectProps.className)}
               >
@@ -179,7 +183,7 @@ export function FormSelect<T extends Record<string, unknown>>({
                 // Обработка как строк, так и объектов { value, label }
                 const value = typeof option === 'string' ? option : option.value;
                 const label = typeof option === 'string' ? option : option.label;
-                
+
                 return (
                   <SelectItem key={value} value={value}>
                     {label}
@@ -188,7 +192,7 @@ export function FormSelect<T extends Record<string, unknown>>({
               })}
             </SelectContent>
           </Select>
-          <FormMessage className={cn("text-red-500 dark:text-red-400", messageClassName)} />
+          <FormMessage className={cn('text-red-500 dark:text-red-400', messageClassName)} />
         </FormItem>
       )}
     />
@@ -199,12 +203,14 @@ export function FormSelect<T extends Record<string, unknown>>({
  * Вспомогательная функция для рендеринга различных типов элементов формы
  */
 function renderFormElement(
-  type: string,
+  type: 'input' | 'textarea' | 'date' | 'number' | 'password' | 'email' | undefined,
   field: any,
-  placeholder?: string,
-  inputProps: BaseExtraProps = {},
-  min?: string,
-  max?: string,
+  placeholder?: string | undefined,
+  inputProps?: BaseExtraProps | undefined,
+  min?: string | undefined,
+  max?: string | undefined,
+  autoComplete?: string | undefined,
+  disabled?: boolean | undefined,
 ) {
   const inputFieldProps = {
     onChange: field.onChange,
@@ -215,13 +221,15 @@ function renderFormElement(
     placeholder,
     className: cn(FIELD_STYLES, inputProps.className),
     'aria-label': inputProps['aria-label'] || field.name,
+    autoComplete,
+    disabled,
     ...inputProps,
   };
 
   switch (type) {
     case 'textarea':
       return <Textarea {...inputFieldProps} />;
-    
+
     case 'date':
       return (
         <Input
@@ -231,7 +239,7 @@ function renderFormElement(
           max={max || undefined}
         />
       );
-    
+
     case 'number':
       return (
         <Input
@@ -241,13 +249,13 @@ function renderFormElement(
           max={max || undefined}
         />
       );
-    
+
     case 'password':
       return <Input type="password" {...inputFieldProps} />;
-    
+
     case 'email':
       return <Input type="email" {...inputFieldProps} />;
-    
+
     default:
       return <Input type="text" {...inputFieldProps} />;
   }

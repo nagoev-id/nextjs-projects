@@ -1,7 +1,9 @@
-export const factsData: {
+type FactType = {
   text: string;
   source: string;
-}[] = [
+}
+
+export const factsData: FactType[] = [
   {
     text: 'Most American car horns honk in the key of F.',
     source: 'https://www.djtech.net/humor/useless_facts.htm',

@@ -165,4 +165,41 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/guess-the-number',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.GuessTheNumberCLI]: {
+    title: 'Guess the Number CLI',
+    description: 'Play the exciting \'Guess the Number\' game. Try to guess a number between 0 and 100 in as few attempts as possible.',
+    href: 'easy/guess-the-number-cli',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.WeatherWithRedux]: {
+    title: 'Weather (Redux)',
+    description: 'A simple weather app that displays current weather conditions and forecasts.',
+    href: 'medium/weather',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.Weather]: {
+    title: 'Weather',
+    description: 'A simple weather app that displays current weather conditions and forecasts.',
+    href: 'easy/weather',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.URLShortenerWithRedux]: {
+    title: 'URL Shortener',
+    description: 'Quickly shorten your long URLs with our easy-to-use URL shortener service.',
+    href: 'medium/url-shortener',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.URLShortener]: {
+    title: 'URL Shortener',
+    description: 'Quickly shorten your long URLs with our easy-to-use URL shortener service.',
+    href: 'easy/url-shortener',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.ExpenseTracker]: {
+    title: 'Expense Tracker',
+    description: 'Track your expenses and income with this simple Expense Tracker app.',
+    href: 'easy/expense-tracker',
+    level: ProjectLevel.easy,
+  },
+
 };
