@@ -63,6 +63,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'kinopoiskapiunofficial.tech',
       },
+      {
+        protocol: 'https',
+        hostname: 'flagcdn.com',
+      },
     ],
   },
   eslint: {

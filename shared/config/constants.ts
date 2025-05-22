@@ -201,5 +201,10 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/expense-tracker',
     level: ProjectLevel.easy,
   },
-
+  [ProjectLabel.CurrencyConverter]: {
+    title: 'Currency Converter',
+    description: 'A currency converter application that allows users to convert between different currencies and view exchange rates.',
+    href: 'easy/currency-converter',
+    level: ProjectLevel.easy,
+  },
 };
