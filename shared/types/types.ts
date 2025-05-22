@@ -45,7 +45,7 @@ export enum ProjectLabel {
   URLShortenerWithRedux = 'URLShortener (Redux)',
   ExpenseTracker = 'ExpenseTracker',
   CurrencyConverter = 'CurrencyConverter',
-  // SaveTextAsFile = 'SaveTextAsFile',
+  SaveTextAsFile = 'SaveTextAsFile',
   // TagInputBox = 'TagInputBox',
   // WikiSearcher = 'WikiSearcher',
   // OnlineTranslator = 'OnlineTranslator',

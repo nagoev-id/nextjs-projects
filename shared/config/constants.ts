@@ -207,4 +207,10 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/currency-converter',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.SaveTextAsFile]: {
+    title: 'Save Text As File',
+    description: 'Save your text as various file types.',
+    href: 'easy/save-text-file',
+    level: ProjectLevel.easy,
+  },
 };
