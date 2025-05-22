@@ -47,7 +47,8 @@ export enum ProjectLabel {
   CurrencyConverter = 'CurrencyConverter',
   SaveTextAsFile = 'SaveTextAsFile',
   TagInputBox = 'TagInputBox',
-  // WikiSearcher = 'WikiSearcher',
+  WikiSearcher = 'WikiSearcher',
+  WikiSearcherWithRedux = 'WikiSearcher (Redux)',
   // OnlineTranslator = 'OnlineTranslator',
   // ColorGenerator = 'ColorGenerator',
   // LoanCalculator = 'LoanCalculator',
@@ -101,6 +102,7 @@ export enum ProjectLabel {
   // EatAndSplit = 'EatAndSplit',
   // FarAway = 'FarAway',
   // PopcornMovies = 'PopcornMovies',
+
 
 
 }

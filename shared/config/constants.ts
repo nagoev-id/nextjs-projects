@@ -172,7 +172,7 @@ export const PROJECTS_LIST: ListOfProjects = {
     level: ProjectLevel.easy,
   },
   [ProjectLabel.WeatherWithRedux]: {
-    title: 'Weather (Redux)',
+    title: 'Weather',
     description: 'A simple weather app that displays current weather conditions and forecasts.',
     href: 'medium/weather',
     level: ProjectLevel.medium,
@@ -217,6 +217,18 @@ export const PROJECTS_LIST: ListOfProjects = {
     title: 'Tag Input Box',
     description: 'A simple and interactive tag management system.',
     href: 'easy/tag-input-box',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.WikiSearcherWithRedux]: {
+    title: 'Wiki Searcher',
+    description: 'Search for information using Wikipedia API.',
+    href: 'medium/wiki-searcher',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.WikiSearcher]: {
+    title: 'Wiki Searcher',
+    description: 'Search for information using Wikipedia API.',
+    href: 'easy/wiki-searcher',
     level: ProjectLevel.easy,
   },
 };
