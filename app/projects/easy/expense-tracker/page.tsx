@@ -69,7 +69,7 @@ import { Button } from '@/components/ui/button';
 import { FormInput } from '@/components/layout';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ExpenseTrackerSchema, expenseTrackerValidateSchema } from '@/app/projects/easy/expense-tracker/utils';
+import { validate, ValidateSchema } from '@/app/projects/easy/expense-tracker/utils';
 import { Form } from '@/components/ui/form';
 import { v4 as uuidv4 } from 'uuid';
 import { useStorage } from '@/app/projects/easy/countdown/hooks';
@@ -84,7 +84,7 @@ import { useStorage } from '@/app/projects/easy/countdown/hooks';
 type Transaction = {
   id: string;
   text: string;
-  amount: number;
+  amount: number | string;
 }
 
 /**
@@ -135,13 +135,13 @@ const ExpenseTrackerPage = () => {
   });
 
   // Настройка формы с валидацией через React Hook Form и Zod
-  const form = useForm<ExpenseTrackerSchema>({
+  const form = useForm<ValidateSchema>({
     defaultValues: {
       text: '',
-      amount: '',
+      amount: String(''),
     },
     mode: 'onChange',
-    resolver: zodResolver(expenseTrackerValidateSchema),
+    resolver: zodResolver(validate),
   });
 
   /**
@@ -163,11 +163,12 @@ const ExpenseTrackerPage = () => {
       const amounts = transactions.reduce(
         (acc, transaction) => {
           const { amount } = transaction;
-          acc.total += amount;
-          if (amount > 0) {
-            acc.income += amount;
+          const positiveAmount = Number(amount);
+          acc.total += positiveAmount;
+          if (positiveAmount > 0) {
+            acc.income += positiveAmount;
           } else {
-            acc.expense += amount;
+            acc.expense += positiveAmount;
           }
           return acc;
         },
@@ -203,9 +204,9 @@ const ExpenseTrackerPage = () => {
 
   /**
    * Обработчик отправки формы для добавления новой транзакции
-   * @param {ExpenseTrackerSchema} data - Данные формы (текст и сумма)
+   * @param {ValidateSchema} data - Данные формы (текст и сумма)
    */
-  const onSubmit = useCallback(({ text, amount }: ExpenseTrackerSchema) => {
+  const onSubmit = useCallback(({ text, amount }: ValidateSchema) => {
     setTransactions(prevTransactions => [...prevTransactions, {
       id: uuidv4(),
       text,
@@ -264,11 +265,11 @@ const ExpenseTrackerPage = () => {
             </div>
             <ul className="gap-2 grid max-h-[200px] overflow-auto">
               {transactions.map(({ id, text, amount }) => {
-                const isNegative = amount < 0;
+                const isNegative = Number(amount) < 0;
                 const itemClass = `border-2 flex p-2 gap-2 rounded ${
                   isNegative ? 'bg-red-50 border-red-500 dark:bg-red-900/20' : 'bg-green-50 border-green-500 dark:bg-green-900/20'
                 }`;
-                const amountText = `${isNegative ? '-' : '+'}$${Math.abs(amount).toFixed(2)}`;
+                const amountText = `${isNegative ? '-' : '+'}$${Math.abs(Number(amount)).toFixed(2)}`;
                 const amountClass = `ml-auto font-bold ${isNegative ? 'text-red-400' : 'text-green-500'}`;
 
                 return (

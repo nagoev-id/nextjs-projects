@@ -80,7 +80,7 @@ const API = {
  * @property {number|null} result - Результат конвертации
  */
 type CurrencyState = {
-  amount: number;
+  amount: number | string;
   from: string;
   to: string;
   fromFlag: string;
@@ -276,7 +276,7 @@ const CurrencyConverterPage = () => {
   // Инициализация формы с валидацией
   const form = useForm<ValidateSchema>({
     defaultValues: {
-      amount: Number(currency.amount),
+      amount: String(currency.amount),
       from: currency.from,
       to: currency.to,
     },
@@ -298,7 +298,7 @@ const CurrencyConverterPage = () => {
       });
 
       const { date, result, info: { rate }, query: { amount, from, to } } = response.data;
-      setCurrency(prev => ({ ...prev, from, to, result, date, rate, amount: Number(amount)}));
+      setCurrency(prev => ({ ...prev, from, to, result, date, rate, amount: Number(amount) }));
       setStatus({ isLoading: false, isError: false, isSuccess: true });
     } catch (error) {
       console.error('An error occurred:', error);

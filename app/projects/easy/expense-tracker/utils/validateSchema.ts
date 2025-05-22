@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const expenseTrackerValidateSchema = z.object({
+export const validate = z.object({
   text: z.string()
     .trim()
     .min(1, { message: 'Text is required' })
@@ -12,7 +12,6 @@ export const expenseTrackerValidateSchema = z.object({
       const parsedValue = parseFloat(value);
       return !isNaN(parsedValue) && parsedValue !== 0;
     }, { message: 'Amount must be a number and not zero' })
-    .transform((value) => parseFloat(value)),
 });
 
-export type ExpenseTrackerSchema = z.infer<typeof expenseTrackerValidateSchema>;
+export type ValidateSchema = z.infer<typeof validate>;

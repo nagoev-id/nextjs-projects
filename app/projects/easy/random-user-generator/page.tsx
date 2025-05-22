@@ -112,16 +112,15 @@ const mock: Category[] = [
  * Компонент генератора случайных пользователей
  * Отображает информацию о случайном пользователе с возможностью
  * переключения между различными категориями данных и генерации новых пользователей
- * 
+ *
  * @returns {JSX.Element} Компонент страницы генератора случайных пользователей
  */
 const RandomUserGeneratorPage = (): JSX.Element => {
   // Получение данных и состояния запроса через кастомный хук
-  const { _, loading, error, fetchData } = useAxios<RandomUserApiResponse>();
-  
+  const { loading, error, fetchData } = useAxios<RandomUserApiResponse>();
   // Состояние для хранения данных текущего пользователя
   const [userData, setUserData] = useState<UserData | null>(null);
-  
+
   // Состояние для хранения активной категории и её значения
   const [activeCategory, setActiveCategory] = useState<ActiveCategory>({ name: mock[0].name, value: '' });
 
@@ -187,7 +186,7 @@ const RandomUserGeneratorPage = (): JSX.Element => {
   }
 
   // Если данные еще не загружены
-  if (!userData) return null;
+  if (!userData) return <></>;
 
   return (
     <Card className="grid gap-3 max-w-sm w-full mx-auto p-4 rounded">
