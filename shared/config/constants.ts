@@ -213,4 +213,10 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/save-text-file',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.TagInputBox]: {
+    title: 'Tag Input Box',
+    description: 'A simple and interactive tag management system.',
+    href: 'easy/tag-input-box',
+    level: ProjectLevel.easy,
+  },
 };

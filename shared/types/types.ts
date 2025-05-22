@@ -46,7 +46,7 @@ export enum ProjectLabel {
   ExpenseTracker = 'ExpenseTracker',
   CurrencyConverter = 'CurrencyConverter',
   SaveTextAsFile = 'SaveTextAsFile',
-  // TagInputBox = 'TagInputBox',
+  TagInputBox = 'TagInputBox',
   // WikiSearcher = 'WikiSearcher',
   // OnlineTranslator = 'OnlineTranslator',
   // ColorGenerator = 'ColorGenerator',
