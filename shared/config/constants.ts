@@ -243,4 +243,10 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/loan-calculator',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.ColorFinder]: {
+    title: 'Color Finder',
+    description: 'An interactive color finder application that allows users to select and get information about colors.',
+    href: 'easy/color-finder',
+    level: ProjectLevel.easy,
+  },
 };

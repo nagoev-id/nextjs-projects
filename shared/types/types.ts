@@ -51,7 +51,7 @@ export enum ProjectLabel {
   WikiSearcherWithRedux = 'WikiSearcher (Redux)',
   OnlineTranslator = 'OnlineTranslator',
   LoanCalculator = 'LoanCalculator',
-  // ColorFinder = 'ColorFinder',
+  ColorFinder = 'ColorFinder',
   // PasswordGenerator = 'PasswordGenerator',
   // TTS = 'TTS',
   // ToastNotification = 'ToastNotification',
