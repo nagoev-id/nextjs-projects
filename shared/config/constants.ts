@@ -231,4 +231,16 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/wiki-searcher',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.OnlineTranslator]: {
+    title: 'Online Translator',
+    description: 'Translate text between multiple languages with ease.',
+    href: 'easy/online-translator',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.LoanCalculator]: {
+    title: 'Loan Calculator',
+    description: 'Calculate your loan payments with our easy-to-use Loan Calculator.',
+    href: 'easy/loan-calculator',
+    level: ProjectLevel.easy,
+  },
 };
