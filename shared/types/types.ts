@@ -54,7 +54,7 @@ export enum ProjectLabel {
   ColorFinder = 'ColorFinder',
   PasswordGenerator = 'PasswordGenerator',
   TTS = 'TTS',
-  // ToastNotification = 'ToastNotification',
+  ToastNotification = 'ToastNotification',
   // RockPaperScissors = 'RockPaperScissors',
   // QRCodeScanner = 'QRCodeScanner',
   // QRCodeGenerator = 'QRCodeGenerator',

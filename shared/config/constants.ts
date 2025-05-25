@@ -1,5 +1,5 @@
-import { ListOfProjects, ProjectLabel, ProjectLevel } from '@/shared/types/types';
-import { Metadata } from 'next';
+import {ListOfProjects, ProjectLabel, ProjectLevel} from '@/shared/types/types';
+import {Metadata} from 'next';
 
 export const PROJECTS_METADATA: Metadata = {
   title: 'Next.js Starter Template',
@@ -259,6 +259,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     title: 'Text To Speech Converter',
     description: 'Convert text to speech with customizable voices.',
     href: 'easy/tts',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.ToastNotification]: {
+    title: 'Toast Notification',
+    description: 'Toast Notification App - Manage and display custom notifications.',
+    href: 'easy/toast-notification',
     level: ProjectLevel.easy,
   },
 };
