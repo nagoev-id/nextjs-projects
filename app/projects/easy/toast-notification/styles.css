@@ -1,42 +1,13 @@
 /* Дополнительные стили */
-.t-notifications {
+li {
     --success: 10, 191, 48;
     --error: 226, 77, 76;
     --info: 52, 152, 219;
     --warning: 233, 189, 12;
-    --gap: 20px;
-}
-
-
-.t-notifications ul {
-    --right: 20px;
-    display: grid;
-    gap: 10px;
-    position: fixed;
-    right: var(--right);
-    top: 30px;
-}
-
-.t-notifications ul li {
-    align-items: center;
     animation: showToast 0.3s ease forwards;
-    border-radius: 4px;
-    box-shadow: 0 0 3px 2px rgb(0 0 0 / 10%);
-    display: flex;
-    gap: 10px;
-    max-width: 400px;
-    overflow: hidden;
-    padding: 16px 17px;
-    position: relative;
-    width: 100%;
 }
 
-.t-notifications ul li button {
-    border: 0;
-    padding: 4px;
-}
-
-.t-notifications ul li::before {
+li::before {
     animation: progress 5s linear forwards;
     bottom: 0;
     content: "";
@@ -46,39 +17,39 @@
     width: 100%;
 }
 
-.t-notifications ul li.success i:nth-child(1) {
+li.success i:nth-child(1) {
     color: rgb(var(--success));
 }
 
-.t-notifications ul li.success::before {
+li.success::before {
     background-color: rgb(var(--success));
 }
 
-.t-notifications ul li.error i:nth-child(1) {
+li.error i:nth-child(1) {
     color: rgb(var(--error));
 }
 
-.t-notifications ul li.error::before {
+li.error::before {
     background-color: rgb(var(--error));
 }
 
-.t-notifications ul li.warning i:nth-child(1) {
+li.warning i:nth-child(1) {
     color: rgb(var(--warning));
 }
 
-.t-notifications ul li.warning::before {
+li.warning::before {
     background-color: rgb(var(--warning));
 }
 
-.t-notifications ul li.info i:nth-child(1) {
+li.info i:nth-child(1) {
     color: rgb(var(--info));
 }
 
-.t-notifications ul li.info::before {
+li.info::before {
     background-color: rgb(var(--info));
 }
 
-.t-notifications ul li.hide {
+li.hide {
     animation: hideToast 0.3s ease forwards;
 }
 
