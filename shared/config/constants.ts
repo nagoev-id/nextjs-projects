@@ -1,5 +1,5 @@
-import {ListOfProjects, ProjectLabel, ProjectLevel} from '@/shared/types/types';
-import {Metadata} from 'next';
+import { ListOfProjects, ProjectLabel, ProjectLevel } from '@/shared/types/types';
+import { Metadata } from 'next';
 
 export const PROJECTS_METADATA: Metadata = {
   title: 'Next.js Starter Template',
@@ -267,4 +267,11 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/toast-notification',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.RockPaperScissors]: {
+    title: 'Rock Paper Scissors Game',
+    description: 'Play Rock, Paper, Scissors against the computer. Best of 3 attempts!',
+    href: 'easy/rock-paper-scissors',
+    level: ProjectLevel.easy,
+  },
+
 };
