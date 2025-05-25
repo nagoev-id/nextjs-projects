@@ -273,5 +273,10 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/rock-paper-scissors',
     level: ProjectLevel.easy,
   },
-
+  [ProjectLabel.QRCodeScanner]: {
+    title: 'QR Code Scanner',
+    description: 'QR Code Scanner: Easily scan and process QR codes online.',
+    href: 'easy/qr-code-scanner',
+    level: ProjectLevel.easy,
+  },
 };
