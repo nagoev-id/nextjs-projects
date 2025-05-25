@@ -52,8 +52,8 @@ export enum ProjectLabel {
   OnlineTranslator = 'OnlineTranslator',
   LoanCalculator = 'LoanCalculator',
   ColorFinder = 'ColorFinder',
-  // PasswordGenerator = 'PasswordGenerator',
-  // TTS = 'TTS',
+  PasswordGenerator = 'PasswordGenerator',
+  TTS = 'TTS',
   // ToastNotification = 'ToastNotification',
   // RockPaperScissors = 'RockPaperScissors',
   // QRCodeScanner = 'QRCodeScanner',
@@ -107,3 +107,5 @@ export enum ProjectLabel {
 }
 
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;
+
+

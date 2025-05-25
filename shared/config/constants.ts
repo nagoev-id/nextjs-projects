@@ -249,4 +249,16 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/color-finder',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.PasswordGenerator]: {
+    title: 'Password Generator',
+    description: 'A secure and customizable password generator tool.',
+    href: 'medium/password-generator',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.TTS]: {
+    title: 'Text To Speech Converter',
+    description: 'Convert text to speech with customizable voices.',
+    href: 'easy/tts',
+    level: ProjectLevel.easy,
+  },
 };
