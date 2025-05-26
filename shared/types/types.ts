@@ -63,7 +63,7 @@ export enum ProjectLabel {
   QuoteGenerator = 'QuoteGenerator',
   Calculator = 'Calculator',
   BreathingRelaxation = 'BreathingRelaxation',
-  // HangmanGame = 'HangmanGame',
+  HangmanGame = 'HangmanGame',
   // FeedbackForm = 'FeedbackForm',
   // Quiz = 'Quiz',
   // PasswordStrengthChecker = 'PasswordStrengthChecker',
