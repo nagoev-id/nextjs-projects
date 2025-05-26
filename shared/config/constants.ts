@@ -283,18 +283,24 @@ export const PROJECTS_LIST: ListOfProjects = {
     title: 'QR Code Generator',
     description: 'Generate QR codes easily with customizable size and content.',
     href: 'easy/qr-code-generator',
-    level: ProjectLevel.easy
+    level: ProjectLevel.easy,
   },
   [ProjectLabel.ProductFilter]: {
     title: 'Product Filter',
     description: 'Interactive product filtering application.',
     href: 'easy/product-filter',
-    level: ProjectLevel.easy
+    level: ProjectLevel.easy,
   },
   [ProjectLabel.ProductsTab]: {
     title: 'Products Tab',
     description: 'Interactive product tabs filtering application.',
     href: 'easy/products-tab',
-    level: ProjectLevel.easy
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.QuoteGenerator]: {
+    title: 'Quote Generator',
+    description: 'Generate random quotes from various sources.',
+    href: 'easy/quote-generator',
+    level: ProjectLevel.easy,
   },
 };

@@ -60,7 +60,7 @@ export enum ProjectLabel {
   QRCodeGenerator = 'QRCodeGenerator',
   ProductFilter = 'ProductFilter',
   ProductsTab = 'ProductsTab',
-  // QuoteGenerator = 'QuoteGenerator',
+  QuoteGenerator = 'QuoteGenerator',
   // Calculator = 'Calculator',
   // BreathingRelaxation = 'BreathingRelaxation',
   // HangmanGame = 'HangmanGame',
