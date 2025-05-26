@@ -291,4 +291,10 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/product-filter',
     level: ProjectLevel.easy
   },
+  [ProjectLabel.ProductsTab]: {
+    title: 'Products Tab',
+    description: 'Interactive product tabs filtering application.',
+    href: 'easy/products-tab',
+    level: ProjectLevel.easy
+  },
 };
