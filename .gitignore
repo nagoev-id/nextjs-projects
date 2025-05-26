@@ -135,3 +135,7 @@ tmp/
 *.old
 *.tmp
 *.temp
+
+app/projects/easy/_project-template-easy
+app/projects/hard/_project-template-hard
+app/projects/medium/_project-template

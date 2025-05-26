@@ -279,4 +279,11 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/qr-code-scanner',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.QRCodeGenerator]: {
+    title: 'QR Code Generator',
+    description: 'Generate QR codes easily with customizable size and content.',
+    href: 'easy/qr-code-generator',
+    level: ProjectLevel.easy
+  },
+
 };
