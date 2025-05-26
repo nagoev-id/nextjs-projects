@@ -285,5 +285,10 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/qr-code-generator',
     level: ProjectLevel.easy
   },
-
+  [ProjectLabel.ProductFilter]: {
+    title: 'Product Filter',
+    description: 'Interactive product filtering application.',
+    href: 'easy/product-filter',
+    level: ProjectLevel.easy
+  },
 };
