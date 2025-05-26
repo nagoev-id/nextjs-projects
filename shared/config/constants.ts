@@ -303,4 +303,16 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/quote-generator',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.Calculator]: {
+    title: 'Calculator',
+    description: 'A simple and efficient calculator app built with React.',
+    href: 'easy/calculator',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.BreathingRelaxation]: {
+    title: 'Breathing Relaxation',
+    description: 'A relaxation app that guides you through breathing exercises.',
+    href: 'easy/breathing-relaxation',
+    level: ProjectLevel.easy,
+  },
 };
