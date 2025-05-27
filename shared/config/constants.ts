@@ -292,6 +292,24 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/breathing-relaxation',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.WordScramble]: {
+    title: 'Word Scramble',
+    description: 'A word scramble game where you unscramble words against the clock.',
+    href: 'easy/word-scramble',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.WorkoutTracker]: {
+    title: 'Workout Tracker',
+    description: 'Track and manage your workouts with this simple and effective workout tracker.',
+    href: 'easy/workout-tracker',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.RollDice]: {
+    title: 'Roll Dice',
+    description: 'A dice rolling game where two players compete to reach 100 points.',
+    href: 'easy/roll-dice',
+    level: ProjectLevel.easy,
+  },
 
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {
