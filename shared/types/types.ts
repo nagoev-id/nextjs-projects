@@ -65,7 +65,7 @@ export enum ProjectLabel {
   BreathingRelaxation = 'BreathingRelaxation',
   HangmanGame = 'HangmanGame',
   FeedbackForm = 'FeedbackForm',
-  // Quiz = 'Quiz',
+  Quiz = 'Quiz',
   // PasswordStrengthChecker = 'PasswordStrengthChecker',
   // RollDice = 'RollDice',
   // WorkoutTracker = 'WorkoutTracker',
@@ -101,7 +101,6 @@ export enum ProjectLabel {
   // EatAndSplit = 'EatAndSplit',
   // FarAway = 'FarAway',
   // PopcornMovies = 'PopcornMovies',
-
 
 
 }

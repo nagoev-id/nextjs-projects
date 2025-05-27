@@ -9,6 +9,7 @@ export const PROJECTS_METADATA: Metadata = {
 };
 
 export const PROJECTS_LIST: ListOfProjects = {
+  // Easy projects
   [ProjectLabel.Counter]: {
     title: 'Counter',
     description: 'A simple and interactive counter application.',
@@ -171,23 +172,11 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/guess-the-number-cli',
     level: ProjectLevel.easy,
   },
-  [ProjectLabel.WeatherWithRedux]: {
-    title: 'Weather',
-    description: 'A simple weather app that displays current weather conditions and forecasts.',
-    href: 'medium/weather',
-    level: ProjectLevel.medium,
-  },
   [ProjectLabel.Weather]: {
     title: 'Weather',
     description: 'A simple weather app that displays current weather conditions and forecasts.',
     href: 'easy/weather',
     level: ProjectLevel.easy,
-  },
-  [ProjectLabel.URLShortenerWithRedux]: {
-    title: 'URL Shortener',
-    description: 'Quickly shorten your long URLs with our easy-to-use URL shortener service.',
-    href: 'medium/url-shortener',
-    level: ProjectLevel.medium,
   },
   [ProjectLabel.URLShortener]: {
     title: 'URL Shortener',
@@ -219,12 +208,6 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/tag-input-box',
     level: ProjectLevel.easy,
   },
-  [ProjectLabel.WikiSearcherWithRedux]: {
-    title: 'Wiki Searcher',
-    description: 'Search for information using Wikipedia API.',
-    href: 'medium/wiki-searcher',
-    level: ProjectLevel.medium,
-  },
   [ProjectLabel.WikiSearcher]: {
     title: 'Wiki Searcher',
     description: 'Search for information using Wikipedia API.',
@@ -248,12 +231,6 @@ export const PROJECTS_LIST: ListOfProjects = {
     description: 'An interactive color finder application that allows users to select and get information about colors.',
     href: 'easy/color-finder',
     level: ProjectLevel.easy,
-  },
-  [ProjectLabel.PasswordGenerator]: {
-    title: 'Password Generator',
-    description: 'A secure and customizable password generator tool.',
-    href: 'medium/password-generator',
-    level: ProjectLevel.medium,
   },
   [ProjectLabel.TTS]: {
     title: 'Text To Speech Converter',
@@ -315,6 +292,32 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/breathing-relaxation',
     level: ProjectLevel.easy,
   },
+
+  // Medium projects
+  [ProjectLabel.WeatherWithRedux]: {
+    title: 'Weather',
+    description: 'A simple weather app that displays current weather conditions and forecasts.',
+    href: 'medium/weather',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.URLShortenerWithRedux]: {
+    title: 'URL Shortener',
+    description: 'Quickly shorten your long URLs with our easy-to-use URL shortener service.',
+    href: 'medium/url-shortener',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.WikiSearcherWithRedux]: {
+    title: 'Wiki Searcher',
+    description: 'Search for information using Wikipedia API.',
+    href: 'medium/wiki-searcher',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.PasswordGenerator]: {
+    title: 'Password Generator',
+    description: 'A secure and customizable password generator tool.',
+    href: 'medium/password-generator',
+    level: ProjectLevel.medium,
+  },
   [ProjectLabel.HangmanGame]: {
     title: 'Hangman',
     description: 'Try to guess the word by choosing letters.',
@@ -325,6 +328,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     title: 'Feedback Form',
     description: 'Interactive feedback form with customizable fields.',
     href: 'medium/feedback-form',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.Quiz]: {
+    title: 'Quiz',
+    description: 'Interactive quiz application with customizable settings.',
+    href: 'medium/quiz',
     level: ProjectLevel.medium,
   },
 };
