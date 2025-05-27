@@ -1,14 +1,14 @@
-import { Metadata } from 'next';
-import { HELPERS, ProjectLabel } from '@/shared';
-import { ReactNode } from 'react';
-import { ProjectLayout } from '@/components/layout';
-import { ReduxProvider } from '@/app/projects/medium/weather/app/redux-provider';
+import {Metadata} from 'next';
+import {HELPERS, ProjectLabel} from '@/shared';
+import {ReactNode} from 'react';
+import {ProjectLayout} from '@/components/layout';
+import {ReduxProvider} from '@/app/projects/medium/feedback-form/app';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const projectKey = ProjectLabel.Weather;
+const projectKey = ProjectLabel.FeedbackForm;
 
 export const metadata: Metadata = HELPERS.projectMetadata(projectKey);
 
