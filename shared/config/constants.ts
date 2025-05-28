@@ -316,6 +316,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/data-table-sort',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.EatAndSplit]: {
+    title: 'Eat And Split',
+    description: 'A user-friendly app for managing shared expenses among friends.',
+    href: 'easy/eat-and-split',
+    level: ProjectLevel.easy,
+  },
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {
     title: 'Weather',

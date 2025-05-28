@@ -70,6 +70,7 @@ export enum ProjectLabel {
   WorkoutTracker = 'WorkoutTracker',
   RollDice = 'RollDice',
   DataTableSort = 'DataTableSort',
+  EatAndSplit = 'EatAndSplit',
 }
 
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;
