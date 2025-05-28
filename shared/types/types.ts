@@ -71,6 +71,8 @@ export enum ProjectLabel {
   RollDice = 'RollDice',
   DataTableSort = 'DataTableSort',
   EatAndSplit = 'EatAndSplit',
+  FarAway = 'FarAway',
+  GitHubUsersList = 'GitHubUsersList',
 }
 
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;

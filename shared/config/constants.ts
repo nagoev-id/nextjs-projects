@@ -322,6 +322,18 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/eat-and-split',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.FarAway]: {
+    title: 'Far Away',
+    description: 'An interactive packing list app for travelers.',
+    href: 'easy/far-away',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.GitHubUsersList]: {
+    title: 'GitHub Users List',
+    description: 'A web application that displays a paginated list of GitHub users.',
+    href: 'easy/github-users-list',
+    level: ProjectLevel.easy,
+  },
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {
     title: 'Weather',
