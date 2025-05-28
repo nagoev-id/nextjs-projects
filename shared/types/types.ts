@@ -73,6 +73,19 @@ export enum ProjectLabel {
   EatAndSplit = 'EatAndSplit',
   FarAway = 'FarAway',
   GitHubUsersList = 'GitHubUsersList',
+  UserTableSort = 'UserTableSort',
+  CryptoMarketTracker = 'CryptoMarketTracker',
+  YouTubeToMP3 = 'YouTubeToMP3',
+  ZipCode = 'ZipCode',
+  IPAddressTracker = 'IPAddressTracker',
+  ImageResizer = 'ImageResizer',
+  ImageEditor = 'ImageEditor',
+  TypingSpeedTest = 'TypingSpeedTest',
+  TypewriterEffect = 'TypewriterEffect',
+  PriceRangeSlider = 'PriceRangeSlider',
+  Pokedex = 'Pokedex',
+  MemoryMatchingGame = 'MemoryMatchingGame',
+  PasswordStrengthChecker = 'PasswordStrengthChecker',
 }
 
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;

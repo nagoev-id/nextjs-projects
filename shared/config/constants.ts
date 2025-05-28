@@ -316,6 +316,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/data-table-sort',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.UserTableSort]: {
+    title: 'User Table Sort',
+    description: 'Interactive data table with advanced sorting and filtering capabilities.',
+    href: 'easy/user-table-sort',
+    level: ProjectLevel.easy,
+  },
   [ProjectLabel.EatAndSplit]: {
     title: 'Eat And Split',
     description: 'A user-friendly app for managing shared expenses among friends.',
@@ -334,6 +340,73 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/github-users-list',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.YouTubeToMP3]: {
+    title: 'YouTube to MP3 Converter',
+    description: 'Convert YouTube videos to MP3 format easily and quickly.',
+    href: 'easy/youtube-to-mp3',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.ZipCode]: {
+    title: 'ZipCode',
+    description: 'Find location details using zip codes from various countries.',
+    href: 'easy/zipcode',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.IPAddressTracker]: {
+    title: 'IP Address Tracker',
+    description: 'Track and locate IP addresses with our user-friendly IP Address Tracker. Get detailed information about any IP address including location, timezone, and ISP.',
+    href: 'easy/ip-address-tracker',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.ImageResizer]: {
+    title: 'Image Resizer',
+    description: 'An interactive web application for resizing and downloading images.',
+    href: 'easy/image-resizer',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.ImageEditor]: {
+    title: 'Image Editor',
+    description: 'Image editor with filters, rotation, and flip features.',
+    href: 'easy/image-editor',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.TypingSpeedTest]: {
+    title: 'Typing Speed Test',
+    description: 'Test your typing speed and accuracy with this interactive typing speed test.',
+    href: 'easy/typing-speed-test',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.TypewriterEffect]: {
+    title: 'Typewriter Effect',
+    description: 'A typewriter effect demonstration showcasing dynamic text animation.',
+    href: 'easy/typewriter-effect',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.PriceRangeSlider]: {
+    title: 'Price Range Slider',
+    description: 'Interactive price slider for selecting a price range.',
+    href: 'easy/price-range-slider',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.Pokedex]: {
+    title: 'Pokedex App',
+    description: 'Explore the world of Pokémon with our interactive Pokedex app.',
+    href: 'easy/pokedex',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.MemoryMatchingGame]: {
+    title: 'Memory Matching Game: Brain Training',
+    description: 'An engaging memory game where you match pairs of cards to challenge and improve your memory skills.',
+    href: 'easy/memory-matching-game',
+    level: ProjectLevel.easy,
+  },
+  [ProjectLabel.PasswordStrengthChecker]: {
+    title: 'Password Strength Checker',
+    description: 'An interactive tool that evaluates password security in real-time.',
+    href: 'easy/password-strength-checker',
+    level: ProjectLevel.easy,
+  },
+
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {
     title: 'Weather',
@@ -375,6 +448,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     title: 'Quiz',
     description: 'Interactive quiz application with customizable settings.',
     href: 'medium/quiz',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.CryptoMarketTracker]: {
+    title: 'Crypto Market Tracker',
+    description: 'Track real-time cryptocurrency market data.',
+    href: 'medium/crypto-market-tracker',
     level: ProjectLevel.medium,
   },
 };
