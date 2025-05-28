@@ -69,6 +69,7 @@ export enum ProjectLabel {
   WordScramble = 'WordScramble',
   WorkoutTracker = 'WorkoutTracker',
   RollDice = 'RollDice',
+  DataTableSort = 'DataTableSort',
 }
 
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;

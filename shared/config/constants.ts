@@ -310,7 +310,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/roll-dice',
     level: ProjectLevel.easy,
   },
-
+  [ProjectLabel.DataTableSort]: {
+    title: 'Table Sort',
+    description: 'Interactive data table with advanced sorting and filtering capabilities.',
+    href: 'easy/data-table-sort',
+    level: ProjectLevel.easy,
+  },
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {
     title: 'Weather',
