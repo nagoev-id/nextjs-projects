@@ -86,6 +86,7 @@ export enum ProjectLabel {
   Pokedex = 'Pokedex',
   MemoryMatchingGame = 'MemoryMatchingGame',
   PasswordStrengthChecker = 'PasswordStrengthChecker',
+  JobsFilter = 'JobsFilter',
 }
 
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;

@@ -456,4 +456,10 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'medium/crypto-market-tracker',
     level: ProjectLevel.medium,
   },
+  [ProjectLabel.JobsFilter]: {
+    title: 'Jobs Filter',
+    description: 'Explore and filter job opportunities easily with our Jobs Filter App. Find the perfect position matching your skills and preferences.',
+    href: 'medium/jobs-filter',
+    level: ProjectLevel.medium,
+  },
 };
