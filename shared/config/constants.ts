@@ -354,7 +354,7 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
   [ProjectLabel.IPAddressTracker]: {
     title: 'IP Address Tracker',
-    description: 'Track and locate IP addresses with our user-friendly IP Address Tracker. Get detailed information about any IP address including location, timezone, and ISP.',
+    description: 'Track and locate IP addresses with our user-friendly IP Address Tracker.',
     href: 'easy/ip-address-tracker',
     level: ProjectLevel.easy,
   },
