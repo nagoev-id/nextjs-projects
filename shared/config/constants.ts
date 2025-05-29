@@ -395,7 +395,7 @@ export const PROJECTS_LIST: ListOfProjects = {
     level: ProjectLevel.easy,
   },
   [ProjectLabel.MemoryMatchingGame]: {
-    title: 'Memory Matching Game: Brain Training',
+    title: 'Memory Matching',
     description: 'An engaging memory game where you match pairs of cards to challenge and improve your memory skills.',
     href: 'easy/memory-matching-game',
     level: ProjectLevel.easy,
