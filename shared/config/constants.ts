@@ -480,6 +480,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'medium/hacker-news-search',
     level: ProjectLevel.medium,
   },
+  [ProjectLabel.CountriesExplorer]: {
+    title: 'Countries Explorer',
+    description: 'Explore detailed information about countries around the world with our fast and intuitive search application.',
+    href: 'medium/countries-explorer',
+    level: ProjectLevel.medium,
+  },
   // PopcornMovies: {
   //   title: 'Popcorn Movies',
   //   description: 'An interactive movie database application. Browse, search, and explore a vast collection of films. Features include movie details, ratings, and the ability to save favorites.',
@@ -535,10 +541,5 @@ export const PROJECTS_LIST: ListOfProjects = {
   //   href: 'github-user-finder',
   //   level: 'medium',
   // },
-  // CountriesExplorer: {
-  //   title: 'Countries Explorer',
-  //   description: 'Explore detailed information about countries around the world with our fast and intuitive search application.',
-  //   href: 'countries-explorer',
-  //   level: 'medium',
-  // },
+
 };

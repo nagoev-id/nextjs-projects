@@ -90,6 +90,7 @@ export enum ProjectLabel {
   TwittyMicroposts = 'TwittyMicroposts',
   BreweryFinder = 'BreweryFinder',
   HackerNewsSearch = 'HackerNewsSearch',
+  CountriesExplorer = 'CountriesExplorer',
 }
 
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;
