@@ -492,54 +492,46 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'medium/github-user-finder',
     level: ProjectLevel.medium,
   },
-  // PopcornMovies: {
-  //   title: 'Popcorn Movies',
-  //   description: 'An interactive movie database application. Browse, search, and explore a vast collection of films. Features include movie details, ratings, and the ability to save favorites.',
-  //   href: 'popcorn-movies',
-  //   level: 'medium',
-  // },
-  //
-  //
-  // ShoppingMarketCart: {
-  //   title: 'Shopping Market Cart',
-  //   description: 'An interactive e-commerce application with a fully functional shopping cart. Allows users to browse products, add items to cart, manage quantities, and complete purchases. Features include a product catalog, detailed item pages, and a total cost calculation system.',
-  //   href: 'shopping-market-cart',
-  //   level: 'medium',
-  // },
-  // BookHub: {
-  //   title: 'Book Hub',
-  //   description: 'An interactive digital library application that allows users to search, explore, and manage their favorite books. Features include book search, favorites list, and detailed book information.',
-  //   href: 'book-hub',
-  //   level: 'medium',
-  // },
-  //
-  //
-  // TodoList: {
-  //   title: 'TodoList',
-  //   description: 'Organize your tasks efficiently with our comprehensive TodoList application.',
-  //   href: 'todo-list',
-  //   level: 'medium',
-  // },
-  //
-  // CocktailExplorer: {
-  //   title: 'Cocktail Explorer',
-  //   description: 'Discover and explore a world of cocktails with our extensive database. Find recipes, ingredients, and mixing instructions for your favorite drinks.',
-  //   href: 'cocktail-explorer',
-  //   level: 'medium',
-  // },
-  // TheMealExplorer: {
-  //   title: 'TheMeal Explorer',
-  //   description: 'Discover and explore a world of culinary delights with our extensive meal database. Find recipes, ingredients, and cooking instructions for your favorite dishes from around the globe.',
-  //   href: 'the-meal-explorer',
-  //   level: 'medium',
-  // },
-  // MobileStoreCart: {
-  //   title: 'Mobile Store Cart',
-  //   description: 'Explore our wide range of mobile devices. Easy shopping with real-time cart updates and seamless checkout process.',
-  //   href: 'mobile-store-cart',
-  //   level: 'medium',
-  // },
-
-
-
+  [ProjectLabel.TheMealExplorer]: {
+    title: 'TheMeal Explorer',
+    description: 'Discover and explore a world of culinary delights with our extensive meal database. Find recipes, ingredients, and cooking instructions for your favorite dishes from around the globe.',
+    href: 'medium/the-meal-explorer',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.CocktailExplorer]: {
+    title: 'Cocktail Explorer',
+    description: 'Discover and explore a world of cocktails with our extensive database. Find recipes, ingredients, and mixing instructions for your favorite drinks.',
+    href: 'medium/cocktail-explorer',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.PopcornMovies]: {
+    title: 'Popcorn Movies',
+    description: 'An interactive movie database application. Browse, search, and explore a vast collection of films. Features include movie details, ratings, and the ability to save favorites.',
+    href: 'medium/popcorn-movies',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.ShoppingMarketCart]: {
+    title: 'Shopping Market Cart',
+    description: 'An interactive e-commerce application with a fully functional shopping cart. Allows users to browse products, add items to cart, manage quantities, and complete purchases. Features include a product catalog, detailed item pages, and a total cost calculation system.',
+    href: 'medium/shopping-market-cart',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.BookHub]: {
+    title: 'Book Hub',
+    description: 'An interactive digital library application that allows users to search, explore, and manage their favorite books. Features include book search, favorites list, and detailed book information.',
+    href: 'medium/book-hub',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.TodoList]: {
+    title: 'TodoList',
+    description: 'Organize your tasks efficiently with our comprehensive TodoList application.',
+    href: 'medium/todo-list',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.MobileStoreCart]: {
+    title: 'Mobile Store Cart',
+    description: 'Explore our wide range of mobile devices. Easy shopping with real-time cart updates and seamless checkout process.',
+    href: 'medium/mobile-store-cart',
+    level: ProjectLevel.medium,
+  },
 };

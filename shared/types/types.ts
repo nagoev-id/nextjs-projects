@@ -92,6 +92,13 @@ export enum ProjectLabel {
   HackerNewsSearch = 'HackerNewsSearch',
   CountriesExplorer = 'CountriesExplorer',
   GitHubUserFinder = 'GitHubUserFinder',
+  TheMealExplorer = 'TheMealExplorer',
+  CocktailExplorer = 'CocktailExplorer',
+  PopcornMovies = 'PopcornMovies',
+  ShoppingMarketCart = 'ShoppingMarketCart',
+  BookHub = 'BookHub',
+  TodoList = 'TodoList',
+  MobileStoreCart = 'MobileStoreCart',
 }
 
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;
