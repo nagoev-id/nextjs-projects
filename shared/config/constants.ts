@@ -462,4 +462,10 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'medium/jobs-filter',
     level: ProjectLevel.medium,
   },
+  [ProjectLabel.TwittyMicroposts]: {
+    title: 'Twitty Microposts',
+    description: 'Twitty Microposts - a modern microblogging platform for creating and sharing short posts. Share your thoughts easily and quickly!',
+    href: 'medium/twitty-microposts',
+    level: ProjectLevel.medium,
+  },
 };
