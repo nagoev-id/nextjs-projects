@@ -458,14 +458,20 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
   [ProjectLabel.JobsFilter]: {
     title: 'Jobs Filter',
-    description: 'Explore and filter job opportunities easily with our Jobs Filter App. Find the perfect position matching your skills and preferences.',
+    description: 'Explore and filter job opportunities easily with our Jobs Filter App.',
     href: 'medium/jobs-filter',
     level: ProjectLevel.medium,
   },
   [ProjectLabel.TwittyMicroposts]: {
     title: 'Twitty Microposts',
-    description: 'Twitty Microposts - a modern microblogging platform for creating and sharing short posts. Share your thoughts easily and quickly!',
+    description: 'Modern microblogging platform for creating and sharing short posts.',
     href: 'medium/twitty-microposts',
+    level: ProjectLevel.medium,
+  },
+  [ProjectLabel.BreweryFinder]: {
+    title: 'Brewery Finder',
+    description: 'Discover and explore a variety of breweries with our comprehensive brewery finder application.',
+    href: 'medium/brewery-finder',
     level: ProjectLevel.medium,
   },
 };

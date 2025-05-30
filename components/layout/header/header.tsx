@@ -55,7 +55,7 @@ const Header = ({
             >
               {title}
             </Link>
-            {description && <p className="text-sm text-muted-foreground">{description}</p>}
+            {description && <p className="text-sm text-muted-foreground text-center">{description}</p>}
           </div>
           <ul className="flex gap-2 justify-center items-center" role="list">
             {showBackButton && (

@@ -53,7 +53,7 @@ type FormSelectProps<T extends Record<string, unknown>> = BaseFormElementProps<T
 /**
  * Стили по умолчанию для полей формы
  */
-const FIELD_STYLES = 'bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600';
+const FIELD_STYLES = '';
 
 /**
  * Компонент для текстовых полей ввода в форме
@@ -104,14 +104,14 @@ export function FormInput<T extends Record<string, unknown>>({
       render={({ field }) => (
         <FormItem className={className}>
           {label && (
-            <FormLabel className={cn('text-gray-700 dark:text-gray-300', labelClassName)}>
+            <FormLabel className={cn('', labelClassName)}>
               {label}
             </FormLabel>
           )}
           <FormControl>
             {renderFormElement(type, field, placeholder, inputProps, min, max, autoComplete, disabled)}
           </FormControl>
-          <FormMessage className={cn('text-red-500 dark:text-red-400', messageClassName)} />
+          <FormMessage className={cn('', messageClassName)} />
         </FormItem>
       )}
     />
@@ -160,7 +160,7 @@ export function FormSelect<T extends Record<string, unknown>>({
       render={({ field }) => (
         <FormItem className={className}>
           {label && (
-            <FormLabel className={cn('text-gray-700 dark:text-gray-300', labelClassName)}>
+            <FormLabel className={cn('', labelClassName)}>
               {label}
             </FormLabel>
           )}
@@ -192,7 +192,7 @@ export function FormSelect<T extends Record<string, unknown>>({
               })}
             </SelectContent>
           </Select>
-          <FormMessage className={cn('text-red-500 dark:text-red-400', messageClassName)} />
+          <FormMessage className={cn('', messageClassName)} />
         </FormItem>
       )}
     />
