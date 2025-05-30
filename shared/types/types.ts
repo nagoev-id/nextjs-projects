@@ -89,6 +89,7 @@ export enum ProjectLabel {
   JobsFilter = 'JobsFilter',
   TwittyMicroposts = 'TwittyMicroposts',
   BreweryFinder = 'BreweryFinder',
+  HackerNewsSearch = 'HackerNewsSearch',
 }
 
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;

@@ -474,4 +474,71 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'medium/brewery-finder',
     level: ProjectLevel.medium,
   },
+  [ProjectLabel.HackerNewsSearch]: {
+    title: 'HackerNews Search',
+    description: 'Find and explore the latest tech news and discussions.',
+    href: 'medium/hacker-news-search',
+    level: ProjectLevel.medium,
+  },
+  // PopcornMovies: {
+  //   title: 'Popcorn Movies',
+  //   description: 'An interactive movie database application. Browse, search, and explore a vast collection of films. Features include movie details, ratings, and the ability to save favorites.',
+  //   href: 'popcorn-movies',
+  //   level: 'medium',
+  // },
+  //
+  //
+  // ShoppingMarketCart: {
+  //   title: 'Shopping Market Cart',
+  //   description: 'An interactive e-commerce application with a fully functional shopping cart. Allows users to browse products, add items to cart, manage quantities, and complete purchases. Features include a product catalog, detailed item pages, and a total cost calculation system.',
+  //   href: 'shopping-market-cart',
+  //   level: 'medium',
+  // },
+  // BookHub: {
+  //   title: 'Book Hub',
+  //   description: 'An interactive digital library application that allows users to search, explore, and manage their favorite books. Features include book search, favorites list, and detailed book information.',
+  //   href: 'book-hub',
+  //   level: 'medium',
+  // },
+  //
+  //
+  // TodoList: {
+  //   title: 'TodoList',
+  //   description: 'Organize your tasks efficiently with our comprehensive TodoList application.',
+  //   href: 'todo-list',
+  //   level: 'medium',
+  // },
+  //
+  // CocktailExplorer: {
+  //   title: 'Cocktail Explorer',
+  //   description: 'Discover and explore a world of cocktails with our extensive database. Find recipes, ingredients, and mixing instructions for your favorite drinks.',
+  //   href: 'cocktail-explorer',
+  //   level: 'medium',
+  // },
+  // TheMealExplorer: {
+  //   title: 'TheMeal Explorer',
+  //   description: 'Discover and explore a world of culinary delights with our extensive meal database. Find recipes, ingredients, and cooking instructions for your favorite dishes from around the globe.',
+  //   href: 'the-meal-explorer',
+  //   level: 'medium',
+  // },
+  // MobileStoreCart: {
+  //   title: 'Mobile Store Cart',
+  //   description: 'Explore our wide range of mobile devices. Easy shopping with real-time cart updates and seamless checkout process.',
+  //   href: 'mobile-store-cart',
+  //   level: 'medium',
+  // },
+
+  //
+  // GitHubUserFinder: {
+  //   title: 'GitHub User Finder',
+  //   description: 'Explore GitHub profiles with our fast and intuitive user search application.',
+  //   href: 'github-user-finder',
+  //   level: 'medium',
+  // },
+  // CountriesExplorer: {
+  //   title: 'Countries Explorer',
+  //   description: 'Explore detailed information about countries around the world with our fast and intuitive search application.',
+  //   href: 'countries-explorer',
+  //   level: 'medium',
+  // },
 };
