@@ -91,6 +91,7 @@ export enum ProjectLabel {
   BreweryFinder = 'BreweryFinder',
   HackerNewsSearch = 'HackerNewsSearch',
   CountriesExplorer = 'CountriesExplorer',
+  GitHubUserFinder = 'GitHubUserFinder',
 }
 
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;
