@@ -67,6 +67,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'flagcdn.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.course-api.com',
+      },
     ],
   },
   eslint: {

@@ -530,7 +530,7 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
   [ProjectLabel.MobileStoreCart]: {
     title: 'Mobile Store Cart',
-    description: 'Explore our wide range of mobile devices. Easy shopping with real-time cart updates and seamless checkout process.',
+    description: 'Easy shopping with real-time cart updates and seamless checkout process.',
     href: 'medium/mobile-store-cart',
     level: ProjectLevel.medium,
   },
