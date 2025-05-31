@@ -6,20 +6,23 @@ interface ProjectLayoutProps {
   children: ReactNode;
   projectKey: keyof typeof PROJECTS_LIST;
   showAbout?: boolean;
+  customHeader?: ReactNode;
 }
 
 const ProjectLayout = ({
                          children,
                          projectKey,
                          showAbout = false,
+                         customHeader,
                        }: Readonly<ProjectLayoutProps>) => {
   return (
     <>
-      <Header
+      {customHeader || <Header
         title={PROJECTS_LIST[projectKey]?.title || 'Project'}
         description={PROJECTS_LIST[projectKey]?.description || ''}
         showAbout={showAbout}
       />
+      }
       <Main>{children}</Main>
       <Footer />
     </>

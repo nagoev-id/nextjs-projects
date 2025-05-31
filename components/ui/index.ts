@@ -15,4 +15,5 @@ export * from './textarea';
 export * from './checkbox';
 export * from './radio-group';
 export * from './pagination';
+export * from './sheet';
 export * from './theme-provider';

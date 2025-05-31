@@ -494,7 +494,7 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
   [ProjectLabel.TheMealExplorer]: {
     title: 'TheMeal Explorer',
-    description: 'Discover and explore a world of culinary delights with our extensive meal database. Find recipes, ingredients, and cooking instructions for your favorite dishes from around the globe.',
+    description: 'Discover and explore a world of culinary delights with our extensive meal database.',
     href: 'medium/the-meal-explorer',
     level: ProjectLevel.medium,
   },
@@ -506,19 +506,19 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
   [ProjectLabel.PopcornMovies]: {
     title: 'Popcorn Movies',
-    description: 'An interactive movie database application. Browse, search, and explore a vast collection of films. Features include movie details, ratings, and the ability to save favorites.',
+    description: 'An interactive movie database application. Browse, search, and explore a vast collection of films.',
     href: 'medium/popcorn-movies',
     level: ProjectLevel.medium,
   },
   [ProjectLabel.ShoppingMarketCart]: {
     title: 'Shopping Market Cart',
-    description: 'An interactive e-commerce application with a fully functional shopping cart. Allows users to browse products, add items to cart, manage quantities, and complete purchases. Features include a product catalog, detailed item pages, and a total cost calculation system.',
+    description: 'An interactive e-commerce application with a fully functional shopping cart.',
     href: 'medium/shopping-market-cart',
     level: ProjectLevel.medium,
   },
   [ProjectLabel.BookHub]: {
     title: 'Book Hub',
-    description: 'An interactive digital library application that allows users to search, explore, and manage their favorite books. Features include book search, favorites list, and detailed book information.',
+    description: 'An interactive digital library application that allows users to search, explore, and manage their favorite books.',
     href: 'medium/book-hub',
     level: ProjectLevel.medium,
   },
