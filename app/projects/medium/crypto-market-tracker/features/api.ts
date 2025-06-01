@@ -158,7 +158,7 @@ export const api = createApi({
     getAll: builder.query<CryptoList, void>({
       query: () => API_CONFIG.endpoints.readAll(),
     }),
-    getById: builder.query<Crypto, string>({
+    getById: builder.query<CryptoData, string>({
       query: (id) => API_CONFIG.endpoints.readById(id),
     }),
   }),

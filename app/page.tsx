@@ -5,21 +5,45 @@ import { Input } from '@/components/ui/input';
 import { PROJECTS_LIST } from '@/shared';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
+/**
+ * @typedef {'all' | 'level' | 'title' | 'description'} FilterProperty
+ * @description Тип для свойств фильтрации проектов
+ */
 type FilterProperty = 'all' | 'level' | 'title' | 'description';
+
+/**
+ * @typedef {'all' | 'easy' | 'medium' | 'hard'} ProjectLevel
+ * @description Тип для уровней сложности проектов
+ */
 
 type ProjectLevel = 'all' | 'easy' | 'medium' | 'hard'
 
+/**
+ * @typedef {Object} FilterProps
+ * @property {string} text - Текст поиска
+ * @property {FilterProperty} property - Свойство, по которому производится фильтрация
+ * @property {ProjectLevel} level - Уровень сложности для фильтрации
+ */
 type FilterProps = {
   text: string;
   property: FilterProperty;
   level: ProjectLevel;
 }
 
+/**
+ * @typedef {Object} LevelOption
+ * @property {ProjectLevel} value - Значение уровня сложности
+ * @property {string} label - Отображаемая метка уровня сложности
+ */
 type LevelOption = {
   value: ProjectLevel;
   label: string;
 };
 
+/**
+ * @type {LevelOption[]}
+ * @description Массив опций уровней сложности для выбора
+ */
 const levels: LevelOption[] = [
   { value: 'all', label: 'All levels' },
   { value: 'easy', label: 'Easy' },
@@ -27,13 +51,31 @@ const levels: LevelOption[] = [
   { value: 'hard', label: 'Hard' },
 ];
 
+/**
+ * Компонент домашней страницы
+ *
+ * @type {React.FC}
+ * @returns {JSX.Element} Отрендеренная домашняя страница
+ *
+ * @description
+ * Этот компонент отображает список проектов с возможностью фильтрации и поиска.
+ * Он использует компоненты из библиотеки Shadcn UI для создания интерфейса фильтрации.
+ */
 const HomePage = () => {
+  /**
+   * Состояние фильтра
+   * @type {[FilterProps, React.Dispatch<React.SetStateAction<FilterProps>>]}
+   */
   const [filter, setFilter] = useState<FilterProps>({
     text: '',
     property: 'all',
     level: 'all',
   });
 
+  /**
+   * Отфильтрованный список проектов
+   * @type {[string, any][]}
+   */
   const filteredProjects = useMemo(() => {
     return Object.entries(PROJECTS_LIST).filter(([_, project]) => {
       const searchText = filter.text.toLowerCase();
@@ -50,6 +92,13 @@ const HomePage = () => {
     });
   }, [filter]);
 
+  /**
+   * Обработчик изменения фильтра
+   *
+   * @type {(type: keyof FilterProps, value: string) => void}
+   * @param {keyof FilterProps} type - Тип изменяемого свойства фильтра
+   * @param {string} value - Новое значение свойства
+   */
   const handleFilterChange = useCallback((type: keyof FilterProps, value: string) => {
     setFilter(prevState => ({ ...prevState, [type]: value }));
   }, []);
@@ -59,6 +108,7 @@ const HomePage = () => {
     <div className="flex flex-col text-foreground min-h-screen">
       <Header showAbout={true} showBackButton={false} />
       <Main>
+        {/* Компоненты фильтрации */}
         <div className="grid gap-3 mb-3 md:grid-cols-3">
           <Input
             placeholder="Search for projects..."
@@ -95,6 +145,7 @@ const HomePage = () => {
           </Select>
         </div>
 
+        {/* Отображение отфильтрованных проектов */}
         {filteredProjects.length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
             {filteredProjects.map(([key, project]) => (

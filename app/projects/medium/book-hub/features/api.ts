@@ -51,7 +51,6 @@ export type SearchBooksResponse = {
   }[];
   numFound?: number;
   start?: number;
-  // Adding pagination info that API might return
 }
 
 /**
@@ -65,17 +64,25 @@ export type SearchBooksResponse = {
  * @property {string[]} subjects - Темы книги
  * @property {Array<{key: string, name: string}>} [authors] - Информация об авторах
  * @property {string} [published_date] - Дата публикации
+ * @property {number} [first_publish_year] - Год первой публикации
+ * @property {string} [publisher] - Издатель
+ * @property {string} [isbn] - ISBN книги
+ * @property {string} id - Уникальный идентификатор книги
  */
 export type BookDetails = {
+  id: string;
   title: string;
   coverImg: string | StaticImageData;
   description: string;
   subject_places: string[];
   subject_times: string[];
   subjects: string[];
-  // Add optional properties that might be useful
   authors?: Array<{ key: string, name: string }>;
   published_date?: string;
+  first_publish_year?: number;
+  publisher?: string;
+  isbn?: string;
+  edition_count?: number;
 }
 
 /**
@@ -97,6 +104,8 @@ export type BookDetailsResponse = {
   subject_times?: string[];
   subjects?: string[];
   authors?: Array<{ key: string }>;
+  first_publish_year?: number;
+  edition_count?: number;
 }
 
 /**
@@ -177,10 +186,11 @@ export const api = createApi({
      */
     getById: builder.query<BookDetails, string>({
       query: (id: string) => API_CONFIG.endpoints.readById(id),
-      transformResponse: (response: BookDetailsResponse): BookDetails => {
+      transformResponse: (response: BookDetailsResponse, meta, id): BookDetails => {
         const { description, title, covers, subject_places, subject_times, subjects } = response;
 
         return {
+          id: id, // Add the ID from the query parameter
           title: title || 'Unknown Title',
           coverImg: covers && covers.length > 0
             ? `${API_CONFIG.coverUrl}/${covers[0]}-L.jpg`
@@ -191,6 +201,8 @@ export const api = createApi({
           subject_places: subject_places || ['No subject places found'],
           subject_times: subject_times || ['No subject times found'],
           subjects: subjects || ['No subjects found'],
+          first_publish_year: response.first_publish_year,
+          edition_count: response.edition_count
         };
       },
       providesTags: (result, error, id) => [{ type: 'Book', id }],

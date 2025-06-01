@@ -32,7 +32,7 @@ type UseImageUploadReturn = {
   /** Загруженное изображение в формате Data URL или null */
   image: string | null;
   /** Ref для доступа к скрытому input элементу */
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement | null>;
   /** Функция для обработки клика на область загрузки */
   handleImageClick: () => void;
   /** Функция для обработки выбора файла */

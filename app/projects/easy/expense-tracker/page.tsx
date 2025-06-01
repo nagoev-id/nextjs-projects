@@ -72,7 +72,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { validate, ValidateSchema } from '@/app/projects/easy/expense-tracker/utils';
 import { Form } from '@/components/ui/form';
 import { v4 as uuidv4 } from 'uuid';
-import { useStorage } from '@/app/projects/easy/countdown/hooks';
+import { useStorage } from '@/shared/hooks';
 
 /**
  * Тип для представления финансовой транзакции

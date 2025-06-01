@@ -45,7 +45,7 @@ import { Spinner } from '@/components/ui/spinner';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { usePagination } from '@/app/projects/easy/github-users-list/hooks';
+import { usePagination } from '@/shared/hooks';
 import { toast } from 'sonner';
 
 /**

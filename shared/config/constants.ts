@@ -1,6 +1,17 @@
 import { ListOfProjects, ProjectLabel, ProjectLevel } from '@/shared/types/types';
 import { Metadata } from 'next';
 
+/**
+ * @constant
+ * @type {Metadata}
+ * @description Метаданные проекта, используемые для SEO и описания приложения
+ * @property {string} title - Заголовок проекта
+ * @property {string} description - Краткое описание проекта
+ * @property {string[]} keywords - Ключевые слова для SEO
+ * @property {Object[]} authors - Информация об авторах проекта
+ * @property {string} authors[].name - Имя автора
+ * @property {string} authors[].url - URL профиля автора
+ */
 export const PROJECTS_METADATA: Metadata = {
   title: 'Next.js Starter Template',
   description: 'A Next.js starter template with a minimalistic design and a clean code structure.',
@@ -8,6 +19,11 @@ export const PROJECTS_METADATA: Metadata = {
   authors: [{ name: 'Alim Nagoev', url: 'https://github.com/nagoev-alim' }],
 };
 
+/**
+ * @constant
+ * @type {ListOfProjects}
+ * @description Список всех проектов, сгруппированных по уровню сложности и типу
+ */
 export const PROJECTS_LIST: ListOfProjects = {
   // Easy projects
   [ProjectLabel.Counter]: {

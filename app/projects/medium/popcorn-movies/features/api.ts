@@ -1,6 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { incrementPage, resetPage, setSearchResults } from '@/app/projects/medium/popcorn-movies/features/slice';
+import { Dispatch } from '@reduxjs/toolkit';
 
+/**
+ * Interface for the parameters of handleQueryResults function
+ */
+interface HandleQueryResultsParams {
+  page: number;
+  queryFulfilled: Promise<{
+    data: SearchResult | CollectionResult;
+    meta: any;
+  }>;
+  dispatch: Dispatch;
+  isPopular?: boolean;
+}
 
 type Country = {
   country: string;
@@ -100,11 +113,27 @@ const API_CONFIG = {
   },
 };
 
-const handleQueryResults = async ({ page, queryFulfilled, dispatch, isPopular = false }) => {
+/**
+ * Handles the results of a query, updating the Redux store with search results and pagination
+ * @param param0 Object containing page, queryFulfilled, dispatch, and isPopular flag
+ * @returns Promise resolving to the query result
+ */
+const handleQueryResults = async ({
+                                    page,
+                                    queryFulfilled,
+                                    dispatch,
+                                    isPopular = false
+                                  }: HandleQueryResultsParams) => {
   try {
     const { data } = await queryFulfilled;
+
+    // Use type guard to determine which property to access
+    const films = isPopular
+      ? (data as CollectionResult).items
+      : (data as SearchResult).films;
+
     dispatch(setSearchResults({
-      films: isPopular ? data.items : data.films,
+      films,
       isNewSearch: page === 1,
     }));
 
@@ -143,7 +172,12 @@ export const api = createApi({
     getByKeyword: builder.query<SearchResult, { keyword: string; page: number }>({
       query: ({ keyword, page }) => API_CONFIG.endpoints.readByKeyword(keyword, String(page)),
       async onQueryStarted({ page }, { queryFulfilled, dispatch }) {
-        return handleQueryResults({ page, queryFulfilled, dispatch });
+        try {
+          await handleQueryResults({ page, queryFulfilled, dispatch });
+        } catch (error) {
+          // Error is already logged in handleQueryResults
+          console.error('Error in onQueryStarted:', error);
+        }
       },
       keepUnusedDataFor: 300,
       serializeQueryArgs: ({ endpointName, queryArgs }) => {
@@ -171,7 +205,11 @@ export const api = createApi({
     getPopular: builder.query<CollectionResult, { type: string; page: number }>({
       query: ({ type, page = 1 }) => API_CONFIG.endpoints.readPopular(type, page),
       async onQueryStarted({ page, type }, { queryFulfilled, dispatch }) {
-        return handleQueryResults({ page, queryFulfilled, dispatch, isPopular: true });
+        try {
+          await handleQueryResults({ page, queryFulfilled, dispatch, isPopular: true });
+        } catch (error) {
+          console.error('Error in onQueryStarted:', error);
+        }
       },
       keepUnusedDataFor: 300,
       serializeQueryArgs: ({ endpointName, queryArgs }) => {

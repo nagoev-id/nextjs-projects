@@ -1,9 +1,21 @@
+/**
+ * @enum {string}
+ * @description Перечисление уровней сложности проекта
+ */
 export enum ProjectLevel {
   easy = 'easy',
   medium = 'medium',
   hard = 'hard',
 }
 
+/**
+ * @typedef {Object} ProjectInfo
+ * @description Тип, описывающий информацию о проекте
+ * @property {string} title - Заголовок проекта
+ * @property {string} description - Описание проекта
+ * @property {string} href - Ссылка на проект
+ * @property {ProjectLevel} level - Уровень сложности проекта
+ */
 export type ProjectInfo = {
   title: string;
   description: string;
@@ -11,6 +23,11 @@ export type ProjectInfo = {
   level: ProjectLevel;
 }
 
+/**
+ * @enum {string}
+ * @description Перечисление меток проектов
+ * @example
+ */
 export enum ProjectLabel {
   Counter = 'Counter',
   ColorGenerator = 'ColorGenerator',
@@ -101,6 +118,10 @@ export enum ProjectLabel {
   MobileStoreCart = 'MobileStoreCart',
 }
 
+/**
+ * @typedef {Object.<ProjectLabel, ProjectInfo>} ListOfProjects
+ * @description Тип, представляющий список проектов, где ключ - метка проекта, а значение - информация о проекте
+ */
 export type ListOfProjects = Record<ProjectLabel, ProjectInfo>;
 
 

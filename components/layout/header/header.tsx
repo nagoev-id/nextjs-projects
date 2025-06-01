@@ -16,7 +16,14 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
-
+/**
+ * @typedef {Object} HeaderProps
+ * @property {string} [title='Collections of React Apps'] - Заголовок шапки
+ * @property {string} [description] - Описание под заголовком
+ * @property {boolean} [showAbout=false] - Флаг для отображения кнопки "About"
+ * @property {boolean} [showBackButton=true] - Флаг для отображения кнопки "Back to Home"
+ * @property {string} [ariaLabelLink] - ARIA-метка для ссылки на главную страницу
+ */
 type HeaderProps = {
   title?: string | null | undefined;
   description?: string | null | undefined;
@@ -25,6 +32,17 @@ type HeaderProps = {
   ariaLabelLink?: string;
 }
 
+/**
+ * Компонент шапки сайта
+ *
+ * @type {React.FC<HeaderProps>}
+ * @param {HeaderProps} props - Пропсы компонента
+ * @returns {JSX.Element} Отрендеренный компонент шапки
+ *
+ * @description
+ * Этот компонент использует компоненты из библиотеки Shadcn UI для создания
+ * адаптивной шапки сайта с навигацией, переключателем темы и модальным окном "About".
+ */
 const Header = ({
                   title = 'Collections of React Apps',
                   description,

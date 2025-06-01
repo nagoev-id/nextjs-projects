@@ -51,9 +51,9 @@ import { useImageUpload } from '@/app/projects/easy/image-editor/hooks';
  * @property {function} onClick - Функция-обработчик клика по кнопке фильтра
  */
 type FilterButtonProps = {
-  filter: string;
-  activeFilter: string;
-  onClick: (filter: string) => void;
+  filter: keyof Filters;
+  activeFilter: keyof Filters;
+  onClick: (filter: keyof Filters) => void;
 }
 
 /**
@@ -289,7 +289,7 @@ const ImageEditorPage = (): JSX.Element => {
     Object.keys(filters).map((filter) => (
       <FilterButton
         key={filter}
-        filter={filter}
+        filter={filter as keyof Filters}
         activeFilter={activeFilter}
         onClick={handleFilterClick}
       />

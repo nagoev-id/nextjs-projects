@@ -44,7 +44,7 @@ import { JSX } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from '@/components/ui/button';
 import { WorkoutRow } from '@/app/projects/easy/workout-tracker/components';
-import useStorage from '@/app/projects/easy/countdown/hooks/use-storage';
+import { useStorage } from '@/shared/hooks';
 
 /**
  * Тип данных для тренировки

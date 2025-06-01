@@ -170,7 +170,7 @@ const PopcornMoviesPage = (): JSX.Element => {
       } else {
         return;
       }
-      const newFilms = result.films || result.items;
+      const newFilms = 'films' in result ? result.films : 'items' in result ? result.items : [];
       updateSearchState({ hasMore: newFilms.length > 0 });
       if (newFilms.length > 0) {
         dispatch(incrementPage());

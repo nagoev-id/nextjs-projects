@@ -10,12 +10,37 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Moon, Sun } from 'lucide-react';
 
-const options = [
+/**
+ * @typedef {Object} ThemeOption
+ * @property {string} value - Значение темы ('light', 'dark', 'system')
+ * @property {string} label - Отображаемое название темы
+ */
+
+type ThemeOption = {
+  value: 'light' | 'dark' | 'system';
+  label: string;
+}
+
+/**
+ * @type {ThemeOption[]}
+ * @description Массив опций для выбора темы
+ */
+const options: ThemeOption[] = [
   { value: 'light', label: 'Light' },
   { value: 'dark', label: 'Dark' },
   { value: 'system', label: 'System' },
 ];
 
+/**
+ * Компонент переключателя темы
+ *
+ * @type {React.FC}
+ * @returns {JSX.Element} Отрендеренный компонент переключателя темы
+ *
+ * @description
+ * Этот компонент создает выпадающее меню для переключения между светлой, темной и системной темами.
+ * Он использует хук useTheme из библиотеки next-themes для управления темой приложения.
+ */
 const ThemeToggle = () => {
   const { setTheme } = useTheme();
   return (

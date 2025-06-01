@@ -59,16 +59,35 @@ export const HELPERS = {
   },
 
   /**
-   * Конвертирует HEX-цвет в формат RGB
+   * Конвертирует HEX-цвет в формат RGB или RGBA
    * @param {string} hex - HEX-цвет (например, "#A1B2C3")
-   * @returns {string} Строка с RGB-цветом (например, "rgb(161, 178, 195)")
+   * @param {number} [alpha] - Значение прозрачности от 0 до 1 (опционально)
+   * @returns {string} Строка с RGB или RGBA цветом (например, "rgb(161, 178, 195)" или "rgba(161, 178, 195, 0.5)")
    */
-  convertHexToRgb: (hex: string): string => {
-    const cleanHex = hex.replace('#', '');
-    const r = parseInt(cleanHex.substring(0, 2), 16);
-    const g = parseInt(cleanHex.substring(2, 4), 16);
-    const b = parseInt(cleanHex.substring(4, 6), 16);
-    return `rgb(${r}, ${g}, ${b})`;
+  convertHexToRgb: (hex: string, alpha?: number): string => {
+    // Проверяем и очищаем входной HEX-цвет
+    const cleanHex = hex.replace(/^#/, '');
+
+    // Проверяем валидность HEX-цвета
+    if (!/^([A-Fa-f0-9]{3}){1,2}$/.test(cleanHex)) {
+      console.warn('Invalid HEX color provided:', hex);
+      return 'rgb(0, 0, 0)'; // Возвращаем черный цвет по умолчанию
+    }
+
+    // Преобразуем сокращенный HEX (например, #ABC) в полный формат (#AABBCC)
+    const normalizedHex = cleanHex.length === 3
+      ? cleanHex.split('').map(char => char + char).join('')
+      : cleanHex;
+
+    // Извлекаем RGB компоненты
+    const r = parseInt(normalizedHex.substring(0, 2), 16);
+    const g = parseInt(normalizedHex.substring(2, 4), 16);
+    const b = parseInt(normalizedHex.substring(4, 6), 16);
+
+    // Возвращаем RGB или RGBA в зависимости от наличия параметра alpha
+    return typeof alpha === 'number'
+      ? `rgba(${r}, ${g}, ${b}, ${Math.max(0, Math.min(1, alpha))})`
+      : `rgb(${r}, ${g}, ${b})`;
   },
 
   /**
@@ -142,7 +161,11 @@ export const HELPERS = {
 
   /**
    * Показывает анимацию конфетти на экране
+   * @description Использует библиотеку canvas-confetti для создания эффекта конфетти
+   * @see https://www.npmjs.com/package/canvas-confetti
    * @returns {void}
+   * @example
+   * HELPERS.showConfetti();
    */
   showConfetti: function(): void {
     // Используем функцию вместо стрелочной функции, чтобы иметь доступ к this
@@ -155,10 +178,27 @@ export const HELPERS = {
 
     confetti(confettiOptions);
   },
+
+  /**
+   * Возвращает текущую дату в отформатированном виде
+   * @returns {string} Строка с датой в формате "день, месяц (сокращенно), год"
+   * @example
+   * const currentDate = HELPERS.formattedDate();
+   * console.log(currentDate); // Выведет, например: "15, Apr, 2023"
+   */
   formattedDate: () => {
     const now = new Date();
     return `${now.getDate()}, ${now.toLocaleString('en-EN', { month: 'short' })}, ${now.getFullYear()}`;
   },
+
+  /**
+   * Форматирует число в денежный формат USD
+   * @param {number} number - Число для форматирования
+   * @returns {string} Отформатированная строка с ценой в формате USD
+   * @example
+   * const price = HELPERS.formatPrice(1234.56);
+   * console.log(price); // Выведет "$1,234.56"
+   */
   formatPrice: (number: number): string => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',

@@ -32,19 +32,19 @@
 
 'use client';
 
-import {JSX, useCallback, useEffect, useState} from "react";
-import {Card} from "@/components/ui/card";
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {toast} from "sonner";
-import axios from "axios";
-import {Form} from "@/components/ui/form";
-import {FormInput} from "@/components/layout";
-import {Button} from "@/components/ui/button";
-import {Spinner} from "@/components/ui/spinner";
-import {HELPERS} from "@/shared";
-import {useStorage} from "@/app/projects/easy/countdown/hooks";
-import {WeatherFormSchema, weatherFormValidateSchema} from "@/app/projects/easy/weather/utils";
+import { JSX, useCallback, useEffect, useState } from 'react';
+import { Card } from '@/components/ui/card';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+import axios from 'axios';
+import { Form } from '@/components/ui/form';
+import { FormInput } from '@/components/layout';
+import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
+import { HELPERS } from '@/shared';
+import { useStorage } from '@/shared/hooks';
+import { WeatherFormSchema, weatherFormValidateSchema } from '@/app/projects/easy/weather/utils';
 
 /**
  * Интерфейс данных о погоде

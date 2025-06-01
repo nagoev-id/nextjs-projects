@@ -50,10 +50,11 @@ import {
   PokemonCardData,
   PokemonData,
 } from '@/app/projects/easy/pokedex/utils';
-import { usePagination } from '../github-users-list/hooks';
+
 import { toast } from 'sonner';
 import Image from 'next/image';
 import { Badge, Button, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui';
+import { usePagination } from '@/shared/hooks';
 
 /**
  * Константы по умолчанию для приложения Pokedex

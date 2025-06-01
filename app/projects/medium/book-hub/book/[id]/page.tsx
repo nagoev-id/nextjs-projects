@@ -4,6 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { JSX, useCallback, useMemo } from 'react';
 import {
   addFavorite,
+  BookItem,
   removeFavorite,
   selectIsFavorite,
   useGetByIdQuery,
@@ -37,7 +38,16 @@ const BookPage = (): JSX.Element => {
       dispatch(removeFavorite(book.id));
       toast.success('The book is removed from the chosen one');
     } else {
-      dispatch(addFavorite(book));
+      // Convert BookDetails to BookItem
+      const bookItem: BookItem = {
+        id: book.id,
+        title: book.title,
+        author: book.authors?.map(a => a.name) || [],
+        cover_id: book.coverImg,
+        edition_count: book.edition_count || 0,
+        first_publish_year: book.first_publish_year || 0
+      };
+      dispatch(addFavorite(bookItem));
       toast.success('The book added to favorites');
     }
   }, [book, dispatch, isFavorite]);

@@ -39,7 +39,7 @@ import { PiBellSimpleRingingDuotone } from 'react-icons/pi';
 import { toast } from 'sonner';
 import { HELPERS } from '@/shared';
 import { formatTime, generateNumbers } from './utils';
-import useStorage from '../countdown/hooks/use-storage';
+import { useStorage } from '@/shared/hooks';
 
 /**
  * Интерфейс для состояния будильника

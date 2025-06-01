@@ -42,7 +42,7 @@
  */
 
 import React, { JSX, useCallback, useEffect, useRef, useState } from 'react';
-import { useStorage } from '@/app/projects/easy/countdown/hooks';
+import { useStorage } from '@/shared/hooks';
 import { Card } from '@/components/ui/card';
 import { FaTimes } from 'react-icons/fa';
 import { Input } from '@/components/ui/input';

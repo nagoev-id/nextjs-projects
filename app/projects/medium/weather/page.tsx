@@ -51,7 +51,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { HELPERS } from '@/shared';
 import { FormInput } from '@/components/layout/form/form-input';
 
-import { useStorage } from '@/app/projects/easy/countdown/hooks';
+import { useStorage } from '@/shared/hooks';
 import { WeatherFormSchema, weatherFormValidateSchema } from './utils/validateSchema';
 import { ForecastDay, useLazyGetWeatherByQueryQuery } from '@/app/projects/medium/weather/features/weatherApi';
 

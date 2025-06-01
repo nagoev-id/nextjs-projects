@@ -58,7 +58,7 @@ import { Form } from '@/components/ui/form';
 import { FormInput } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { formSchema, FormValues } from '@/app/projects/easy/ip-address-tracker/utils';
-import { useStorage } from '@/app/projects/easy/countdown/hooks';
+import { useStorage } from '@/shared/hooks';
 
 /**
  * Дефолтный IP-адрес для начальной загрузки

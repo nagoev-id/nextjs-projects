@@ -71,6 +71,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'www.course-api.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
     ],
   },
   eslint: {

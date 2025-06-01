@@ -31,7 +31,7 @@
  *    - При размонтировании компонента интервал очищается для предотвращения утечек памяти
  */
 
-import { useStorage } from '@/app/projects/easy/countdown/hooks';
+import { useStorage } from '@/shared/hooks';
 import { Card } from '@/components/ui/card';
 import { JSX, useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';

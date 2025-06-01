@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
  * @param {number} delay - Задержка в миллисекундах перед обновлением дебаунсированного значения
  * @returns {T} Дебаунсированное значение, которое обновляется после указанной задержки
  */
-export default function useDebounce<T>(value: T, delay: number): T {
+const useDebounce = <T,>(value: T, delay: number): T => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
   useEffect(() => {
@@ -27,4 +27,6 @@ export default function useDebounce<T>(value: T, delay: number): T {
   }, [value, delay]);
 
   return debouncedValue;
-}
+};
+
+export default useDebounce;
