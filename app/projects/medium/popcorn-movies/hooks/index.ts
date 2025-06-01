@@ -1,0 +1,1 @@
+export {default as useMovieSearch} from './use-movie-search';
