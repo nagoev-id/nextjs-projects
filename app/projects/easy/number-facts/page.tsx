@@ -36,7 +36,7 @@ import { JSX, useCallback, useState } from 'react';
 import { useAxios } from '@/shared/hooks';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { NumberFactsFormValues, numberFactsSchema } from '@/app/projects/easy/number-facts/utils';
+import { formSchema, FormSchema } from '@/app/projects/easy/number-facts/utils';
 import { Form } from '@/components/ui/form';
 import { FormInput } from '@/components/layout';
 import { Button } from '@/components/ui/button';
@@ -74,8 +74,8 @@ const NumberFactsPage = (): JSX.Element => {
    * Настройка формы с использованием react-hook-form и валидацией через zod.
    * Валидация происходит при изменении значений (mode: 'onChange').
    */
-  const form = useForm<NumberFactsFormValues>({
-    resolver: zodResolver(numberFactsSchema),
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
     mode: 'onChange',
     defaultValues: {
       number: '',
@@ -86,9 +86,9 @@ const NumberFactsPage = (): JSX.Element => {
    * Обработчик отправки формы.
    * Выполняет запрос к API для получения факта о введенном числе.
    *
-   * @param {NumberFactsFormValues} data - Данные формы с введенным числом
+   * @param {FormSchema} data - Данные формы с введенным числом
    */
-  const onSubmit = useCallback(async (data: NumberFactsFormValues) => {
+  const onSubmit = useCallback(async (data: FormSchema) => {
     try {
       setFetchingData(await fetchData(`http://numbersapi.com/${data.number}`));
     } catch (error) {
