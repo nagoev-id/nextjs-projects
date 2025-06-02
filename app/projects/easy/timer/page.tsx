@@ -42,7 +42,7 @@ import { MdOutlinePause, MdPlayArrow } from 'react-icons/md';
 import { Form } from '@/components/ui/form';
 import { FormInput } from '@/components/layout';
 import { useForm } from 'react-hook-form';
-import { TimerFormValues, timerSchema } from '@/app/projects/easy/timer/utils';
+import { FormSchema, formSchema } from '@/app/projects/easy/timer/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 
@@ -81,7 +81,7 @@ const TimerPage = (): JSX.Element => {
         try {
           return JSON.parse(timeFromStorage);
         } catch (e) {
-          console.error('Ошибка при парсинге данных из localStorage:', e);
+          console.error('Localstorage data parsing error:', e);
         }
       }
     }
@@ -100,8 +100,8 @@ const TimerPage = (): JSX.Element => {
   /**
    * Инициализация формы с валидацией через Zod
    */
-  const form = useForm<TimerFormValues>({
-    resolver: zodResolver(timerSchema),
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
     mode: 'onChange',
   });
 
@@ -160,9 +160,9 @@ const TimerPage = (): JSX.Element => {
 
   /**
    * Обработчик отправки формы
-   * @param {TimerFormValues} data - Данные формы с временем в минутах
+   * @param {FormSchema} data - Данные формы с временем в минутах
    */
-  const onSubmit = useCallback((data: TimerFormValues) => {
+  const onSubmit = useCallback((data: FormSchema) => {
     startTimer(data.number);
   }, [startTimer]);
 
