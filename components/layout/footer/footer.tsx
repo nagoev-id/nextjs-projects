@@ -13,7 +13,7 @@ const Footer = (): JSX.Element => {
 
   return (
     <footer>
-      <Card className="grid place-items-center text-center p-4 xl:px-0 gap-2">
+      <Card className="grid place-items-center text-center p-4 xl:px-0 gap-2 rounded-none">
         <p>Copyright © {getCurrentYear()}. All rights reserved.</p>
         <p className="inline-flex gap-1">
           Made with <HeartHandshake className="text-red-500" size={20} aria-hidden="true" /> by{' '}

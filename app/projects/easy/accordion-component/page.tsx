@@ -30,7 +30,7 @@
 
 import './styles.css';
 import { Card } from '@/components/ui/card';
-import { JSX, useRef, useState } from 'react';
+import { JSX, useEffect, useRef, useState } from 'react';
 import { IoChevronDown, IoChevronUpOutline, IoInformationCircleSharp } from 'react-icons/io5';
 
 /**
@@ -82,10 +82,55 @@ const AccordionPage = (): JSX.Element => {
     'accordion-1': [],
     'accordion-2': [],
   });
-  
+
   // Рефы для доступа к DOM элементам содержимого аккордеона
   const bodyRefs = useRef<Record<string, HTMLDivElement | null>>({});
-  
+
+  // Хранение высот контента для каждого элемента аккордеона
+  const [contentHeights, setContentHeights] = useState<Record<string, number>>({});
+
+  // Эффект для измерения высоты контента при монтировании и изменении размеров окна
+  useEffect(() => {
+    const updateHeights = () => {
+      const newHeights: Record<string, number> = {};
+
+      Object.keys(bodyRefs.current).forEach(key => {
+        const element = bodyRefs.current[key];
+        if (element) {
+          // Временно делаем элемент видимым для измерения высоты
+          const originalHeight = element.style.height;
+          const originalPadding = element.style.padding;
+          const originalOverflow = element.style.overflow;
+
+          element.style.height = 'auto';
+          element.style.paddingTop = '15px';
+          element.style.paddingBottom = '15px';
+          element.style.overflow = 'hidden';
+
+          // Измеряем высоту содержимого
+          newHeights[key] = element.scrollHeight;
+
+          // Возвращаем исходные стили
+          element.style.height = originalHeight;
+          element.style.padding = originalPadding;
+          element.style.overflow = originalOverflow;
+        }
+      });
+
+      setContentHeights(newHeights);
+    };
+
+    // Измеряем высоты при монтировании
+    updateHeights();
+
+    // Добавляем слушатель изменения размера окна
+    window.addEventListener('resize', updateHeights);
+
+    return () => {
+      window.removeEventListener('resize', updateHeights);
+    };
+  }, []);
+
   /**
    * Обработчик переключения состояния элемента аккордеона
    * @param {string} accordionId - ID аккордеона
@@ -95,23 +140,24 @@ const AccordionPage = (): JSX.Element => {
   const handleToggle = (accordionId: string, index: number, isClosed: boolean): void => {
     setOpenItemsMap(prev => {
       const currentOpenItems = prev[accordionId] || [];
-      
+
       // Если элемент уже открыт, закрываем его
       if (currentOpenItems.includes(index)) {
         return { ...prev, [accordionId]: currentOpenItems.filter(i => i !== index) };
       }
-      
+
       // Если это аккордеон с закрытием других элементов
       if (isClosed) {
         return { ...prev, [accordionId]: [index] };
       }
-      
+
       // Иначе добавляем элемент к открытым
-      return { ...prev, [accordionId]: [...currentOpenItems, index]
+      return {
+        ...prev, [accordionId]: [...currentOpenItems, index],
       };
     });
   };
-  
+
   /**
    * Устанавливает реф для элемента содержимого аккордеона
    * @param {string} key - Уникальный ключ для элемента
@@ -122,7 +168,7 @@ const AccordionPage = (): JSX.Element => {
       bodyRefs.current[key] = element;
     }
   };
-  
+
   /**
    * Проверяет, открыт ли элемент аккордеона
    * @param {string} accordionId - ID аккордеона
@@ -143,11 +189,12 @@ const AccordionPage = (): JSX.Element => {
             {Array.from({ length: 4 }).map((_, i) => {
               const isOpen = isItemOpen(item.id, i);
               const bodyRefKey = `${item.id}-${i}`;
-              
+              const contentHeight = contentHeights[bodyRefKey] || 0;
+
               return (
                 <div className={`accordion__container ${isOpen ? 'open' : ''}`} key={i}>
-                  <div 
-                    className="accordion__header" 
+                  <div
+                    className="accordion__header"
                     onClick={() => handleToggle(item.id, i, item.isClosed)}
                     aria-expanded={isOpen}
                     aria-controls={`accordion-content-${bodyRefKey}`}
@@ -162,7 +209,7 @@ const AccordionPage = (): JSX.Element => {
                     className="accordion__body"
                     ref={(el) => setBodyRef(bodyRefKey, el)}
                     style={{
-                      height: isOpen ? `${(bodyRefs.current[bodyRefKey]?.scrollHeight || 0) + 30}px` : '0px',
+                      height: isOpen ? `${contentHeight}px` : '0px',
                       paddingTop: isOpen ? '15px' : '0px',
                       paddingBottom: isOpen ? '15px' : '0px',
                     }}
