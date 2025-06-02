@@ -28,7 +28,6 @@
  *    - Компонент Card из UI библиотеки обеспечивает базовую структуру и внешний вид
  */
 
-import './styles.css';
 import { Card } from '@/components/ui/card';
 import { JSX, useEffect, useRef, useState } from 'react';
 import { IoChevronDown, IoChevronUpOutline, IoInformationCircleSharp } from 'react-icons/io5';
@@ -180,33 +179,35 @@ const AccordionPage = (): JSX.Element => {
   };
 
   return (
-    <Card className="p-4 accordion mx-auto">
+    <Card className="p-4 grid items-start accordion mx-auto max-w-4xl gap-4 w-full 2xl:grid-cols-2 max-w-8xl">
       {ACCORDION_DATA.map((item) => (
-        <div className="column" key={item.id}>
-          <h3 className="font-bold text-2xl title">{item.headline}</h3>
-          <p><IoInformationCircleSharp />{item.description}</p>
-          <div className="accordion__item">
+        <div className="grid gap-4" key={item.id}>
+          <h3 className="font-bold text-2xl text-center">{item.headline}</h3>
+          <p
+            className="items-center inline-flex gap-2.5 mx-auto text-center py-1.5 px-2.5 max-w-max rounded-md bg-gray-200 dark:bg-accent">
+            <IoInformationCircleSharp stopColor="#443df6" />{item.description}</p>
+          <div className="rounded-md shadow-sm grid gap-4 p-4">
             {Array.from({ length: 4 }).map((_, i) => {
               const isOpen = isItemOpen(item.id, i);
               const bodyRefKey = `${item.id}-${i}`;
               const contentHeight = contentHeights[bodyRefKey] || 0;
 
               return (
-                <div className={`accordion__container ${isOpen ? 'open' : ''}`} key={i}>
+                <div className="overflow-hidden border" key={i}>
                   <div
-                    className="accordion__header"
+                    className={`${isOpen ? 'bg-slate-200 border-b' : ''} hover:bg-slate-100 transition-all flex items-center cursor-pointer min-h-[60px] p-4 justify-between dark:bg-accent`}
                     onClick={() => handleToggle(item.id, i, item.isClosed)}
                     aria-expanded={isOpen}
-                    aria-controls={`accordion-content-${bodyRefKey}`}
+                    aria-controls={`${bodyRefKey}`}
                   >
-                    <span className="h5 accordion__title">Lorem ipsum dolor sit amet {i + 1}</span>
-                    <div className="accordion__icon">
+                    <span>Lorem ipsum dolor sit amet {i + 1}</span>
+                    <div>
                       {isOpen ? <IoChevronUpOutline /> : <IoChevronDown />}
                     </div>
                   </div>
                   <div
-                    id={`accordion-content-${bodyRefKey}`}
-                    className="accordion__body"
+                    id={`${bodyRefKey}`}
+                    className="grid gap-1 h-0 pl-4 pr-4 transition-all"
                     ref={(el) => setBodyRef(bodyRefKey, el)}
                     style={{
                       height: isOpen ? `${contentHeight}px` : '0px',

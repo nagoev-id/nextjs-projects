@@ -2,40 +2,39 @@
 
 /**
  * # Компонент выпадающего списка (Dropdown UI)
- * 
+ *
  * ## Принцип работы:
- * 
+ *
  * 1. **Инициализация компонента**:
  *    - При загрузке компонента создается закрытый выпадающий список (isOpen = false)
  *    - Инициализируется массив элементов списка с иконками и текстовыми метками
  *    - Создается ref для отслеживания DOM-элемента выпадающего списка
- * 
+ *
  * 2. **Взаимодействие с пользователем**:
  *    - При нажатии на кнопку-триггер список открывается или закрывается (toggleDropdown)
  *    - Стрелка индикатора (FiChevronDown) поворачивается, указывая на состояние списка
  *    - Когда список открыт, отображаются все элементы с соответствующими иконками
- * 
+ *
  * 3. **Обработка внешних кликов**:
  *    - Компонент отслеживает клики вне области выпадающего списка
  *    - При клике вне списка, он автоматически закрывается
  *    - Для этого используется обработчик событий, прикрепленный к document
- * 
+ *
  * 4. **Отображение элементов списка**:
  *    - Каждый элемент списка содержит иконку и текстовую метку
  *    - Иконки динамически импортируются из библиотеки react-icons
  *    - Элементы списка отображаются только когда isOpen = true
- * 
+ *
  * 5. **Управление состоянием**:
  *    - Состояние открытия/закрытия списка хранится в переменной isOpen
  *    - Переключение состояния происходит через функцию toggleDropdown
  *    - Состояние также меняется при кликах вне компонента
- * 
+ *
  * 6. **Очистка ресурсов**:
  *    - При размонтировании компонента удаляются все обработчики событий
  *    - Это предотвращает утечки памяти и ошибки в работе приложения
  */
 
-import './styles.css';
 import { JSX, useEffect, useRef, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { FiBell, FiBook, FiChevronDown, FiFolder, FiPlusCircle, FiSettings, FiUser } from 'react-icons/fi';
@@ -90,7 +89,7 @@ const mockData: MockDataItem[] = [
 /**
  * Компонент страницы с выпадающим списком
  * Демонстрирует реализацию интерактивного выпадающего меню с иконками
- * 
+ *
  * @returns {JSX.Element} Компонент страницы с выпадающим списком
  */
 const DropdownUIPage = (): JSX.Element => {
@@ -98,7 +97,7 @@ const DropdownUIPage = (): JSX.Element => {
    * Состояние открытия/закрытия выпадающего списка
    */
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  
+
   /**
    * Реф для отслеживания DOM-элемента выпадающего списка
    * Используется для определения кликов вне компонента
@@ -117,7 +116,7 @@ const DropdownUIPage = (): JSX.Element => {
   useEffect(() => {
     /**
      * Обработчик клика вне компонента
-     * 
+     *
      * @param {MouseEvent} event - Событие клика мыши
      */
     const handleClickOutside = (event: MouseEvent): void => {
@@ -128,7 +127,7 @@ const DropdownUIPage = (): JSX.Element => {
 
     // Добавляем обработчик при монтировании компонента
     document.addEventListener('mousedown', handleClickOutside);
-    
+
     // Удаляем обработчик при размонтировании компонента
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -136,38 +135,38 @@ const DropdownUIPage = (): JSX.Element => {
   }, []);
 
   return (
-    <Card className="max-w-sm w-full mx-auto p-4 rounded">
-      <div className="components">
-        <div className="component01 grid place-items-center" ref={dropdownRef}>
-          <div className="dropdown w-full">
-            <button
-              className="dropdown__trigger w-full"
-              onClick={toggleDropdown}
-              aria-expanded={isOpen}
-              aria-haspopup="true"
-              aria-controls="dropdown-menu"
-            >
-              Dropdown
-              <FiChevronDown 
-                className={isOpen ? 'dropdown__arrow dropdown__arrow--open' : 'dropdown__arrow'} 
-                aria-hidden="true"
-              />
-            </button>
-            {isOpen && (
-              <ul className="dropdown__list show" id="dropdown-menu" role="menu">
-                {mockData.map((item, index) => {
-                  const Icon = icons[item.ico];
-                  return (
-                    <li key={index} className="dropdown__item" role="menuitem">
-                      <a href="#" className="dropdown__link">
-                        {Icon ? <Icon aria-hidden="true" /> : null} {item.label}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
+    <Card className="max-w-sm w-full mx-auto p-0 rounded">
+      <div className="grid place-items-center" ref={dropdownRef}>
+        <div className="w-full">
+          <button
+            className="inline-flex items-center p-2 bg-accent justify-center gap-1 p-3 rounded-md w-full dark:!bg-accent"
+            onClick={toggleDropdown}
+            aria-expanded={isOpen}
+            aria-haspopup="true"
+            aria-controls="dropdown-menu"
+          >
+            Dropdown
+            <FiChevronDown
+              className={isOpen ? 'rotate-180 transition-all' : 'rotate-0 transition-all'}
+              aria-hidden="true"
+            />
+          </button>
+          {isOpen && (
+            <ul
+              className={`bg-white border dark:bg-accent absolute opacity-100 transition-all max-w-xs w-full visible ${isOpen ? 'translate-y-1.5' : 'translate-y-0'} `}
+              id="dropdown-menu" role="menu">
+              {mockData.map((item, index) => {
+                const Icon = icons[item.ico];
+                return (
+                  <li key={index} className="border dark:!bg-accent " role="menuitem">
+                    <a href="#" className="flex gap-4  p-2.5 transition-all hover:bg-emerald-600 dark:text-white">
+                      {Icon ? <Icon aria-hidden="true" /> : null} {item.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
       </div>
     </Card>
