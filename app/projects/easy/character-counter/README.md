@@ -2,7 +2,7 @@
 
 A responsive and efficient text analysis tool built with React and TypeScript. This component provides real-time statistics about text input, including character count, word count, spaces, and letters.
 
-![Character Counter Screenshot](https://ik.imagekit.io/nagoevid/nextjs-projects/character-counter-component.png?updatedAt=1748863839041)
+![Character Counter Screenshot](https://ik.imagekit.io/nagoevid/nextjs-projects/character-counter.png?updatedAt=1748864539445)
 
 ## Features
 
