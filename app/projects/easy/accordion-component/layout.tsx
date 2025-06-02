@@ -11,8 +11,8 @@ const projectKey = ProjectLabel.AccordionComponent;
 
 export const metadata: Metadata = HELPERS.projectMetadata(projectKey);
 
-const Layout = ({ children }: Readonly<LayoutProps>) => {
-  return <ProjectLayout projectKey={projectKey}>{children}</ProjectLayout>;
-};
+const Layout = ({ children }: Readonly<LayoutProps>) => (
+  <ProjectLayout projectKey={projectKey}>{children}</ProjectLayout>
+);
 
 export default Layout;

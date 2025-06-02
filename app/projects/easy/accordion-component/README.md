@@ -2,7 +2,7 @@
 
 An interactive and customizable accordion component built with React, TypeScript, and CSS. This component provides two different accordion behaviors: one that allows multiple sections to be open simultaneously and another that closes previously opened sections when a new one is opened.
 
-![Accordion Component Screenshot](https://ik.imagekit.io/nagoevid/nextjs-projects/accordion-component.png?updatedAt=1748861739643)
+![Accordion Component Screenshot](https://ik.imagekit.io/nagoevid/nextjs-projects/counter-component.png?updatedAt=1748861967291)
 
 ## Features
 

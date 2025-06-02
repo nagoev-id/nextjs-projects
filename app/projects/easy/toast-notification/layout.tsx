@@ -1,4 +1,4 @@
-import './styles.css'
+import './styles.css';
 import { Metadata } from 'next';
 import { HELPERS, ProjectLabel } from '@/shared';
 import { ReactNode } from 'react';
@@ -12,8 +12,9 @@ const projectKey = ProjectLabel.ToastNotification;
 
 export const metadata: Metadata = HELPERS.projectMetadata(projectKey);
 
-const Layout = ({ children }: Readonly<LayoutProps>) => {
-  return <ProjectLayout projectKey={projectKey}>{children}</ProjectLayout>;
-};
+const Layout = ({ children }: Readonly<LayoutProps>) => (
+  <ProjectLayout projectKey={projectKey}>{children}</ProjectLayout>
+);
+
 
 export default Layout;
