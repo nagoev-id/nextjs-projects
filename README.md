@@ -38,6 +38,96 @@ More complex applications with advanced state management and API integrations:
 - **Data-driven Apps:** Crypto Market Tracker, Countries Explorer, GitHub User Finder
 - **Interactive Tools:** Password Generator, Hangman Game, Quiz Application
 
+## 📑 Projects Table
+
+| Project Name | Difficulty | Link |
+|-------------|-----------|------|
+| Accordion Component | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/accordion-component) |
+| Account Verification | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/account-verification) |
+| Alarm Clock | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/alarm-clock) |
+| API Search Tool | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/api-search-tool) |
+| Breathing Relaxation | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/breathing-relaxation) |
+| Calculator | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/calculator) |
+| Character Counter | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/character-counter) |
+| Color Finder | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/color-finder) |
+| Color Generator | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/color-generator) |
+| Company Statistics | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/company-statistics) |
+| Cookie Consent | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/cookie-consent) |
+| Counter | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/counter) |
+| Countdown | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/countdown) |
+| Currency Converter | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/currency-converter) |
+| Dark Theme | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/dark-theme) |
+| Data Table Sort | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/data-table-sort) |
+| Date Counter | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/date-counter) |
+| Dropdown UI | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/dropdown-ui) |
+| Dynamic Tabs | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/dynamic-tabs) |
+| Eat and Split | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/eat-and-split) |
+| Expense Tracker | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/expense-tracker) |
+| Far Away | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/far-away) |
+| Flash Cards | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/flash-cards) |
+| GitHub Users List | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/github-users-list) |
+| Guess the Number | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/guess-the-number) |
+| Guess the Number CLI | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/guess-the-number-cli) |
+| Image Editor | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/image-editor) |
+| Image Resizer | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/image-resizer) |
+| IP Address Tracker | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/ip-address-tracker) |
+| Key Event Listener | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/key-event-listener) |
+| Loan Calculator | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/loan-calculator) |
+| Memory Matching Game | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/memory-matching-game) |
+| Modal Window | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/modal-window) |
+| Number Facts | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/number-facts) |
+| Online Translator | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/online-translator) |
+| Password Strength Checker | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/password-strength-checker) |
+| Pokedex | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/pokedex) |
+| Price Range Slider | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/price-range-slider) |
+| Product Filter | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/product-filter) |
+| Products Tab | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/products-tab) |
+| QR Code Generator | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/qr-code-generator) |
+| QR Code Scanner | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/qr-code-scanner) |
+| Quote Generator | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/quote-generator) |
+| Random User Generator | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/random-user-generator) |
+| Rock Paper Scissors | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/rock-paper-scissors) |
+| Roll Dice | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/roll-dice) |
+| Save Text File | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/save-text-file) |
+| Stopwatch | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/stopwatch) |
+| Tag Input Box | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/tag-input-box) |
+| Text Expander | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/text-expander) |
+| The Facts | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/the-facts) |
+| Timer | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/timer) |
+| Toast Notification | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/toast-notification) |
+| TTS (Text-to-Speech) | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/tts) |
+| Typewriter Effect | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/typewriter-effect) |
+| Typing Speed Test | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/typing-speed-test) |
+| Unit Conversion Tool | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/unit-conversion-tool) |
+| URL Shortener | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/url-shortener) |
+| User Search | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/user-search) |
+| User Table Sort | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/user-table-sort) |
+| Weather | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/weather) |
+| Wiki Searcher | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/wiki-searcher) |
+| Word Scramble | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/word-scramble) |
+| Workout Tracker | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/workout-tracker) |
+| Zipcode | Easy | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/easy/zipcode) |
+| Book Hub | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/book-hub) |
+| Brewery Finder | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/brewery-finder) |
+| Countries Explorer | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/countries-explorer) |
+| Crypto Market Tracker | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/crypto-market-tracker) |
+| Feedback Form | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/feedback-form) |
+| GitHub User Finder | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/github-user-finder) |
+| Hacker News Search | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/hacker-news-search) |
+| Hangman Game | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/hangman-game) |
+| Jobs Filter | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/jobs-filter) |
+| Mobile Store Cart | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/mobile-store-cart) |
+| Password Generator | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/password-generator) |
+| Popcorn Movies | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/popcorn-movies) |
+| Quiz | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/quiz) |
+| Shopping Market Cart | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/shopping-market-cart) |
+| The Meal Explorer | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/the-meal-explorer) |
+| Todo List | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/todo-list) |
+| Twitty Microposts | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/twitty-microposts) |
+| URL Shortener | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/url-shortener) |
+| Weather | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/weather) |
+| Wiki Searcher | Medium | [View Project](https://nextjs-projects-git-main-nagoev-id-projects.vercel.app/projects/medium/wiki-searcher) |
+
 ## 🚀 Getting Started
 
 1. Clone the repository:
