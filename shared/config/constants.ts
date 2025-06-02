@@ -70,7 +70,7 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
   [ProjectLabel.NumberFacts]: {
     title: 'Number Facts',
-    description: 'Discover interesting facts about numbers with our Number Facts app.',
+    description: 'Discover interesting facts about numbers.',
     href: 'easy/number-facts',
     level: ProjectLevel.easy,
   },

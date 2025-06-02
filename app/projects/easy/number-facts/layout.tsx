@@ -7,7 +7,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const projectKey = ProjectLabel.Counter;
+const projectKey = ProjectLabel.NumberFacts;
 
 export const metadata: Metadata = HELPERS.projectMetadata(projectKey);
 
