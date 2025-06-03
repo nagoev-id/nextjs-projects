@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { ToastItem, ToastType } from '@/app/projects/easy/toast-notification/types';
+import { ToastItem, ToastType } from '@/app/projects/easy/toast-notification/page';
 
 /**
  * Хук для управления уведомлениями

@@ -43,8 +43,14 @@ import { FaRegCheckCircle } from 'react-icons/fa';
 import { FiAlertCircle, FiAlertTriangle } from 'react-icons/fi';
 import { IoMdClose } from 'react-icons/io';
 import { useToasts } from './hooks';
-import { ToastType } from './types';
 import { Toast } from './components';
+
+export type ToastType = 'success' | 'error' | 'warning' | 'info';
+
+export type ToastItem = {
+  id: number;
+  type: ToastType;
+}
 
 /**
  * Конфигурация для всех типов уведомлений

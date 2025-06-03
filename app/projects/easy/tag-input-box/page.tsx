@@ -2,14 +2,14 @@
 
 /**
  * # Tag Input Box
- * 
+ *
  * ## Принцип работы:
- * 
+ *
  * 1. **Инициализация и хранение данных**:
  *    - Приложение использует localStorage для сохранения тегов между сессиями
  *    - При первом запуске загружаются сохраненные теги или устанавливаются теги по умолчанию ('dev', 'react')
  *    - Максимальное количество тегов ограничено 10
- * 
+ *
  * 2. **Добавление тегов**:
  *    - Пользователь может добавить новый тег, введя его в поле ввода и нажав Enter или запятую
  *    - Перед добавлением выполняются проверки:
@@ -18,23 +18,23 @@
  *      - Общее количество тегов не должно превышать 10
  *    - При успешном добавлении показывается уведомление об успехе
  *    - При нарушении условий показывается соответствующее уведомление об ошибке
- * 
+ *
  * 3. **Удаление тегов**:
  *    - Каждый тег можно удалить индивидуально, нажав на него
  *    - Все теги можно удалить одновременно с помощью кнопки "Remove All"
  *    - Перед массовым удалением показывается диалог подтверждения
  *    - После удаления показывается уведомление об успехе
- * 
+ *
  * 4. **Отслеживание состояния**:
  *    - Приложение отображает количество оставшихся доступных слотов для тегов
  *    - Поле ввода автоматически получает фокус при загрузке страницы
  *    - Поле ввода блокируется, когда достигнут лимит тегов
  *    - Кнопка "Remove All" блокируется, когда нет тегов для удаления
- * 
+ *
  * 5. **Синхронизация с хранилищем**:
  *    - При любом изменении списка тегов обновляется localStorage
  *    - При полном удалении тегов запись в localStorage также удаляется
- * 
+ *
  * 6. **Доступность**:
  *    - Все интерактивные элементы имеют соответствующие ARIA-атрибуты
  *    - Теги можно удалять как с помощью мыши, так и с клавиатуры
@@ -43,9 +43,6 @@
 
 import React, { JSX, useCallback, useEffect, useRef, useState } from 'react';
 import { useStorage } from '@/shared/hooks';
-import { Card } from '@/components/ui/card';
-import { FaTimes } from 'react-icons/fa';
-import { Input } from '@/components/ui/input';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -56,16 +53,19 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
+  Button,
+  Card,
+  Input,
+} from '@/components/ui';
+import { FaTimes } from 'react-icons/fa';
 import { toast } from 'sonner';
 
 /**
  * Компонент Tag Input Box
- * 
+ *
  * Позволяет пользователям создавать, управлять и сохранять коллекцию тегов.
  * Поддерживает добавление, удаление и сохранение тегов между сессиями.
- * 
+ *
  * @returns {JSX.Element} Компонент страницы с полем ввода тегов
  */
 const TagInputBoxPage = (): JSX.Element => {
@@ -74,22 +74,22 @@ const TagInputBoxPage = (): JSX.Element => {
    * @type {[string[], (value: string[]) => void, () => void]}
    */
   const [storedTags, setStoredTags, removeStorageTags] = useStorage<string[]>('tags', []);
-  
+
   /**
    * Состояние для хранения текущего списка тегов
    * Инициализируется сохраненными тегами или значениями по умолчанию
    * @type {[string[], React.Dispatch<React.SetStateAction<string[]>>]}
    */
   const [tags, setTags] = useState<string[]>(
-    Array.isArray(storedTags) && storedTags.length > 0 ? storedTags : ['dev', 'react']
+    Array.isArray(storedTags) && storedTags.length > 0 ? storedTags : ['dev', 'react'],
   );
-  
+
   /**
    * Состояние для отслеживания количества оставшихся доступных слотов для тегов
    * @type {[number, React.Dispatch<React.SetStateAction<number>>]}
    */
   const [remainingTags, setRemainingTags] = useState<number>(10 - tags.length);
-  
+
   /**
    * Ссылка на элемент ввода для добавления новых тегов
    * @type {React.RefObject<HTMLInputElement>}
@@ -120,7 +120,7 @@ const TagInputBoxPage = (): JSX.Element => {
   const addTag = useCallback(() => {
     const newTag = inputRef.current?.value.trim().toLowerCase();
     if (!newTag) return;
-    
+
     const isTagExists = tags.some(tag => tag.toLowerCase() === newTag);
     const isValidTag = !isTagExists && tags.length < 10;
 
@@ -135,14 +135,14 @@ const TagInputBoxPage = (): JSX.Element => {
         toast.error('Maximum number of tags reached!', { richColors: true });
       }
     }
-    
+
     // Очищаем поле ввода после попытки добавления
     inputRef.current!.value = '';
   }, [tags]);
 
   /**
    * Удаляет указанный тег из списка
-   * 
+   *
    * @param {string} tag - Тег для удаления
    */
   const handleRemoveTag = useCallback((tag: string) => {
@@ -153,7 +153,7 @@ const TagInputBoxPage = (): JSX.Element => {
   /**
    * Обрабатывает нажатия клавиш в поле ввода
    * Добавляет тег при нажатии Enter или запятой
-   * 
+   *
    * @param {React.KeyboardEvent<HTMLInputElement>} e - Событие нажатия клавиши
    */
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {

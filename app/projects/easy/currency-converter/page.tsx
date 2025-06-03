@@ -40,19 +40,16 @@
  */
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Form } from '@/components/ui/form';
+import { Button, Card, Form, Spinner } from '@/components/ui';
 import { useForm } from 'react-hook-form';
 import { FormInput, FormSelect } from '@/components/layout';
-import { Button } from '@/components/ui/button';
 import { GoArrowSwitch } from 'react-icons/go';
 import { CURRENCY_LIST } from '@/app/projects/easy/currency-converter/mock';
 import Image from 'next/image';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { validate, ValidateSchema } from '@/app/projects/easy/currency-converter/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Spinner } from '@/components/ui/spinner';
+import { FormSchema, formSchema } from '@/app/projects/easy/currency-converter/utils';
 
 /**
  * Константы API для работы с сервисом обмена валют
@@ -197,7 +194,7 @@ const CurrencyForm = ({
   form: any;
   options: { value: string; label: string; }[];
   currency: CurrencyState;
-  onSubmit: (data: ValidateSchema) => Promise<void>;
+  onSubmit: (data: FormSchema) => Promise<void>;
   handleSelectSwitch: () => void;
 }) => (
   <Form {...form}>
@@ -274,21 +271,21 @@ const CurrencyConverterPage = () => {
   }));
 
   // Инициализация формы с валидацией
-  const form = useForm<ValidateSchema>({
+  const form = useForm<FormSchema>({
     defaultValues: {
       amount: String(currency.amount),
       from: currency.from,
       to: currency.to,
     },
     mode: 'onChange',
-    resolver: zodResolver(validate),
+    resolver: zodResolver(formSchema),
   });
 
   /**
    * Обработчик отправки формы
-   * @param {ValidateSchema} data - Данные формы
+   * @param {FormSchema} data - Данные формы
    */
-  const onSubmit = async (data: ValidateSchema) => {
+  const onSubmit = async (data: FormSchema) => {
     try {
       setStatus({ isLoading: true, isError: false, isSuccess: false });
 

@@ -1,6 +1,20 @@
 import { z } from 'zod';
 
-export const validate = z.object({
+/**
+ * Схема валидации формы поиска в Wikipedia.
+ * @typedef {Object} FormSchemaType
+ * @property {string} query - Поисковый запрос.
+ */
+
+/**
+ * Объект схемы Zod для валидации формы поиска.
+ * @type {z.ZodObject<{query: z.ZodString}>}
+ */
+export const formSchema = z.object({
+  /**
+   * Поле для ввода поискового запроса.
+   * @type {z.ZodString}
+   */
   query: z.string()
     .trim()
     .min(2, {
@@ -8,4 +22,8 @@ export const validate = z.object({
     }),
 });
 
-export type ValidateSchema = z.infer<typeof validate>;
+/**
+ * Тип данных, выведенный из схемы формы поиска.
+ * @typedef {z.infer<typeof formSchema>} FormSchema
+ */
+export type FormSchema = z.infer<typeof formSchema>;

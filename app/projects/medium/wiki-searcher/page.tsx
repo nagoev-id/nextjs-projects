@@ -39,16 +39,13 @@
  *    - Все интерактивные элементы имеют соответствующие атрибуты для скринридеров
  */
 
-import { Card } from '@/components/ui/card';
+import { Button, Card, Form, Spinner } from '@/components/ui';
 import { SiWikipedia } from 'react-icons/si';
-import { Form } from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { JSX, useCallback } from 'react';
 import { useLazySearchWikiQuery } from './features';
-import { validate, ValidateSchema } from '@/app/projects/medium/wiki-searcher/utils';
+import { formSchema, FormSchema } from '@/app/projects/medium/wiki-searcher/utils';
 import { FormInput } from '@/components/layout';
 import DOMPurify from 'dompurify';
 import { toast } from 'sonner';
@@ -86,8 +83,8 @@ const WikiSearcherPage = (): JSX.Element => {
   /**
    * Настройка формы с валидацией через React Hook Form и Zod
    */
-  const form = useForm<ValidateSchema>({
-    resolver: zodResolver(validate),
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
     defaultValues: { query: '' },
     mode: 'onChange',
   });
@@ -100,7 +97,7 @@ const WikiSearcherPage = (): JSX.Element => {
    * @param {string} param0.query - Поисковый запрос
    * @returns {Promise<void>}
    */
-  const onSubmit = useCallback(async ({ query }: ValidateSchema): Promise<void> => {
+  const onSubmit = useCallback(async ({ query }: FormSchema): Promise<void> => {
     try {
       // Выполнение запроса к API с использованием RTK Query
       await searchByQuery(query).unwrap();

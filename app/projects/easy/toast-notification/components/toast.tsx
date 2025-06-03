@@ -2,7 +2,7 @@
 
 import { JSX, useEffect } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import { ToastType } from '@/app/projects/easy/toast-notification/types';
+import { ToastType } from '@/app/projects/easy/toast-notification/page';
 
 /**
  * Интерфейс свойств компонента Toast

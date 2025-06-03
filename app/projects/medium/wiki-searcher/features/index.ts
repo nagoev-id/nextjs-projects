@@ -1,1 +1,1 @@
-export * from './wikiApi';
+export * from './api';

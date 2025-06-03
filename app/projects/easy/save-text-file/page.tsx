@@ -18,12 +18,18 @@
  */
 
 import { useCallback, useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
+import {
+  Button,
+  Card,
+  Input,
+  Label,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Textarea,
+} from '@/components/ui';
 
 /**
  * Тип для данных формы
@@ -73,10 +79,10 @@ const SaveTextAsFilePage = () => {
     filetype: 'text/plain',
     filename: '',
   });
-  
+
   // Текущий выбранный тип файла
   const selectedFileType = FILE_TYPE_OPTIONS.find(option => option.value === formData.filetype) || FILE_TYPE_OPTIONS[0];
-  
+
   /**
    * Обработчик изменения данных формы
    * @param {string} name - Имя поля
@@ -85,7 +91,7 @@ const SaveTextAsFilePage = () => {
   const handleFormDataChange = useCallback((name: string, value: string): void => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   }, []);
-  
+
   /**
    * Обработчик нажатия на кнопку сохранения
    * Создает и скачивает файл с указанными параметрами
@@ -94,13 +100,13 @@ const SaveTextAsFilePage = () => {
     try {
       const { content, filetype, filename } = formData;
       const extension = selectedFileType.extension;
-      
+
       // Создаем имя файла с правильным расширением
       let finalFilename = filename || 'untitled';
       if (!finalFilename.endsWith(extension)) {
         finalFilename += extension;
       }
-      
+
       // Создаем Blob и URL для скачивания
       const blob = new Blob([content], { type: filetype });
       const url = URL.createObjectURL(blob);
@@ -111,7 +117,7 @@ const SaveTextAsFilePage = () => {
       link.download = finalFilename;
       document.body.appendChild(link);
       link.click();
-      
+
       // Очищаем ресурсы
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
@@ -136,7 +142,7 @@ const SaveTextAsFilePage = () => {
           aria-label="File content"
         />
       </div>
-      
+
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1">
           <Label htmlFor="filename">File name</Label>
@@ -149,11 +155,11 @@ const SaveTextAsFilePage = () => {
             aria-label="File name"
           />
         </div>
-        
+
         <div className="space-y-1">
           <Label htmlFor="filetype">Save as</Label>
-          <Select 
-            onValueChange={(value) => handleFormDataChange('filetype', value)} 
+          <Select
+            onValueChange={(value) => handleFormDataChange('filetype', value)}
             value={formData.filetype}
           >
             <SelectTrigger id="filetype" aria-label="Select file type" className="w-full">
@@ -169,9 +175,9 @@ const SaveTextAsFilePage = () => {
           </Select>
         </div>
       </div>
-      
-      <Button 
-        className="w-full" 
+
+      <Button
+        className="w-full"
         onClick={handleSaveClick}
         aria-label={`Save as ${selectedFileType.label}`}
       >
