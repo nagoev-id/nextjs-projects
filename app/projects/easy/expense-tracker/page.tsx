@@ -50,8 +50,7 @@
  *    - Предотвращение сбоев приложения при некорректных данных
  */
 
-import { Card } from '@/components/ui/card';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { JSX, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -62,14 +61,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+  Button,
+  Card,
+} from '@/components/ui';
 import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { Button } from '@/components/ui/button';
 import { FormInput } from '@/components/layout';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { validate, ValidateSchema } from '@/app/projects/easy/expense-tracker/utils';
+import { formSchema, FormSchema } from '@/app/projects/easy/expense-tracker/utils';
 import { Form } from '@/components/ui/form';
 import { v4 as uuidv4 } from 'uuid';
 import { useStorage } from '@/shared/hooks';
@@ -120,7 +120,7 @@ type ItemData = {
  *
  * @returns {JSX.Element} Компонент страницы трекера расходов
  */
-const ExpenseTrackerPage = () => {
+const ExpenseTrackerPage = (): JSX.Element => {
   // Хук для работы с localStorage, возвращает текущие данные, функцию обновления и функцию сброса
   const [storedTransactions, setStoredTransactions, resetStoredTransactions] = useStorage<Transaction[]>('expense-tracker-transactions', []);
 
@@ -135,13 +135,13 @@ const ExpenseTrackerPage = () => {
   });
 
   // Настройка формы с валидацией через React Hook Form и Zod
-  const form = useForm<ValidateSchema>({
+  const form = useForm<FormSchema>({
     defaultValues: {
       text: '',
       amount: String(''),
     },
     mode: 'onChange',
-    resolver: zodResolver(validate),
+    resolver: zodResolver(formSchema),
   });
 
   /**
@@ -204,9 +204,9 @@ const ExpenseTrackerPage = () => {
 
   /**
    * Обработчик отправки формы для добавления новой транзакции
-   * @param {ValidateSchema} data - Данные формы (текст и сумма)
+   * @param {FormSchema} data - Данные формы (текст и сумма)
    */
-  const onSubmit = useCallback(({ text, amount }: ValidateSchema) => {
+  const onSubmit = useCallback(({ text, amount }: FormSchema) => {
     setTransactions(prevTransactions => [...prevTransactions, {
       id: uuidv4(),
       text,

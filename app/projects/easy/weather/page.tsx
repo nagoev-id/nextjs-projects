@@ -33,18 +33,15 @@
 'use client';
 
 import { JSX, useCallback, useEffect, useState } from 'react';
-import { Card } from '@/components/ui/card';
+import { Button, Card, Form, Spinner } from '@/components/ui';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import axios from 'axios';
-import { Form } from '@/components/ui/form';
 import { FormInput } from '@/components/layout';
-import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
 import { HELPERS } from '@/shared';
 import { useStorage } from '@/shared/hooks';
-import { WeatherFormSchema, weatherFormValidateSchema } from '@/app/projects/easy/weather/utils';
+import { formSchema, FormSchema } from '@/app/projects/easy/weather/utils';
 
 /**
  * Интерфейс данных о погоде
@@ -116,8 +113,8 @@ const WeatherPage = (): JSX.Element => {
     const [lastQuery, setLastQuery, resetLastQuery] = useStorage<string>('weather-last-query', '');
 
     // Инициализация формы с валидацией
-    const form = useForm<WeatherFormSchema>({
-        resolver: zodResolver(weatherFormValidateSchema),
+    const form = useForm<FormSchema>({
+        resolver: zodResolver(formSchema),
         defaultValues: {query: lastQuery || ''},
         mode: 'onChange',
     });
@@ -183,10 +180,10 @@ const WeatherPage = (): JSX.Element => {
      * Обработчик отправки формы поиска
      *
      * @async
-     * @param {WeatherFormSchema} formData - Данные формы
+     * @param {FormSchema} formData - Данные формы
      * @returns {Promise<void>}
      */
-    const onSubmit = useCallback(async ({query}: WeatherFormSchema): Promise<void> => {
+    const onSubmit = useCallback(async ({query}: FormSchema): Promise<void> => {
         const trimmedQuery = query.trim();
 
         try {

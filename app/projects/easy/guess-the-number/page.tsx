@@ -41,7 +41,7 @@ import { Card } from '@/components/ui/card';
 import { useCallback, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
-import { guessNumberSchema, GuessNumberValues } from '@/app/projects/easy/guess-the-number/utils';
+import { formSchema, FormSchema } from '@/app/projects/easy/guess-the-number/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '@/components/ui/form';
 import { FormInput } from '@/components/layout';
@@ -84,8 +84,8 @@ const GuessTheNumberPage = () => {
    * Инициализация формы с валидацией через Zod
    * Настроена на проверку ввода числа от 1 до 10
    */
-  const form = useForm<GuessNumberValues>({
-    resolver: zodResolver(guessNumberSchema),
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
     mode: 'onChange',
     defaultValues: {
       number: ''
@@ -114,10 +114,10 @@ const GuessTheNumberPage = () => {
    * Сравнивает введенное число с загаданным, обновляет счетчик попыток,
    * генерирует соответствующее сообщение и обновляет состояние игры
    * 
-   * @param {GuessNumberValues} data - Данные формы с введенным числом
+   * @param {FormSchema} data - Данные формы с введенным числом
    * @returns {void}
    */
-  const onSubmit = useCallback((data: GuessNumberValues) => {
+  const onSubmit = useCallback((data: FormSchema) => {
     const userGuess = Number(data.number);
     
     setGameSetup(prev => {

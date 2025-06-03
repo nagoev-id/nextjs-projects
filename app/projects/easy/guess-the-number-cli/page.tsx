@@ -1,31 +1,77 @@
 'use client';
 
-import { useCallback, useRef, useState } from 'react';
+/**
+ * # Приложение "Угадай число" (Guess The Number CLI)
+ *
+ * ## Принцип работы:
+ *
+ * 1. **Инициализация игры**:
+ *    - При загрузке компонента генерируется случайное число от 1 до 100.
+ *    - Устанавливаются начальные состояния для имени пользователя, списка попыток и статуса игры.
+ *
+ * 2. **Ввод имени пользователя**:
+ *    - Сначала пользователю предлагается ввести свое имя.
+ *    - После ввода имени, поле ввода меняется для угадывания числа.
+ *
+ * 3. **Процесс угадывания**:
+ *    - Пользователь вводит число в диапазоне от 0 до 100.
+ *    - При каждой попытке проверяется соответствие введенного числа загаданному.
+ *    - Пользователю даются подсказки: "слишком высоко" или "слишком низко".
+ *    - Каждая попытка сохраняется в истории попыток.
+ *
+ * 4. **Завершение игры**:
+ *    - Игра заканчивается, когда пользователь угадывает число.
+ *    - Отображается поздравление и количество попыток.
+ *    - Запускается анимация конфетти для визуального эффекта.
+ *
+ * 5. **Валидация ввода**:
+ *    - Проверяется корректность ввода имени и числа.
+ *    - При некорректном вводе показываются уведомления с подсказками.
+ *
+ * 6. **Интерфейс**:
+ *    - Адаптивный дизайн с использованием Tailwind CSS.
+ *    - Динамическое отображение истории попыток и текущего состояния игры.
+ *
+ * Приложение предоставляет интерактивный и увлекательный способ игры в "Угадай число",
+ * сочетая простой интерфейс с логикой игры и обратной связью пользователю.
+ */
+
+import { JSX, useCallback, useRef, useState } from 'react';
 import { HELPERS } from '@/shared';
 import { toast } from 'sonner';
 
+/**
+ * Тип для представления одной попытки угадывания.
+ */
 type Guess = {
   number: number;
   message: string;
   isGuessed: boolean;
 }
 
-const GuessTheNumberCLIPage = () => {
+/**
+ * Компонент страницы игры "Угадай число".
+ * @returns {JSX.Element} Рендер компонента игры.
+ */
+const GuessTheNumberCLIPage = (): JSX.Element => {
   const [userGuess, setUserGuess] = useState<string | null>(null);
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [secretNumber] = useState<number>(() => HELPERS.getRandomNumber(1, 100));
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   
+  /**
+   * Обработчик отправки формы.
+   * Управляет логикой ввода имени и угадывания числа.
+   * @param {React.FormEvent<HTMLFormElement>} e - Событие отправки формы.
+   */
   const handleFormSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const inputType = inputRef.current?.type;
     const inputValue = inputRef.current?.value.trim() ?? '';
 
     if (inputValue.length === 0 && inputType === 'text' && !userGuess) {
-      toast('Please enter a valid input', {
-        richColors: true,
-      });
+      toast('Please enter a valid input', { richColors: true });
       return;
     }
 
@@ -41,9 +87,7 @@ const GuessTheNumberCLIPage = () => {
     const value = Number(inputValue);
 
     if (userGuess && (!Number.isFinite(value) || value < 0 || value > 100)) {
-      toast('Please enter a valid number between 0 and 100', {
-        richColors: true,
-      });
+      toast('Please enter a valid number between 0 and 100', { richColors: true });
       if (inputRef.current) {
         inputRef.current.value = '';
       }

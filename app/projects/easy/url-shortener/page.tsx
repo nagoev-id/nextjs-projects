@@ -42,16 +42,13 @@
  */
 
 import { JSX, useCallback, useState } from 'react';
-import { Form } from '@/components/ui/form';
+import { Button, Card, Form, Spinner } from '@/components/ui';
 import { FormInput } from '@/components/layout';
-import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
-import { Card } from '@/components/ui/card';
 import Link from 'next/link';
 import { HELPERS } from '@/shared';
 import { CopyIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { urlShortenerValidateSchema, UrlShortenerValidateSchemaSchema } from '@/app/projects/easy/url-shortener/utils';
+import { formSchema, FormSchema } from '@/app/projects/easy/url-shortener/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import axios from 'axios';
@@ -108,8 +105,8 @@ const URLShortenerPage = (): JSX.Element => {
    * Инициализация формы с валидацией через React Hook Form и Zod
    * Настраивает валидацию URL в реальном времени при вводе
    */
-  const form = useForm<UrlShortenerValidateSchemaSchema>({
-    resolver: zodResolver(urlShortenerValidateSchema),
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
     defaultValues: { url: '' },
     mode: 'onChange',
   });
@@ -166,10 +163,10 @@ const URLShortenerPage = (): JSX.Element => {
    * Обработчик отправки формы
    * Вызывает функцию сокращения URL и обрабатывает результат
    *
-   * @param {UrlShortenerValidateSchemaSchema} formData - Данные формы с URL для сокращения
+   * @param {FormSchema} formData - Данные формы с URL для сокращения
    * @returns {Promise<void>}
    */
-  const onSubmit = useCallback(async ({ url }: UrlShortenerValidateSchemaSchema) => {
+  const onSubmit = useCallback(async ({ url }: FormSchema) => {
     try {
       // Отправка запроса на сокращение URL
       await fetchShortenedUrls(url);
