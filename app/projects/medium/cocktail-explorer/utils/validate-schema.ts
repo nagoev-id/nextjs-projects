@@ -1,9 +1,24 @@
 import { z } from 'zod';
 
-export const schema = z.object({
-  value: z.string()
-    .trim()
-    .min(2, { message: 'The input must be at least 2 characters long' }),
+/**
+ * @description Схема валидации формы поиска коктейлей
+ * @type {z.ZodObject<{name: z.ZodString}>}
+ * @see https://zod.dev/ - Документация библиотеки Zod
+ */
+export const formSchema = z.object({
+  /**
+   * @description Название коктейля для поиска
+   * @type {z.ZodString}
+   * @minLength 2 - Минимальная длина строки
+   */
+  name: z.string().min(2, {
+    message: 'Cocktail must be at least 2 characters.',
+  }),
 });
 
-export type FormSchema = z.infer<typeof schema>;
+/**
+ * @typedef {Object} FormSchema
+ * @description Тип данных, выведенный из схемы валидации формы
+ * @property {string} name - Название коктейля для поиска
+ */
+export type FormSchema = z.infer<typeof formSchema>;

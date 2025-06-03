@@ -1,6 +1,6 @@
 # Next.js Projects Collection
 
-![Timer Component Screenshot](https://ik.imagekit.io/nagoevid/nextjs-projects/cover.png?updatedAt=1748864406379)
+![Main Cover](https://ik.imagekit.io/nagoevid/nextjs-projects/cover.png?updatedAt=1748864406379)
 
 A comprehensive collection of interactive web projects built with Next.js, organized by difficulty level. This repository serves as both a learning resource and a showcase of modern web development techniques using React and Next.js.
 

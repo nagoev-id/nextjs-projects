@@ -1,16 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { useDispatch, useSelector } from 'react-redux';
-import { api, sliceReducer } from '@/app/projects/medium/_template-redux-base/features';
-
+import { drinksSliceReducer } from '@/app/projects/medium/cocktail-explorer/features';
 
 export const store = configureStore({
   reducer: {
-    [api.reducerPath]: api.reducer,
-    slice: sliceReducer,
+    drinks: drinksSliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware),
+    getDefaultMiddleware().concat(),
 });
 
 setupListeners(store.dispatch);

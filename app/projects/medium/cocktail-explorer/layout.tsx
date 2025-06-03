@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { HELPERS, ProjectLabel } from '@/shared';
 import { ReactNode } from 'react';
 import { ProjectLayout } from '@/components/layout';
-import { ReduxProvider } from '@/app/projects/medium/_template-redux-base/app';
+import { ReduxProvider } from '@/app/projects/medium/cocktail-explorer/app';
 
 interface LayoutProps {
   children: ReactNode;
