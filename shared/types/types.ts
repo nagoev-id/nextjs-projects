@@ -92,7 +92,6 @@ export enum ProjectLabel {
   GitHubUsersList = 'GitHubUsersList',
   UserTableSort = 'UserTableSort',
   CryptoMarketTracker = 'CryptoMarketTracker',
-  YouTubeToMP3 = 'YouTubeToMP3',
   ZipCode = 'ZipCode',
   IPAddressTracker = 'IPAddressTracker',
   ImageResizer = 'ImageResizer',

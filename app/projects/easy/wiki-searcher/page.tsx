@@ -43,7 +43,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { JSX, useCallback, useState } from 'react';
-import { validate, ValidateSchema } from '@/app/projects/medium/wiki-searcher/utils';
+import { formSchema, FormSchema } from '@/app/projects/easy/wiki-searcher/utils';
 import { toast } from 'sonner';
 import { SiWikipedia } from 'react-icons/si';
 import DOMPurify from 'dompurify';
@@ -106,8 +106,8 @@ const WikiSearcherPage = (): JSX.Element => {
   /**
    * Настройка формы с валидацией через React Hook Form и Zod
    */
-  const form = useForm<ValidateSchema>({
-    resolver: zodResolver(validate),
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
     defaultValues: { query: '' },
     mode: 'onChange',
   });
@@ -125,11 +125,11 @@ const WikiSearcherPage = (): JSX.Element => {
    * Обработчик отправки формы поиска
    * Выполняет запрос к API Википедии и обрабатывает результаты
    *
-   * @param {ValidateSchema} param0 - Объект с валидированными данными формы
+   * @param {FormSchema} param0 - Объект с валидированными данными формы
    * @param {string} param0.query - Поисковый запрос
    * @returns {Promise<void>}
    */
-  const onSubmit = useCallback(async ({ query }: ValidateSchema): Promise<void> => {
+  const onSubmit = useCallback(async ({ query }: FormSchema): Promise<void> => {
     try {
       // Устанавливаем состояние загрузки
       setStatus({ isLoading: true, isError: false, isSuccess: false });

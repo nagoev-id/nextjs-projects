@@ -33,8 +33,8 @@ const DeviceCard = memo(({
 }): JSX.Element => (
   <Card className="p-2 flex flex-col gap-2.5 h-full">
     <Image
-      width="100"
-      height="100"
+      width={100}
+      height={100}
       priority={true}
       className="max-w-[200px] mx-auto"
       src={device.img}
@@ -82,7 +82,7 @@ const MobileStorePage = (): JSX.Element => {
    * @param {number} change - Изменение количества (+1 или -1)
    */
   const handleUpdateCart = useCallback((device: Mobile, change: number): void => {
-    dispatch(updateCartItemAmount({ id: Number(device.id), change }));
+    dispatch(updateCartItemAmount({ id: device.id, change }));
   }, [dispatch]);
 
   /**

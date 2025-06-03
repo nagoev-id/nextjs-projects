@@ -1,12 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { useDispatch, useSelector } from 'react-redux';
-import { api, mobileStoreReducer } from '@/app/projects/medium/mobile-store-cart/features';
+import { api, sliceReducer } from '@/app/projects/medium/_template-redux-base/features';
+
 
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
-    mobileStore: mobileStoreReducer,
+    slice: sliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

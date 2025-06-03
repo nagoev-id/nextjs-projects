@@ -8,8 +8,8 @@ import { Mobiles } from '@/app/projects/medium/mobile-store-cart/features/api';
 
 /**
  * @typedef {Object} InitialState - Тип начального состояния хранилища
- * @property {CartItems} items - Список всех доступных товаров
- * @property {CartItems} cartItems - Список товаров в корзине
+ * @property {Mobiles} items - Список всех доступных товаров
+ * @property {Mobiles} cartItems - Список товаров в корзине
  * @property {number} amount - Общее количество товаров в корзине
  * @property {number} total - Общая стоимость товаров в корзине
  */
@@ -34,7 +34,7 @@ const initialState: InitialState = {
 /**
  * Вычисляет общую стоимость товаров в корзине
  *
- * @param {CartItems} cartItems - Список товаров в корзине
+ * @param {Mobiles} cartItems - Список товаров в корзине
  * @returns {number} Общая стоимость товаров
  */
 const calculateTotal = (cartItems: Mobiles): number => {
@@ -58,7 +58,7 @@ const mobileStoreSlice = createSlice({
      * Устанавливает список доступных товаров
      *
      * @param {InitialState} state - Текущее состояние
-     * @param {PayloadAction<CartItems>} action - Действие с данными товаров
+     * @param {PayloadAction<Mobiles>} action - Действие с данными товаров
      */
     setItems: (state, action: PayloadAction<Mobiles>) => {
       state.items = action.payload;
@@ -79,11 +79,12 @@ const mobileStoreSlice = createSlice({
      * Удаляет товар из корзины по его ID
      *
      * @param {InitialState} state - Текущее состояние
-     * @param {PayloadAction<number>} action - Действие с ID товара для удаления
+     * @param {PayloadAction<string>} action - Действие с ID товара для удаления
      */
-    removeCartItem: (state, action: PayloadAction<number>) => {
-      const removedItem = state.cartItems.find(item => Number(item.id) === action.payload);
-      state.cartItems = state.cartItems.filter(item => Number(item.id) !== action.payload);
+    removeCartItem: (state, action: PayloadAction<string>) => {
+      const idStr = String(action.payload);
+      const removedItem = state.cartItems.find(item => item.id === idStr);
+      state.cartItems = state.cartItems.filter(item => item.id !== idStr);
       if (removedItem) {
         state.amount -= removedItem.amount;
       }
@@ -94,24 +95,24 @@ const mobileStoreSlice = createSlice({
      * Обновляет количество товара в корзине
      *
      * @param {InitialState} state - Текущее состояние
-     * @param {PayloadAction<{id: number, change: number}>} action - Действие с ID товара и изменением количества
+     * @param {PayloadAction<{id: string, change: number}>} action - Действие с ID товара и изменением количества
      * @description
      * - Если товар уже в корзине, изменяет его количество
      * - Если количество становится 0, удаляет товар из корзины
      * - Если товара нет в корзине и change > 0, добавляет его в корзину
      * - После изменений пересчитывает общее количество и стоимость
      */
-    updateCartItemAmount: (state, action: PayloadAction<{ id: number, change: number }>) => {
+    updateCartItemAmount: (state, action: PayloadAction<{ id: string, change: number }>) => {
       const { id, change } = action.payload;
-      const cartItem = state.cartItems.find(item => Number(item.id) === id);
+      const cartItem = state.cartItems.find(item => item.id === id);
 
       if (cartItem) {
         cartItem.amount = Math.max(0, cartItem.amount + change);
         if (cartItem.amount === 0) {
-          state.cartItems = state.cartItems.filter(item => Number(item.id) !== id);
+          state.cartItems = state.cartItems.filter(item => item.id !== id);
         }
       } else if (change > 0) {
-        const newItem = state.items.find(item => Number(item.id) === id);
+        const newItem = state.items.find(item => item.id === id);
         if (newItem) {
           state.cartItems.push({ ...newItem, amount: change });
         }
@@ -127,7 +128,7 @@ const mobileStoreSlice = createSlice({
  * Селектор для получения всего состояния магазина
  *
  * @param {Object} state - Состояние Redux
- * @param {InitialState} state.market - Состояние магазина
+ * @param {InitialState} state.mobileStore - Состояние магазина
  * @returns {InitialState} Состояние магазина
  */
 export const selectMobileStoreState = (state: { mobileStore: InitialState }): InitialState => {
@@ -141,7 +142,7 @@ export const selectMobileStoreState = (state: { mobileStore: InitialState }): In
  * @returns {Object} Объект с данными магазина (items, cartItems, amount, total)
  * @example
  * // Использование в компоненте
- * const { items, cartItems, amount, total } = useSelector(selectMarketData);
+ * const { items, cartItems, amount, total } = useSelector(selectMobileStoreData);
  */
 export const selectMobileStoreData = createSelector(
   selectMobileStoreState,

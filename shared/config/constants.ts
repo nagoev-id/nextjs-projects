@@ -356,12 +356,6 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/github-users-list',
     level: ProjectLevel.easy,
   },
-  [ProjectLabel.YouTubeToMP3]: {
-    title: 'YouTube to MP3 Converter',
-    description: 'Convert YouTube videos to MP3 format easily and quickly.',
-    href: 'easy/youtube-to-mp3',
-    level: ProjectLevel.easy,
-  },
   [ProjectLabel.ZipCode]: {
     title: 'ZipCode',
     description: 'Find location details using zip codes from various countries.',
@@ -425,13 +419,13 @@ export const PROJECTS_LIST: ListOfProjects = {
 
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {
-    title: 'Weather',
+    title: 'Weather (Redux)',
     description: 'A simple weather app that displays current weather conditions and forecasts.',
     href: 'medium/weather',
     level: ProjectLevel.medium,
   },
   [ProjectLabel.URLShortenerWithRedux]: {
-    title: 'URL Shortener',
+    title: 'URL Shortener (Redux)',
     description: 'Quickly shorten your long URLs with our easy-to-use URL shortener service.',
     href: 'medium/url-shortener',
     level: ProjectLevel.medium,
@@ -516,7 +510,7 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
   [ProjectLabel.CocktailExplorer]: {
     title: 'Cocktail Explorer',
-    description: 'Discover and explore a world of cocktails with our extensive database. Find recipes, ingredients, and mixing instructions for your favorite drinks.',
+    description: 'Discover and explore a world of cocktails with our extensive database.',
     href: 'medium/cocktail-explorer',
     level: ProjectLevel.medium,
   },

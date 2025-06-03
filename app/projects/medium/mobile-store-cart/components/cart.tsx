@@ -30,6 +30,7 @@ import {
 } from '@/components/ui';
 import { HELPERS } from '@/shared';
 import { Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
+import Image from 'next/image';
 
 /**
  * @typedef {Object} CartItemProps
@@ -55,26 +56,31 @@ import { Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
  */
 const CartItem = memo(({ device, onUpdateAmount, onRemove }: {
   device: Mobile;
-  onUpdateAmount: (id: number, change: number) => void;
-  onRemove: (id: number) => void;
+  onUpdateAmount: (id: string, change: number) => void;
+  onRemove: (id: string) => void;
 }): JSX.Element => {
-  const deviceId = Number(device.id);
-  
   return (
     <li>
       <Card className="p-2 flex flex-col gap-2.5 h-full">
-        <img className="max-w-[50px] mx-auto" src={device.img} alt={device.title} />
+        <Image
+          width={50}
+          height={50}
+          priority={true}
+          className="max-w-[50px] mx-auto"
+          src={device.img}
+          alt={device.title}
+        />
         <h3 className="font-semibold uppercase text-center">
           {device.title} ({HELPERS.formatPrice(parseFloat(device.price))})
         </h3>
         <div className="grid gap-2.5 mt-auto">
           <div className="grid grid-cols-3 gap-2.5">
-            <Button onClick={() => onUpdateAmount(deviceId, 1)}>
+            <Button onClick={() => onUpdateAmount(device.id, 1)}>
               <Plus size={16} />
             </Button>
             <Button variant="link">{device.amount}</Button>
             <Button
-              onClick={() => onUpdateAmount(deviceId, -1)}
+              onClick={() => onUpdateAmount(device.id, -1)}
               disabled={device.amount <= 1}
             >
               <Minus size={16} />
@@ -95,7 +101,7 @@ const CartItem = memo(({ device, onUpdateAmount, onRemove }: {
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onClick={() => onRemove(deviceId)}>Continue</AlertDialogAction>
+                <AlertDialogAction onClick={() => onRemove(device.id)}>Continue</AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
@@ -104,6 +110,8 @@ const CartItem = memo(({ device, onUpdateAmount, onRemove }: {
     </li>
   );
 });
+
+CartItem.displayName = 'CartItem';
 
 /**
  * Компонент корзины покупок
@@ -144,7 +152,7 @@ const Cart = (): JSX.Element => {
    * @param {number} change - Величина изменения (1 для увеличения, -1 для уменьшения)
    * @returns {void}
    */
-  const handleUpdateAmount = useCallback((id: number, change: number) => {
+  const handleUpdateAmount = useCallback((id: string, change: number) => {
     dispatch(updateCartItemAmount({ id, change }));
   }, [dispatch]);
 
@@ -155,7 +163,7 @@ const Cart = (): JSX.Element => {
    * @param {number} id - Идентификатор товара для удаления
    * @returns {void}
    */
-  const handleRemoveClick = useCallback((id: number) => {
+  const handleRemoveClick = useCallback((id: string) => {
     dispatch(removeCartItem(id));
   }, [dispatch]);
   

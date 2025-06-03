@@ -16,8 +16,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui';
-import { Cart } from '@/app/projects/medium/mobile-store-cart/components';
 import { PROJECTS_LIST } from '@/shared';
+// Import Cart directly to prevent circular dependency
+import Cart from './cart';
 
 /**
  * Интерфейс пропсов для компонента заголовка
@@ -174,5 +175,7 @@ const MobileStoreHeader = memo(({
     </Card>
   </header>
 ));
+
+MobileStoreHeader.displayName = 'MobileStoreHeader';
 
 export default MobileStoreHeader;

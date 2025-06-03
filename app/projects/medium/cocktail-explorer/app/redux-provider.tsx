@@ -2,7 +2,7 @@
 
 import { JSX, ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { store } from '@/app/projects/medium/wiki-searcher/app/store';
+import { store } from '@/app/projects/medium/_template-redux-base/app';
 
 interface ReduxProviderProps {
   children: ReactNode;

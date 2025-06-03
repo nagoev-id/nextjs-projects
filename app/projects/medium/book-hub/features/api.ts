@@ -110,25 +110,25 @@ export type BookDetailsResponse = {
 
 /**
  * @constant {Object} API_CONFIG
- * @description Конфигурация API для работы с Open Library
- * @property {string} baseUrl - Базовый URL API
+ * @description Конфигурация API для работы с Open Library через локальный прокси
+ * @property {string} baseUrl - Базовый URL API прокси
  * @property {Object} endpoints - Объект с функциями для формирования эндпоинтов
  * @property {Function} endpoints.readByName - Функция для формирования URL поиска по имени
  * @property {Function} endpoints.readById - Функция для формирования URL получения книги по ID
  * @property {string} coverUrl - Базовый URL для получения изображений обложек
  */
 const API_CONFIG = {
-  baseUrl: process.env.NEXT_PUBLIC_API_URL || 'https://openlibrary.org',
+  baseUrl: '/api/book-hub',
   endpoints: {
-    readByName: (value: string) => `/search.json?q=${encodeURIComponent(value)}`,
-    readById: (id: string) => `/works/${id}.json`,
+    readByName: (value: string) => `/search?q=${encodeURIComponent(value)}`,
+    readById: (id: string) => `/work/${id}`,
   },
   coverUrl: 'https://covers.openlibrary.org/b/id',
 };
 
 /**
  * @constant {Object} api
- * @description API для взаимодействия с Open Library, созданный с помощью RTK Query
+ * @description API для взаимодействия с Open Library через локальный прокси, созданный с помощью RTK Query
  * @property {string} reducerPath - Путь для хранения состояния API в Redux store
  * @property {Object} baseQuery - Базовый запрос с настройками
  * @property {string[]} tagTypes - Типы тегов для кэширования
@@ -138,10 +138,6 @@ export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: API_CONFIG.baseUrl,
-    prepareHeaders: (headers) => {
-      headers.set('Cache-Control', 'max-age=3600');
-      return headers;
-    },
   }),
   tagTypes: ['Book', 'SearchResults'],
   endpoints: (builder) => ({
@@ -157,7 +153,6 @@ export const api = createApi({
         if (!response.docs || !Array.isArray(response.docs)) {
           return [];
         }
-
         return response.docs.slice(0, 20).map((bookSingle): BookItem => ({
           id: bookSingle.key.replace('/works/', ''),
           author: bookSingle.author_name || [],
