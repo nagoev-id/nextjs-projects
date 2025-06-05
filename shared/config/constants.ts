@@ -416,6 +416,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/password-strength-checker',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.StateCapitalLookup]: {
+    title: 'State Capital Lookup',
+    description: 'Look up the capital city for any U.S. state with this interactive tool.',
+    href: 'easy/state-capital-lookup',
+    level: ProjectLevel.easy,
+  },
 
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {
