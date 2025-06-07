@@ -428,6 +428,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/movie-seat-booking',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.WaterTracker]: {
+    title: 'Water Tracker',
+    description: 'Track your daily water intake and stay hydrated with reminders and progress visualization.',
+    href: 'easy/drink-water-tracker',
+    level: ProjectLevel.easy,
+  },
 
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {
