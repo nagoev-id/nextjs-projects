@@ -422,6 +422,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/state-capital-lookup',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.MovieSeatBooking]: {
+    title: 'Movie Seat Booking',
+    description: 'Book your movie seats online with our interactive seat booking application.',
+    href: 'easy/movie-seat-booking',
+    level: ProjectLevel.easy,
+  },
 
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {

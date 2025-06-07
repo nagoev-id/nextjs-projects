@@ -115,7 +115,8 @@ export enum ProjectLabel {
   BookHub = 'BookHub',
   TodoList = 'TodoList',
   MobileStoreCart = 'MobileStoreCart',
-  StateCapitalLookup = "StateCapitalLookup",
+  StateCapitalLookup = 'StateCapitalLookup',
+  MovieSeatBooking = 'MovieSeatBooking',
 }
 
 /**
