@@ -2,7 +2,7 @@
 
 An interactive movie seat booking interface built with Next.js and React that allows users to select seats for a movie showing with real-time price calculation.
 
-![Movie Seat Booking Screenshot](https://ik.imagekit.io/nagoevid/nextjs-projects/movie-seat-booking.png?updatedAt=1748937197195)
+![Movie Seat Booking Screenshot](https://ik.imagekit.io/nagoevid/nextjs-projects/movie-seat-booking.png?updatedAt=1749294794338)
 
 ## Features
 

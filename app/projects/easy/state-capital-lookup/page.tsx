@@ -90,7 +90,7 @@ const StateCapitalLookupPage = (): JSX.Element => {
    * Обновляется с задержкой в 300мс после последнего изменения searchInput
    * для оптимизации производительности при быстром вводе
    */
-  const debouncedSearchInput = useDebounce(state.searchInput, 300);
+  const debouncedSearchInput = useDebounce(state.searchInput.toLowerCase(), 300);
 
   /**
    * Обработчик изменения значения в поисковом поле
@@ -99,10 +99,9 @@ const StateCapitalLookupPage = (): JSX.Element => {
    * @param {ChangeEvent<HTMLInputElement>} e - Событие изменения значения в поле ввода
    */
   const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const searchInput = e.target.value.toLowerCase().trim();
     setState(prevState => ({
       ...prevState,
-      searchInput,
+      searchInput: e.target.value.trim(),
     }));
   }, []);
 

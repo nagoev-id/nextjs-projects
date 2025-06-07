@@ -2,7 +2,7 @@
 
 Утилита на Next.js и React для быстрого поиска информации о штатах США: столицах, аббревиатурах и координатах. Вводите название, аббревиатуру, столицу или координаты — и мгновенно получаете результат.
 
-<!-- ![State Capital Lookup Screenshot](https://your-screenshot-url.png) -->
+![State Capital Lookup Screenshot](https://ik.imagekit.io/nagoevid/nextjs-projects/state-capital-lookup.png?updatedAt=1749294794405)
 
 ## Features
 
