@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { authApi } from './features/api/auth-api';
 import { injectStore, todoApi } from './features/api/todo-api';
-import { authReducer } from '@/app/projects/hard/todo-list/redux';
+import { authReducer } from './features/auth/auth-slice';
 
 export const store = configureStore({
   reducer: {

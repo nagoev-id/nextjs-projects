@@ -16,8 +16,8 @@ const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700
  * @type {Metadata}
  */
 export const metadata: Metadata = {
-  title: 'NextJS App',
-  description: 'NextJS App Description',
+  title: 'Collections of React Apps',
+  description: '👨‍💻🎓 A comprehensive collection of interactive web projects built with Next.js, organized by difficulty level.',
   keywords: ['Next.js', 'React'],
   authors: [{ name: 'Alim Nagoev', url: 'https://github.com/nagoev-alim' }],
 };
