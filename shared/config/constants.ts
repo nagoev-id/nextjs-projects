@@ -562,4 +562,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'medium/mobile-store-cart',
     level: ProjectLevel.medium,
   },
+
+  // Hard projects
+  [ProjectLabel.TodoListH]: {
+    title: 'TodoList Hard',
+    description: 'Organize your tasks efficiently with our comprehensive TodoList application.',
+    href: 'hard/todo-list',
+    level: ProjectLevel.hard,
+  },
 };
