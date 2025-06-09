@@ -3,6 +3,8 @@
 import { useEffect } from 'react';
 import { setLoading, setSession, setUser, useAppDispatch } from '@/app/projects/hard/todo-list/redux';
 import { supabase } from '@/app/projects/hard/todo-list/utils';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 /**
  * Компонент инициализации аутентификации
@@ -25,6 +27,7 @@ export const AuthInitializer = () => {
    * Функция dispatch из Redux для отправки действий
    */
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   /**
    * Эффект для инициализации аутентификации при монтировании компонента
@@ -47,6 +50,15 @@ export const AuthInitializer = () => {
         // Обработка ошибки получения сессии
         if (error) {
           console.error('Error getting auth session:', error);
+          
+          // Если ошибка связана с refresh token, перенаправляем на страницу входа
+          if (error.message.includes('Refresh Token') || error.message.includes('Invalid JWT')) {
+            // Очищаем сессию
+            await supabase.auth.signOut();
+            toast.error('Your session has expired. Please sign in again.');
+            router.push('/projects/hard/todo-list');
+          }
+          
           dispatch(setLoading(false));
           return;
         }
@@ -62,12 +74,21 @@ export const AuthInitializer = () => {
           /**
            * Обработчик изменения состояния аутентификации
            * 
-           * @param {string} _event - Тип события аутентификации (не используется)
+           * @param {string} event - Тип события аутентификации
            * @param {Session | null} session - Объект сессии или null при выходе
            */
-          (_event, session) => {
-            dispatch(setSession(session));
-            dispatch(setUser(session?.user ?? null));
+          (event, session) => {
+            // Обрабатываем различные события аутентификации
+            if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+              dispatch(setSession(session));
+              dispatch(setUser(session?.user ?? null));
+            } else if (event === 'SIGNED_OUT') {
+              dispatch(setSession(null));
+              dispatch(setUser(null));
+              router.push('/projects/hard/todo-list');
+            } else if (event === 'USER_UPDATED') {
+              dispatch(setUser(session?.user ?? null));
+            }
           },
         );
 
@@ -87,7 +108,7 @@ export const AuthInitializer = () => {
 
     // Запуск инициализации
     initAuth();
-  }, [dispatch]);
+  }, [dispatch, router]);
 
   // Компонент не рендерит UI
   return null;

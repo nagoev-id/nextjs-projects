@@ -1,4 +1,6 @@
 export {default as Header} from './header/header';
+export {default as HeaderAbout} from './header/header-about';
+export {default as HeaderLeft} from './header/header-left';
 export {default as Footer} from './footer/footer';
 export {default as Main} from './main/main';
 export {default as ThemeToggle} from './navigation/theme-toggle';

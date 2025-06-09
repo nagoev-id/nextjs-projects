@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { supabase } from '../../../utils/supabase';
-import { RootState } from '../../store';
+import { supabase } from '@/app/projects/hard/todo-list/utils';
 
 export type Todo = {
   id?: string;
@@ -19,20 +18,7 @@ export type Todos = Todo[];
 export const todoApi = createApi({
   reducerPath: 'todoApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://pzgxijkvkfnswedrwlza.supabase.co/rest/v1',
-    prepareHeaders: (headers) => {
-      headers.set('apikey', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6Z3hpamt2a2Zuc3dlZHJ3bHphIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkzMDg4MTAsImV4cCI6MjA2NDg4NDgxMH0.I7AkC80ar725Uzkf1q4pQrq1GJoJwcW_pzklp_iVb3w');
-      headers.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6Z3hpamt2a2Zuc3dlZHJ3bHphIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkzMDg4MTAsImV4cCI6MjA2NDg4NDgxMH0.I7AkC80ar725Uzkf1q4pQrq1GJoJwcW_pzklp_iVb3w`);
-      headers.set('Content-Type', 'application/json');
-      
-      // Get session token from state if available
-      const state = store.getState() as RootState;
-      if (state.auth.session?.access_token) {
-        headers.set('Authorization', `Bearer ${state.auth.session.access_token}`);
-      }
-      
-      return headers;
-    },
+    baseUrl: '/',
   }),
   tagTypes: ['Todos'],
   endpoints: (builder) => ({
@@ -99,7 +85,7 @@ export const todoApi = createApi({
       invalidatesTags: ['Todos'],
     }),
     
-    deleteTodo: builder.mutation<void, string>({
+    deleteTodo: builder.mutation<{ success: boolean }, string>({
       queryFn: async (id) => {
         try {
           const { error } = await supabase
@@ -108,7 +94,7 @@ export const todoApi = createApi({
             .eq('id', id);
             
           if (error) throw new Error(error.message);
-          return { data: undefined };
+          return { data: { success: true } };
         } catch (error) {
           return { error: { status: 'CUSTOM_ERROR', error: String(error) } };
         }
@@ -117,12 +103,6 @@ export const todoApi = createApi({
     }),
   }),
 });
-
-// Inject store reference later to avoid circular dependency
-let store: any;
-export const injectStore = (_store: any) => {
-  store = _store;
-};
 
 export const {
   useGetTodosQuery,

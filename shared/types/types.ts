@@ -118,7 +118,7 @@ export enum ProjectLabel {
   StateCapitalLookup = 'StateCapitalLookup',
   MovieSeatBooking = 'MovieSeatBooking',
   WaterTracker = 'WaterTracker',
-  TodoListH = 'TodoListH',
+  TodoListSDB = 'TodoListSDB',
 }
 
 /**

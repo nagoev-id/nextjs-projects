@@ -9,7 +9,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const projectKey = ProjectLabel.TodoListH;
+const projectKey = ProjectLabel.TodoListSDB;
 
 export const metadata: Metadata = HELPERS.projectMetadata(projectKey);
 

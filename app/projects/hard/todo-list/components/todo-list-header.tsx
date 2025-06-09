@@ -1,21 +1,10 @@
 'use client';
 
 import { JSX, memo } from 'react';
-import { ThemeToggle } from '@/components/layout';
+import { HeaderAbout, HeaderLeft, ThemeToggle } from '@/components/layout';
 import Link from 'next/link';
-import { Github, LogOut } from 'lucide-react';
-import {
-  Button,
-  Card,
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui';
+import { LogOut } from 'lucide-react';
+import { Button, Card } from '@/components/ui';
 import { PROJECTS_LIST } from '@/shared';
 import { selectAuthSliceData, useAppSelector, useSignOutMutation } from '@/app/projects/hard/todo-list/redux';
 import { toast } from 'sonner';
@@ -40,76 +29,6 @@ type HeaderProps = {
 }
 
 /**
- * Мемоизированный компонент для отображения информации о проекте
- *
- * @param {Object} props - Пропсы компонента
- * @param {string} props.title - Заголовок проекта
- * @returns {JSX.Element} Компонент диалога с информацией о проекте
- */
-const AboutDialog = memo(({ title }: { title: string }): JSX.Element => (
-  <Dialog>
-    <DialogTrigger asChild>
-      <Button>About</Button>
-    </DialogTrigger>
-    <DialogContent className="sm:max-w-[600px]">
-      <DialogHeader>
-        <DialogTitle className="text-lg md:text-2xl">{title}</DialogTitle>
-      </DialogHeader>
-      <DialogDescription className="text-lg">
-        This project showcases a diverse collection of React applications, demonstrating modern web
-        development practices. Each app in this collection is built using React, Redux for state
-        management, Tailwind CSS for styling, and Shadcn UI for sleek, customizable components. From
-        simple utilities to complex interfaces, this repository serves as both a learning resource and a
-        reference for implementing various features in React ecosystems.
-      </DialogDescription>
-      <DialogFooter>
-        <DialogClose asChild>
-          <Button type="button">Close</Button>
-        </DialogClose>
-      </DialogFooter>
-    </DialogContent>
-  </Dialog>
-));
-
-/**
- * Мемоизированный компонент для отображения левой части заголовка
- *
- * @param {Object} props - Пропсы компонента
- * @param {string} props.title - Заголовок страницы
- * @param {string | null | undefined} props.description - Описание страницы
- * @param {string | undefined} props.ariaLabelLink - ARIA-метка для ссылки
- * @returns {JSX.Element} Компонент левой части заголовка
- */
-const HeaderLeft = memo(({
-                           title,
-                           description,
-                           ariaLabelLink,
-                         }: {
-  title: string;
-  description: string | null | undefined;
-  ariaLabelLink: string | undefined;
-}): JSX.Element => (
-  <div className="grid place-items-center md:inline-flex items-center gap-2">
-    <Link
-      href="https://github.com/nagoev-alim"
-      aria-label="GitHub Profile"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Github size={30} aria-hidden="true" />
-    </Link>
-    <Link
-      className="font-semibold"
-      href="/"
-      aria-label={ariaLabelLink || `Return to the main page: ${title}`}
-    >
-      {title}
-    </Link>
-    {description && <p className="text-sm text-muted-foreground text-center">{description}</p>}
-  </div>
-));
-
-/**
  * Компонент заголовка магазина
  *
  * @param {HeaderProps} props - Пропсы компонента
@@ -121,8 +40,8 @@ const HeaderLeft = memo(({
  * @returns {JSX.Element} Компонент заголовка магазина
  */
 export const TodoListHeader = memo(({
-                                      title = PROJECTS_LIST.TodoListH.title,
-                                      description = PROJECTS_LIST.TodoListH.description,
+                                      title = PROJECTS_LIST.TodoListSDB.title,
+                                      description = PROJECTS_LIST.TodoListSDB.description,
                                       showAbout = false,
                                       showBackButton = true,
                                       ariaLabelLink,
@@ -169,7 +88,7 @@ export const TodoListHeader = memo(({
             {/* Модальное окно с информацией о проекте */}
             {showAbout && (
               <li>
-                <AboutDialog title={title || ''} />
+                <HeaderAbout title={title || ''} />
               </li>
             )}
 
@@ -186,7 +105,6 @@ export const TodoListHeader = memo(({
             <li>
               <ThemeToggle />
             </li>
-
           </ul>
         </nav>
       </Card>

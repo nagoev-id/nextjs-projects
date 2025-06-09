@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { authApi } from './features/api/auth-api';
-import { injectStore, todoApi } from './features/api/todo-api';
+import { todoApi } from './features/api/todo-api';
 import { authReducer } from './features/auth/auth-slice';
 
 export const store = configureStore({
@@ -15,8 +15,6 @@ export const store = configureStore({
       .concat(authApi.middleware)
       .concat(todoApi.middleware),
 });
-
-injectStore(store);
 
 setupListeners(store.dispatch);
 

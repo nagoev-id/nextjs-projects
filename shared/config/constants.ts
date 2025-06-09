@@ -564,8 +564,8 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
 
   // Hard projects
-  [ProjectLabel.TodoListH]: {
-    title: 'TodoList Hard',
+  [ProjectLabel.TodoListSDB]: {
+    title: 'TodoList (SDB)',
     description: 'Organize your tasks efficiently with our comprehensive TodoList application.',
     href: 'hard/todo-list',
     level: ProjectLevel.hard,

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { supabase } from '../../../utils/supabase';
+import { AuthError } from '@supabase/supabase-js';
+import { supabase } from '@/app/projects/hard/todo-list/utils';
 
 interface SignInCredentials {
   email: string;
@@ -11,6 +12,25 @@ interface SignUpCredentials {
   password: string;
 }
 
+// Функция для форматирования ошибок аутентификации
+const formatAuthError = (error: unknown): string => {
+  if (error instanceof AuthError) {
+    // Обработка специфических ошибок Supabase Auth
+    if (error.message.includes('Invalid login credentials')) {
+      return 'Invalid email or password';
+    }
+    if (error.message.includes('Email not confirmed')) {
+      return 'Please confirm your email before signing in';
+    }
+    if (error.message.includes('Refresh Token')) {
+      return 'Your session has expired. Please sign in again.';
+    }
+    return error.message;
+  }
+  
+  return String(error) || 'An authentication error occurred';
+};
+
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
@@ -19,17 +39,17 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     signIn: builder.mutation<any, SignInCredentials>({
       queryFn: async ({ email, password }) => {
-        console.log({ email, password });
         try {
           const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password,
           });
           
-          if (error) throw new Error(error.message);
+          if (error) throw error;
           return { data };
         } catch (error) {
-          return { error: { status: 'CUSTOM_ERROR', error: String(error) } };
+          const errorMessage = formatAuthError(error);
+          return { error: { status: 'CUSTOM_ERROR', error: errorMessage } };
         }
       },
     }),
@@ -40,11 +60,16 @@ export const authApi = createApi({
           const { data, error } = await supabase.auth.signUp({
             email,
             password,
+            options: {
+              emailRedirectTo: window.location.origin + '/projects/hard/todo-list'
+            }
           });
-          if (error) throw new Error(error.message);
+          
+          if (error) throw error;
           return { data };
         } catch (error) {
-          return { error: { status: 'CUSTOM_ERROR', error: String(error) } };
+          const errorMessage = formatAuthError(error);
+          return { error: { status: 'CUSTOM_ERROR', error: errorMessage } };
         }
       },
     }),
@@ -53,22 +78,11 @@ export const authApi = createApi({
       queryFn: async () => {
         try {
           const { error } = await supabase.auth.signOut();
-          if (error) throw new Error(error.message);
+          if (error) throw error;
           return { data: null };
         } catch (error) {
-          return { error: { status: 'CUSTOM_ERROR', error: String(error) } };
-        }
-      },
-    }),
-    
-    getSession: builder.query<any, void>({
-      queryFn: async () => {
-        try {
-          const { data, error } = await supabase.auth.getSession();
-          if (error) throw new Error(error.message);
-          return { data };
-        } catch (error) {
-          return { error: { status: 'CUSTOM_ERROR', error: String(error) } };
+          const errorMessage = formatAuthError(error);
+          return { error: { status: 'CUSTOM_ERROR', error: errorMessage } };
         }
       },
     }),
@@ -79,5 +93,4 @@ export const {
   useSignInMutation,
   useSignUpMutation,
   useSignOutMutation,
-  useGetSessionQuery,
 } = authApi; 

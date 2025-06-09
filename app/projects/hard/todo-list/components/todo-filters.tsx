@@ -24,7 +24,7 @@ import { JSX, useEffect, useMemo } from 'react';
 import { FormSelect } from '@/components/layout';
 import { useForm } from 'react-hook-form';
 import { Form } from '@/components/ui';
-import { Todos } from '@/app/projects/hard/todo-list/services';
+import { Todos } from '@/app/projects/hard/todo-list/redux';
 
 /**
  * @interface TodoFiltersProps
