@@ -1,4 +1,4 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+ See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # Dependencies
 /node_modules
@@ -135,7 +135,4 @@ tmp/
 *.tmp
 *.temp
 
-app/projects/easy/_project-template-easy
-app/projects/hard/_project-template-hard
-app/projects/medium/_template-redux-base
-_temp
+app/projects/hard/dog-tinder

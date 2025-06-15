@@ -570,4 +570,16 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'hard/todo-list',
     level: ProjectLevel.hard,
   },
+  [ProjectLabel.DogTinderSDB]: {
+    title: 'Dog Tinder (SDB)',
+    description: '',
+    href: 'hard/dog-tinder',
+    level: ProjectLevel.hard,
+  },
+  [ProjectLabel.PhotoGallery_0]: {
+    title: 'Photo Gallery',
+    description: '',
+    href: 'hard/photo-gallery',
+    level: ProjectLevel.hard,
+  },
 };

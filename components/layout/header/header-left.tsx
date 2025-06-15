@@ -2,6 +2,13 @@ import Link from 'next/link';
 import { JSX, memo } from 'react';
 import { Github } from 'lucide-react';
 
+
+interface HeaderLeftProps {
+  title: string | null | undefined;
+  description: string | null | undefined;
+  ariaLabelLink?: string;
+}
+
 /**
  * Мемоизированный компонент для отображения левой части заголовка
  *
@@ -11,15 +18,7 @@ import { Github } from 'lucide-react';
  * @param {string | undefined} props.ariaLabelLink - ARIA-метка для ссылки
  * @returns {JSX.Element} Компонент левой части заголовка
  */
-const HeaderLeft = memo(({
-                           title,
-                           description,
-                           ariaLabelLink,
-                         }: {
-  title: string;
-  description: string | null | undefined;
-  ariaLabelLink: string | undefined;
-}): JSX.Element => (
+const HeaderLeft = memo(({ title, description, ariaLabelLink = '' }: HeaderLeftProps): JSX.Element => (
   <div className="grid place-items-center md:inline-flex items-center gap-2">
     <Link
       href="https://github.com/nagoev-alim"

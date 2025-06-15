@@ -11,6 +11,11 @@ import {
   DialogTrigger,
 } from '@/components/ui';
 
+
+interface HeaderAboutProps {
+  title: string | null | undefined;
+}
+
 /**
  * Мемоизированный компонент для отображения информации о проекте
  *
@@ -18,7 +23,7 @@ import {
  * @param {string} props.title - Заголовок проекта
  * @returns {JSX.Element} Компонент диалога с информацией о проекте
  */
-const HeaderAbout = memo(({ title }: { title: string }): JSX.Element => (
+const HeaderAbout = memo(({ title = '' }: HeaderAboutProps): JSX.Element => (
   <Dialog>
     <DialogTrigger asChild>
       <Button>About</Button>
