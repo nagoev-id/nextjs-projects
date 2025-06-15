@@ -10,10 +10,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui';
+import { BookOpenText } from 'lucide-react';
 
 
 interface HeaderAboutProps {
   title: string | null | undefined;
+  description: string | null | undefined;
 }
 
 /**
@@ -23,21 +25,19 @@ interface HeaderAboutProps {
  * @param {string} props.title - Заголовок проекта
  * @returns {JSX.Element} Компонент диалога с информацией о проекте
  */
-const HeaderAbout = memo(({ title = '' }: HeaderAboutProps): JSX.Element => (
+const HeaderAbout = memo(({ title = '', description = '' }: HeaderAboutProps): JSX.Element => (
   <Dialog>
     <DialogTrigger asChild>
-      <Button>About</Button>
+      <Button variant="outline">
+        <BookOpenText />
+      </Button>
     </DialogTrigger>
     <DialogContent className="sm:max-w-[600px]">
       <DialogHeader>
         <DialogTitle className="text-lg md:text-2xl">{title}</DialogTitle>
       </DialogHeader>
       <DialogDescription className="text-lg">
-        This project showcases a diverse collection of React applications, demonstrating modern web
-        development practices. Each app in this collection is built using React, Redux for state
-        management, Tailwind CSS for styling, and Shadcn UI for sleek, customizable components. From
-        simple utilities to complex interfaces, this repository serves as both a learning resource and a
-        reference for implementing various features in React ecosystems.
+        {description}
       </DialogDescription>
       <DialogFooter>
         <DialogClose asChild>

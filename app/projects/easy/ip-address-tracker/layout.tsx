@@ -12,7 +12,7 @@ const projectKey = ProjectLabel.IPAddressTracker;
 export const metadata: Metadata = HELPERS.projectMetadata(projectKey);
 
 const Layout = ({ children }: Readonly<LayoutProps>) => (
-  <ProjectLayout projectKey={projectKey}>{children}</ProjectLayout>
+  <ProjectLayout showAbout={true} projectKey={projectKey}>{children}</ProjectLayout>
 );
 
 

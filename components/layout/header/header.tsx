@@ -1,20 +1,36 @@
 'use client';
 
-import { ThemeToggle } from '@/components/layout';
+import { HeaderAbout, HeaderLeft, ThemeToggle } from '@/components/layout';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
-import { Github } from 'lucide-react';
+import { Ellipsis, ExternalLink, Tally1, Tally2, Tally3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { JSX, useMemo } from 'react';
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui';
+
+type MenuItem = {
+  type: 'item' | 'label' | 'separator';
+  label?: string;
+  href?: string;
+  icon?: JSX.Element;
+  onClick?: () => void;
+}
+
+type MenuSection = {
+  label?: {
+    isLink?: boolean;
+    text: string;
+    href?: string | null | undefined;
+  },
+  items: MenuItem[];
+}
 
 /**
  * @typedef {Object} HeaderProps
@@ -28,7 +44,6 @@ type HeaderProps = {
   title?: string | null | undefined;
   description?: string | null | undefined;
   showAbout?: boolean;
-  showBackButton?: boolean;
   ariaLabelLink?: string;
 }
 
@@ -43,13 +58,46 @@ type HeaderProps = {
  * Этот компонент использует компоненты из библиотеки Shadcn UI для создания
  * адаптивной шапки сайта с навигацией, переключателем темы и модальным окном "About".
  */
-const Header = ({
-                  title = 'Collections of React Apps',
-                  description,
-                  showAbout = false,
-                  showBackButton = true,
-                  ariaLabelLink,
-                }: HeaderProps = {}) => {
+const Header = ({ title = 'Collections of React Apps', showAbout, description, ariaLabelLink }: HeaderProps = {}) => {
+
+  const menuSections: MenuSection[] = useMemo(() => [
+    {
+      label: {
+        isLink: true,
+        text: 'Home',
+        href: '/',
+      },
+      items: [],
+    },
+    {
+      label: {
+        isLink: true,
+        text: 'Projects',
+        href: '/projects',
+      },
+      items: [
+        {
+          type: 'item',
+          label: 'Easy Projects',
+          href: '/projects/easy',
+          icon: <Tally1 className="h-4 w-4" />,
+        },
+        {
+          type: 'item',
+          label: 'Medium Projects',
+          href: '/projects/medium',
+          icon: <Tally2 className="h-4 w-4" />,
+        },
+        {
+          type: 'item',
+          label: 'Hard Projects',
+          href: '/projects/hard',
+          icon: <Tally3 className="h-4 w-4" />,
+        },
+      ],
+    },
+  ], []);
+
   return (
     <header role="banner">
       <Card className="p-0 rounded-none">
@@ -57,56 +105,77 @@ const Header = ({
           className="grid gap-2.5 md:flex md:justify-between md:items-center p-4 xl:px-0 max-w-6xl w-full mx-auto"
           aria-label="The main navigation"
         >
-          <div className="grid place-items-center md:inline-flex items-center gap-2">
-            <Link
-              href="https://github.com/nagoev-alim"
-              aria-label="GitHub Profile"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github size={30} aria-hidden="true" />
-            </Link>
-            <Link
-              className="font-semibold"
-              href="/"
-              aria-label={ariaLabelLink || `Return to the main page: ${title}`}
-            >
-              {title}
-            </Link>
-            {description && <p className="text-sm text-muted-foreground text-center">{description}</p>}
-          </div>
+          <HeaderLeft
+            title={title || ''}
+            ariaLabelLink={ariaLabelLink}
+          />
           <ul className="flex gap-2 justify-center items-center" role="list">
-            {showBackButton && (
-              <li>
-                <Link href="/">
-                  <Button variant="outline">Back to Home</Button>
-                </Link>
-              </li>
-            )}
+            <li>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild={true}>
+                  <Button variant="outline" className="flex items-center gap-2">
+                    <Ellipsis className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  {menuSections.map((section, sectionIndex) => (
+                    <div key={`section-${sectionIndex}`}>
+                      {section.label && (
+                        <>
+                          <DropdownMenuLabel>
+                            {section.label.isLink && section.label.href ? (
+                              <Link href={section.label.href} className="flex items-center gap-1.5">
+                                <ExternalLink className="h-4 w-4" />
+                                {section.label.text}
+                              </Link>
+                            ) : (
+                              <span>{section.label.text}</span>
+                            )}
+                          </DropdownMenuLabel>
+                        </>
+                      )}
+
+                      {section.items.map((item, itemIndex) => {
+                        if (item.type === 'separator') {
+                          return <DropdownMenuSeparator key={`item-${sectionIndex}-${itemIndex}`} />;
+                        }
+
+                        if (item.type === 'label') {
+                          return <DropdownMenuLabel
+                            key={`item-${sectionIndex}-${itemIndex}`}>{item.label}</DropdownMenuLabel>;
+                        }
+
+                        return (
+                          <DropdownMenuItem
+                            key={`item-${sectionIndex}-${itemIndex}`}
+                            onClick={item.onClick}
+                          >
+                            {item.href ? (
+                              <Link href={item.href}>
+                                <div className="flex items-center gap-2">
+                                  {item.icon}
+                                  {item.label}
+                                </div>
+                              </Link>
+                            ) : (
+                              <div className="flex items-center gap-2">
+                                {item.icon}
+                                {item.label}
+                              </div>
+                            )}
+                          </DropdownMenuItem>
+                        );
+                      })}
+
+                      {sectionIndex < menuSections.length - 1 && <DropdownMenuSeparator />}
+                    </div>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </li>
             {showAbout && (
               <li>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button>About</Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[600px]">
-                    <DialogHeader>
-                      <DialogTitle className="text-lg md:text-2xl">{title}</DialogTitle>
-                    </DialogHeader>
-                    <DialogDescription className="text-lg">
-                      This project showcases a diverse collection of React applications, demonstrating modern web
-                      development practices. Each app in this collection is built using React, Redux for state
-                      management, Tailwind CSS for styling, and Shadcn UI for sleek, customizable components. From
-                      simple utilities to complex interfaces, this repository serves as both a learning resource and a
-                      reference for implementing various features in React ecosystems.
-                    </DialogDescription>
-                    <DialogFooter>
-                      <DialogClose asChild>
-                        <Button type="button">Close</Button>
-                      </DialogClose>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
+                <HeaderAbout title={title} description={description} />
               </li>
             )}
             <li>

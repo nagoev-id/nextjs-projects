@@ -1,168 +1,177 @@
 'use client';
-import { Footer, Header, Main, ProjectCard } from '@/components/layout';
-import { ChangeEvent, useCallback, useMemo, useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { PROJECTS_LIST } from '@/shared';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-/**
- * @typedef {'all' | 'level' | 'title' | 'description'} FilterProperty
- * @description Тип для свойств фильтрации проектов
- */
-type FilterProperty = 'all' | 'level' | 'title' | 'description';
+import { Footer, Header, Main } from '@/components/layout';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ArrowRight, Code, Gauge, Lightbulb, Rocket, Sparkles, Zap } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import Image from 'next/image';
 
-/**
- * @typedef {'all' | 'easy' | 'medium' | 'hard'} ProjectLevel
- * @description Тип для уровней сложности проектов
- */
-
-type ProjectLevel = 'all' | 'easy' | 'medium' | 'hard'
-
-/**
- * @typedef {Object} FilterProps
- * @property {string} text - Текст поиска
- * @property {FilterProperty} property - Свойство, по которому производится фильтрация
- * @property {ProjectLevel} level - Уровень сложности для фильтрации
- */
-type FilterProps = {
-  text: string;
-  property: FilterProperty;
-  level: ProjectLevel;
-}
-
-/**
- * @typedef {Object} LevelOption
- * @property {ProjectLevel} value - Значение уровня сложности
- * @property {string} label - Отображаемая метка уровня сложности
- */
-type LevelOption = {
-  value: ProjectLevel;
-  label: string;
-};
-
-/**
- * @type {LevelOption[]}
- * @description Массив опций уровней сложности для выбора
- */
-const levels: LevelOption[] = [
-  { value: 'all', label: 'All levels' },
-  { value: 'easy', label: 'Easy' },
-  { value: 'medium', label: 'Medium' },
-  { value: 'hard', label: 'Hard' },
-];
-
-/**
- * Компонент домашней страницы
- *
- * @type {React.FC}
- * @returns {JSX.Element} Отрендеренная домашняя страница
- *
- * @description
- * Этот компонент отображает список проектов с возможностью фильтрации и поиска.
- * Он использует компоненты из библиотеки Shadcn UI для создания интерфейса фильтрации.
- */
 const HomePage = () => {
-  /**
-   * Состояние фильтра
-   * @type {[FilterProps, React.Dispatch<React.SetStateAction<FilterProps>>]}
-   */
-  const [filter, setFilter] = useState<FilterProps>({
-    text: '',
-    property: 'all',
-    level: 'all',
-  });
-
-  /**
-   * Отфильтрованный список проектов
-   * @type {[string, any][]}
-   */
-  const filteredProjects = useMemo(() => {
-    return Object.entries(PROJECTS_LIST).filter(([_, project]) => {
-      const searchText = filter.text.toLowerCase();
-      const matchesLevel = filter.level === 'all' || project.level === filter.level;
-
-      const matchesSearch =
-        filter.property === 'all' ? (
-          project.level.toLowerCase().includes(searchText) ||
-          project.title.toLowerCase().includes(searchText) ||
-          project.description.toLowerCase().includes(searchText)
-        ) : (project[filter.property] as string).toLowerCase().includes(searchText);
-
-      return matchesLevel && matchesSearch;
-    });
-  }, [filter]);
-
-  /**
-   * Обработчик изменения фильтра
-   *
-   * @type {(type: keyof FilterProps, value: string) => void}
-   * @param {keyof FilterProps} type - Тип изменяемого свойства фильтра
-   * @param {string} value - Новое значение свойства
-   */
-  const handleFilterChange = useCallback((type: keyof FilterProps, value: string) => {
-    setFilter(prevState => ({ ...prevState, [type]: value }));
-  }, []);
-
-
   return (
     <div className="flex flex-col text-foreground min-h-screen">
-      <Header showAbout={true} showBackButton={false} />
-      <Main>
-        {/* Компоненты фильтрации */}
-        <div className="grid gap-3 mb-3 md:grid-cols-3">
-          <Input
-            placeholder="Search for projects..."
-            value={filter.text}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleFilterChange('text', e.target.value)}
-            className="w-full"
-          />
-          <Select
-            value={filter.property}
-            onValueChange={(value: FilterProperty) => handleFilterChange('property', value)}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Search field" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All fields</SelectItem>
-              <SelectItem value="level">Level</SelectItem>
-              <SelectItem value="title">Name</SelectItem>
-              <SelectItem value="description">Description</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select
-            value={filter.level}
-            onValueChange={(value: ProjectLevel) => handleFilterChange('level', value)}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Filter by level" />
-            </SelectTrigger>
-            <SelectContent>
-              {levels.map(({ label, value }) => (
-                <SelectItem key={label} value={value}>{label}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+      <Header showAbout={false} />
+      <Main className="px-4">
+        {/* Hero Section */}
+        <section className="py-6 md:py-12 flex flex-col items-center text-center max-w-4xl mx-auto">
+          <div className="mb-6 inline-block p-3 bg-primary/10 rounded-full">
+            <Sparkles className="h-8 w-8 text-primary" />
+          </div>
+          <h1
+            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            React Projects Collection
+          </h1>
+          <p className="text-xl mb-8 text-muted-foreground max-w-2xl">
+            Explore a diverse collection of React applications showcasing modern web development practices,
+            from simple utilities to complex interfaces.
+          </p>
+          <div className='grid place-items-center'>
+            <Image
+              src="https://ik.imagekit.io/nagoevid/nextjs-projects/main.png?updatedAt=1749997869077"
+              alt="React Projects Collection"
+              width={800}
+              height={400}
+              className='w-full h-full dark:invert-100'
+              priority={true}
+            />
+          </div>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Button asChild size="lg" className="gap-2">
+              <Link href="/projects">
+                Get Started <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="https://github.com/nagoev-id" target="_blank" rel="noopener noreferrer">
+                GitHub Repository
+              </Link>
+            </Button>
+          </div>
+        </section>
 
-        {/* Отображение отфильтрованных проектов */}
-        {filteredProjects.length > 0 ? (
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {filteredProjects.map(([key, project]) => (
-              <ProjectCard
-                key={key}
-                title={project.title}
-                description={project.description}
-                href={project.href}
-                level={project.level}
-              />
-            ))}
+        {/* Project Categories */}
+        <section className="py-6 md:py-12">
+          <h2 className="text-3xl font-bold mb-12 text-center">Project Categories</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            <Card className="transition-all hover:shadow-lg hover:border-primary/50">
+              <CardHeader>
+                <div className="mb-2 inline-block p-2 bg-green-100 dark:bg-green-900/30 rounded-full">
+                  <Zap className="h-6 w-6 text-green-600 dark:text-green-400" />
+                </div>
+                <CardTitle>Easy Projects</CardTitle>
+                <CardDescription>
+                  Perfect for beginners looking to build a foundation in React development.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>Simple components and basic state management with clean, understandable code examples.</p>
+              </CardContent>
+              <CardFooter>
+                <Button asChild variant="ghost" className="gap-2">
+                  <Link href="/projects/easy">
+                    Explore Easy Projects <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+
+            <Card className="transition-all hover:shadow-lg hover:border-primary/50">
+              <CardHeader>
+                <div className="mb-2 inline-block p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full">
+                  <Gauge className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                </div>
+                <CardTitle>Medium Projects</CardTitle>
+                <CardDescription>
+                  Intermediate-level applications with more complex state and component interactions.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>Projects that demonstrate advanced hooks, context API usage, and more sophisticated UI patterns.</p>
+              </CardContent>
+              <CardFooter>
+                <Button asChild variant="ghost" className="gap-2">
+                  <Link href="/projects/medium">
+                    Explore Medium Projects <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+
+            <Card className="transition-all hover:shadow-lg hover:border-primary/50">
+              <CardHeader>
+                <div className="mb-2 inline-block p-2 bg-purple-100 dark:bg-purple-900/30 rounded-full">
+                  <Rocket className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                </div>
+                <CardTitle>Hard Projects</CardTitle>
+                <CardDescription>
+                  Advanced applications showcasing professional-level React development techniques.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>Complex state management, performance optimization, and integration with external APIs and
+                  services.</p>
+              </CardContent>
+              <CardFooter>
+                <Button asChild variant="ghost" className="gap-2">
+                  <Link href="/projects/hard">
+                    Explore Hard Projects <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
           </div>
-        ) : (
-          <div className="text-center py-10">
-            <p>No projects found matching your criteria.</p>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-6 md:py-12 bg-muted/30 -mx-4 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center">Key Features</h2>
+            <div className="grid gap-8 md:grid-cols-3">
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-4 p-3 bg-primary/10 rounded-full">
+                  <Code className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Modern React</h3>
+                <p className="text-muted-foreground">
+                  Built with the latest React features including hooks, context, and functional components.
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-4 p-3 bg-primary/10 rounded-full">
+                  <Lightbulb className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Learning Resource</h3>
+                <p className="text-muted-foreground">
+                  Each project includes detailed comments and follows best practices for educational purposes.
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-4 p-3 bg-primary/10 rounded-full">
+                  <Sparkles className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Beautiful UI</h3>
+                <p className="text-muted-foreground">
+                  Styled with Tailwind CSS and Shadcn UI for sleek, responsive, and accessible interfaces.
+                </p>
+              </div>
+            </div>
           </div>
-        )}
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16 md:py-24 text-center">
+          <h2 className="text-3xl font-bold mb-6">Ready to Explore?</h2>
+          <p className="text-xl mb-8 text-muted-foreground max-w-2xl mx-auto">
+            Dive into our collection of projects and enhance your React development skills today.
+          </p>
+          <Button asChild size="lg" className="gap-2">
+            <Link href="/projects">
+              Browse Projects <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </section>
       </Main>
       <Footer />
     </div>

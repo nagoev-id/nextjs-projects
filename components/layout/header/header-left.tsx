@@ -5,7 +5,6 @@ import { Github } from 'lucide-react';
 
 interface HeaderLeftProps {
   title: string | null | undefined;
-  description: string | null | undefined;
   ariaLabelLink?: string;
 }
 
@@ -18,10 +17,10 @@ interface HeaderLeftProps {
  * @param {string | undefined} props.ariaLabelLink - ARIA-метка для ссылки
  * @returns {JSX.Element} Компонент левой части заголовка
  */
-const HeaderLeft = memo(({ title, description, ariaLabelLink = '' }: HeaderLeftProps): JSX.Element => (
+const HeaderLeft = memo(({ title, ariaLabelLink = '' }: HeaderLeftProps): JSX.Element => (
   <div className="grid place-items-center md:inline-flex items-center gap-2">
     <Link
-      href="https://github.com/nagoev-alim"
+      href="https://github.com/nagoev-id"
       aria-label="GitHub Profile"
       target="_blank"
       rel="noopener noreferrer"
@@ -35,7 +34,6 @@ const HeaderLeft = memo(({ title, description, ariaLabelLink = '' }: HeaderLeftP
     >
       {title}
     </Link>
-    {description && <p className="text-sm text-muted-foreground text-center">{description}</p>}
   </div>
 ));
 

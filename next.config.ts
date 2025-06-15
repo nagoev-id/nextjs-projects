@@ -83,6 +83,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'ysrdrujxsfpufabyawwj.supabase.co',
       },
+      {
+        protocol: 'https',
+        hostname: 'ik.imagekit.io',
+      },
     ],
   },
   eslint: {

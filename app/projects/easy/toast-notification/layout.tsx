@@ -13,7 +13,7 @@ const projectKey = ProjectLabel.ToastNotification;
 export const metadata: Metadata = HELPERS.projectMetadata(projectKey);
 
 const Layout = ({ children }: Readonly<LayoutProps>) => (
-  <ProjectLayout projectKey={projectKey}>{children}</ProjectLayout>
+  <ProjectLayout showAbout={true} projectKey={projectKey}>{children}</ProjectLayout>
 );
 
 

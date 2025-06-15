@@ -564,8 +564,8 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
 
   // Hard projects
-  [ProjectLabel.TodoListSDB]: {
-    title: 'TodoList (SDB)',
+  [ProjectLabel.TodoList_H]: {
+    title: 'TodoList_H',
     description: 'Organize your tasks efficiently with our comprehensive TodoList application.',
     href: 'hard/todo-list',
     level: ProjectLevel.hard,
@@ -578,7 +578,7 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
   [ProjectLabel.PhotoGallery_0]: {
     title: 'Photo Gallery',
-    description: '',
+    description: 'A photo gallery application for organizing, viewing, and managing your images with advanced filtering and search capabilities.',
     href: 'hard/photo-gallery',
     level: ProjectLevel.hard,
   },

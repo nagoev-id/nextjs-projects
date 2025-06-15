@@ -40,8 +40,8 @@ type HeaderProps = {
  * @returns {JSX.Element} Компонент заголовка магазина
  */
 export const TodoListHeader = memo(({
-                                      title = PROJECTS_LIST.TodoListSDB.title,
-                                      description = PROJECTS_LIST.TodoListSDB.description,
+                                      title = PROJECTS_LIST.TodoList_H.title,
+                                      description = PROJECTS_LIST.TodoList_H.description,
                                       showAbout = false,
                                       showBackButton = true,
                                       ariaLabelLink,
@@ -70,7 +70,7 @@ export const TodoListHeader = memo(({
           {/* Левая часть заголовка: логотип, название и описание */}
           <HeaderLeft
             title={title || ''}
-            description={description}
+            description={''}
             ariaLabelLink={ariaLabelLink}
           />
 
@@ -79,18 +79,16 @@ export const TodoListHeader = memo(({
             {/* Кнопка возврата на главную */}
             {showBackButton && (
               <li>
-                <Link href="/">
-                  <Button variant="outline">Back to Home</Button>
+                <Link href="/projects">
+                  <Button variant="outline">Back</Button>
                 </Link>
               </li>
             )}
 
             {/* Модальное окно с информацией о проекте */}
-            {showAbout && (
-              <li>
-                <HeaderAbout title={title || ''} />
-              </li>
-            )}
+            <li>
+              <HeaderAbout title={title || ''} description={description} />
+            </li>
 
             {/* Кнопка выхода из системы */}
             {user && (

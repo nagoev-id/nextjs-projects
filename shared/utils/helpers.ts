@@ -149,11 +149,11 @@ export const HELPERS = {
 
   /**
    * Получает метаданные проекта по его ключу
-   * @param {keyof typeof PROJECTS_LIST} projectKey - Ключ проекта
+   * @param {keyof typeof PROJECTS_LIST | string} projectKey - Ключ проекта
    * @returns {object} Объект с метаданными проекта
    */
-  projectMetadata: (projectKey: keyof typeof PROJECTS_LIST) => ({
-    title: PROJECTS_LIST[projectKey]?.title || 'Project',
+  projectMetadata: (projectKey: keyof typeof PROJECTS_LIST | string) => ({
+    title: PROJECTS_LIST[projectKey]?.title || projectKey || 'Project',
     description: PROJECTS_LIST[projectKey]?.description || '',
     keywords: PROJECTS_METADATA.keywords,
     authors: PROJECTS_METADATA.authors,
