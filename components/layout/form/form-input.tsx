@@ -36,7 +36,7 @@ type BaseFormElementProps<T extends Record<string, unknown>> = {
  * Свойства для компонента ввода текста
  */
 type FormInputProps<T extends Record<string, unknown>> = BaseFormElementProps<T> & {
-  type?: 'input' | 'textarea' | 'date' | 'number' | 'password' | 'email' | 'color' | 'file';
+  type?: 'input' | 'textarea' | 'date' | 'number' | 'password' | 'email' | 'color' | 'file' | 'tel';
   inputProps?: BaseExtraProps;
   min?: string;
   max?: string;
@@ -203,7 +203,7 @@ export function FormSelect<T extends Record<string, unknown>>({
  * Вспомогательная функция для рендеринга различных типов элементов формы
  */
 function renderFormElement(
-  type: 'input' | 'textarea' | 'date' | 'number' | 'password' | 'email' | 'color' | 'file' | undefined,
+  type: 'input' | 'textarea' | 'date' | 'number' | 'password' | 'email' | 'color' | 'file' | 'tel' | undefined,
   field: any,
   placeholder?: string | undefined,
   inputProps?: BaseExtraProps | undefined,
@@ -254,8 +254,8 @@ function renderFormElement(
                 ...e,
                 target: {
                   ...e.target,
-                  value: value
-                }
+                  value: value,
+                },
               };
               field.onChange(value);
             } else {
@@ -276,6 +276,9 @@ function renderFormElement(
 
     case 'file':
       return <Input type="file" {...inputFieldProps} />;
+
+    case 'tel':
+      return <Input type="tel" {...inputFieldProps} />;
 
     default:
       return <Input type="text" {...inputFieldProps} />;

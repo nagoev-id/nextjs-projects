@@ -1,12 +1,12 @@
 'use client';
 
-import { JSX, useCallback, useMemo, useState } from 'react';
+import { JSX, useCallback, useMemo } from 'react';
 import Link from 'next/link';
-import { GalleryHorizontal, House, LogOut, Upload, User2 } from 'lucide-react';
+import { GalleryHorizontal, Github, LogOut, MessageSquare, User2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { HiPhoto } from 'react-icons/hi2';
-import { HeaderAbout, HeaderLeft, ThemeToggle } from '@/components/layout';
+import { ThemeToggle } from '@/components/layout';
 import {
   Button,
   Card,
@@ -17,34 +17,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui';
-import { PROJECTS_LIST } from '@/shared';
-import { selectAuthData, useAppSelector, useSignOutMutation } from '@/app/projects/hard/photo-gallery/redux';
+import { MenuSection, PetsHeaderProps } from '@/app/projects/hard/pets-tinder/utils';
+import { selectAuthData, useAppSelector, useSignOutMutation } from '@/app/projects/hard/pets-tinder/redux';
 
-type HeaderProps = {
-  title?: string | null | undefined;
-  description?: string | null | undefined;
-}
-
-type MenuItem = {
-  type: 'item' | 'label' | 'separator';
-  label?: string;
-  href?: string;
-  icon?: JSX.Element;
-  onClick?: () => void;
-}
-
-type MenuSection = {
-  label?: string;
-  items: MenuItem[];
-}
-
-const DEFAULT_DATA = {
-  title: PROJECTS_LIST.PhotoGallery_0.title || '',
-  description: PROJECTS_LIST.PhotoGallery_0.description,
-};
-
-const PhotoGalleryHeader = (): JSX.Element => {
-  const [state] = useState<HeaderProps>(DEFAULT_DATA);
+export const PetsHeader = ({ title = '', description = '' }: PetsHeaderProps): JSX.Element => {
   const { user } = useAppSelector(selectAuthData);
   const [signOut] = useSignOutMutation();
   const router = useRouter();
@@ -52,49 +28,55 @@ const PhotoGalleryHeader = (): JSX.Element => {
   const handleSignOut = useCallback(async () => {
     try {
       await signOut().unwrap();
-      router.push('/projects/hard/photo-gallery');
+      router.push('/projects/hard/pets-tinder');
     } catch (error) {
-      console.error('Sign out error:', error);
-      toast.error('Failed to sign out');
+      console.error('Ошибка выхода:', error);
+      toast.error('Не удалось выйти');
     }
   }, [signOut, router]);
 
   const menuSections: MenuSection[] = useMemo(() => [
     {
-      label: 'Menu',
+      label: 'Меню',
       items: [
         {
           type: 'item',
-          label: 'Discover',
-          href: '/projects/hard/photo-gallery',
+          label: 'Обзор',
+          href: '/projects/hard/pets-tinder',
           icon: <GalleryHorizontal className="h-4 w-4" />,
         },
         {
           type: 'item',
-          label: 'My Photos',
-          href: '/projects/hard/photo-gallery/photos',
+          label: 'Питомцы',
+          href: '/projects/hard/pets-tinder/pages/pets',
           icon: <HiPhoto className="h-4 w-4" />,
         },
         {
           type: 'item',
-          label: 'Upload Photo',
-          href: '/projects/hard/photo-gallery/photos/new',
-          icon: <Upload className="h-4 w-4" />,
+          label: 'Сообщения',
+          href: '/projects/hard/pets-tinder/pages/chat',
+          icon: <MessageSquare className="h-4 w-4" />,
+        },
+        {
+          type: 'item',
+          label: 'Мои питомцы',
+          href: '/projects/hard/pets-tinder/pages/profile/pets',
+          icon: <HiPhoto className="h-4 w-4" />,
         },
       ],
     },
     {
-      label: 'My Account',
+      label: 'Мой аккаунт',
       items: [
         {
           type: 'item',
-          label: 'Profile',
-          href: '/projects/hard/photo-gallery/profile',
+          label: 'Профиль',
+          href: '/projects/hard/pets-tinder/pages/profile',
           icon: <User2 className="h-4 w-4" />,
         },
         {
           type: 'item',
-          label: 'Sign Out',
+          label: 'Выйти',
           onClick: handleSignOut,
           icon: <LogOut className="h-4 w-4" />,
         },
@@ -103,15 +85,31 @@ const PhotoGalleryHeader = (): JSX.Element => {
   ], []);
 
   return (
-    <header role="banner">
+    <header role="баннер">
       <Card className="p-0 rounded-none">
         <nav
           className="grid gap-2.5 md:flex md:justify-between md:items-center p-4 xl:px-0 max-w-6xl w-full mx-auto"
-          aria-label="The main navigation"
+          aria-label="Главная навигация"
         >
-          <HeaderLeft title={state.title} />
+          <div className="grid place-items-center md:inline-flex items-center gap-2">
+            <Link
+              href="https://github.com/nagoev-id"
+              aria-label="GitHub Profile"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github size={30} aria-hidden="true" />
+            </Link>
+            <Link
+              className="font-semibold"
+              href="/projects/hard/pets-tinder"
+              aria-label={`Return to the main page: ${title}`}
+            >
+              {title}
+            </Link>
+          </div>
 
-          <ul className="flex gap-2 justify-center items-center" role="list">
+          <ul className="flex gap-2 justify-center items-center" role="список">
             {user ? (
               <li>
                 <DropdownMenu>
@@ -122,7 +120,7 @@ const PhotoGalleryHeader = (): JSX.Element => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     {menuSections.map((section, sectionIndex) => (
-                      <div key={`section-${sectionIndex}`}>
+                      <div key={`раздел-${sectionIndex}`}>
                         {section.label && (
                           <>
                             <DropdownMenuLabel>{section.label}</DropdownMenuLabel>
@@ -170,21 +168,18 @@ const PhotoGalleryHeader = (): JSX.Element => {
               </li>
             ) : (
               <li>
-                <Link href="/projects/hard/photo-gallery/sign">
-                  <Button variant="outline">Login</Button>
+                <Link href="/projects/hard/pets-tinder/pages/login">
+                  <Button variant="outline">Войти</Button>
                 </Link>
               </li>
             )}
-            <li>
-              <HeaderAbout title={state.title} description={state.description} />
-            </li>
-            <li>
-              <Link href="/projects">
-                <Button variant="outline">
-                  <House className="h-4 w-4" />
-                </Button>
-              </Link>
-            </li>
+            {/*<li>*/}
+            {/*  <Link href="/projects">*/}
+            {/*    <Button variant="outline">*/}
+            {/*      <House className="h-4 w-4" />*/}
+            {/*    </Button>*/}
+            {/*  </Link>*/}
+            {/*</li>*/}
             <li><ThemeToggle /></li>
           </ul>
         </nav>
@@ -192,5 +187,3 @@ const PhotoGalleryHeader = (): JSX.Element => {
     </header>
   );
 };
-
-export default PhotoGalleryHeader;

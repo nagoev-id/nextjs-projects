@@ -121,6 +121,8 @@ export enum ProjectLabel {
   TodoList_H = 'TodoList_H',
   DogTinderSDB = 'DogTinderSDB',
   PhotoGallery_0 = 'PhotoGallery_0',
+  Chat_0 = 'Chat_0',
+  PetsTinder_0 = 'PetsTinder_0',
 }
 
 /**

@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui';
 import { PROJECTS_LIST } from '@/shared';
-import { selectAuthData, useAppSelector, useSignOutMutation } from '@/app/projects/hard/photo-gallery/redux';
+import { selectAuthData, useAppSelector, useSignOutMutation } from '@/app/projects/hard/chat/redux';
 
 type HeaderProps = {
   title?: string | null | undefined;
@@ -39,11 +39,11 @@ type MenuSection = {
 }
 
 const DEFAULT_DATA = {
-  title: PROJECTS_LIST.PhotoGallery_0.title || '',
-  description: PROJECTS_LIST.PhotoGallery_0.description,
+  title: PROJECTS_LIST.Chat_0.title || '',
+  description: PROJECTS_LIST.Chat_0.description,
 };
 
-const PhotoGalleryHeader = (): JSX.Element => {
+const ChatHeader = (): JSX.Element => {
   const [state] = useState<HeaderProps>(DEFAULT_DATA);
   const { user } = useAppSelector(selectAuthData);
   const [signOut] = useSignOutMutation();
@@ -52,7 +52,7 @@ const PhotoGalleryHeader = (): JSX.Element => {
   const handleSignOut = useCallback(async () => {
     try {
       await signOut().unwrap();
-      router.push('/projects/hard/photo-gallery');
+      router.push('/projects/hard/chat');
     } catch (error) {
       console.error('Sign out error:', error);
       toast.error('Failed to sign out');
@@ -66,19 +66,19 @@ const PhotoGalleryHeader = (): JSX.Element => {
         {
           type: 'item',
           label: 'Discover',
-          href: '/projects/hard/photo-gallery',
+          href: '/projects/hard/chat',
           icon: <GalleryHorizontal className="h-4 w-4" />,
         },
         {
           type: 'item',
           label: 'My Photos',
-          href: '/projects/hard/photo-gallery/photos',
+          href: '/projects/hard/chat/photos',
           icon: <HiPhoto className="h-4 w-4" />,
         },
         {
           type: 'item',
           label: 'Upload Photo',
-          href: '/projects/hard/photo-gallery/photos/new',
+          href: '/projects/hard/chat/photos/new',
           icon: <Upload className="h-4 w-4" />,
         },
       ],
@@ -89,7 +89,7 @@ const PhotoGalleryHeader = (): JSX.Element => {
         {
           type: 'item',
           label: 'Profile',
-          href: '/projects/hard/photo-gallery/profile',
+          href: '/projects/hard/chat/profile',
           icon: <User2 className="h-4 w-4" />,
         },
         {
@@ -170,7 +170,7 @@ const PhotoGalleryHeader = (): JSX.Element => {
               </li>
             ) : (
               <li>
-                <Link href="/projects/hard/photo-gallery/sign">
+                <Link href="/projects/hard/chat/sign">
                   <Button variant="outline">Login</Button>
                 </Link>
               </li>
@@ -193,4 +193,4 @@ const PhotoGalleryHeader = (): JSX.Element => {
   );
 };
 
-export default PhotoGalleryHeader;
+export default ChatHeader;

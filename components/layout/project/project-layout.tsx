@@ -1,6 +1,6 @@
 import { PROJECTS_LIST } from '@/shared';
 import { Footer, Header, Main } from '@/components/layout';
-import { ReactNode } from 'react';
+import React, { JSX, ReactNode } from 'react';
 
 /**
  * @interface ProjectLayoutProps
@@ -19,7 +19,7 @@ interface ProjectLayoutProps {
 
 /**
  * Компонент макета проекта
- * 
+ *
  * @type {React.FC<ProjectLayoutProps>}
  * @param {ProjectLayoutProps} props - Пропсы компонента
  * @param {ReactNode} props.children - Дочерние элементы
@@ -27,27 +27,28 @@ interface ProjectLayoutProps {
  * @param {boolean} [props.showAbout=false] - Флаг отображения секции "About"
  * @param {ReactNode} [props.customHeader] - Пользовательский компонент Header
  * @returns {JSX.Element} Отрендеренный макет проекта
- * 
+ *
  * @description
  * Этот компонент создает общий макет для страниц проектов, включая Header, Main и Footer.
  * Он использует информацию о проекте из PROJECTS_LIST для заполнения Header.
  * Можно настроить отображение секции "About" и использовать пользовательский Header при необходимости.
- * 
+ *
  * @see {@link PROJECTS_LIST} Список проектов с их описаниями
  */
 const ProjectLayout: React.FC<Readonly<ProjectLayoutProps>> = ({
-  children,
-  projectKey,
-  showAbout = false,
-  customHeader,
-}) => (
+                                                                 children,
+                                                                 projectKey,
+                                                                 showAbout = false,
+                                                                 customHeader,
+                                                               }: ProjectLayoutProps): JSX.Element => (
   <>
-    {customHeader || <Header
-      title={PROJECTS_LIST[projectKey]?.title || 'Project'}
-      description={PROJECTS_LIST[projectKey]?.description || ''}
-      showAbout={showAbout}
-    />
-    }
+    {customHeader || (
+      <Header
+        title={PROJECTS_LIST[projectKey]?.title || 'Project'}
+        description={PROJECTS_LIST[projectKey]?.description || ''}
+        showAbout={showAbout}
+      />
+    )}
     <Main>{children}</Main>
     <Footer />
   </>

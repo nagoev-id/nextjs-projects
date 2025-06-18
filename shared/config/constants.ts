@@ -582,4 +582,16 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'hard/photo-gallery',
     level: ProjectLevel.hard,
   },
+  [ProjectLabel.Chat_0]: {
+    title: 'Chat',
+    description: '',
+    href: 'hard/chat',
+    level: ProjectLevel.hard,
+  },
+  [ProjectLabel.PetsTinder_0]: {
+    title: 'Pets Tinder',
+    description: '',
+    href: 'hard/pets-tinder',
+    level: ProjectLevel.hard,
+  },
 };

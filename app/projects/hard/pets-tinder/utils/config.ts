@@ -1,7 +1,7 @@
 export const CONFIG = {
   SUPABASE: {
-    URL: process.env.SUPABASE_URL || 'https://kokqqvigflnzagqwkmko.supabase.co',
-    ANON_KEY: process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtva3FxdmlnZmxuemFncXdrbWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwNjA3NzksImV4cCI6MjA2NTYzNjc3OX0.NK0vCC08mPwLlcD5eAA8ulYhkj076dvfkYoBjx16dVw',
+    URL: process.env.SUPABASE_URL || 'https://ogjydfzajmoyvxzzmhka.supabase.co',
+    ANON_KEY: process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nanlkZnpham1veXZ4enptaGthIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwOTEzNzgsImV4cCI6MjA2NTY2NzM3OH0.N9bj_l_KBmU837qplCLZs0mVETFDH0PHUwaujMBmIu8',
     AUTH: {
       persistSession: true,
       storageKey: 'chat-auth-token',
