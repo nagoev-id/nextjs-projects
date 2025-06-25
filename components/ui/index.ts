@@ -19,3 +19,5 @@ export * from './sheet';
 export * from './popover';
 export * from './calendar';
 export * from './theme-provider';
+export * from './skeleton';
+export * from './avatar';

@@ -1,10 +1,20 @@
 'use client';
 
 import { Path, UseFormReturn } from 'react-hook-form';
-import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/input';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Input,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Textarea,
+} from '@/components/ui';
 import { cn } from '@/lib/utils';
 
 /**
@@ -57,30 +67,6 @@ const FIELD_STYLES = '';
 
 /**
  * Компонент для текстовых полей ввода в форме
- *
- * @example
- * // Базовое текстовое поле
- * <FormInput form={form} name="username" label="Username" />
- *
- * @example
- * // Текстовая область с дополнительными свойствами
- * <FormInput
- *   form={form}
- *   name="description"
- *   label="Description"
- *   type="textarea"
- *   inputProps={{ rows: 4 }}
- * />
- *
- * @example
- * // Поле для ввода даты с минимальным значением
- * <FormInput
- *   form={form}
- *   name="startDate"
- *   label="Start Date"
- *   type="date"
- *   min="2023-01-01"
- * />
  */
 export function FormInput<T extends Record<string, unknown>>({
                                                                form,
@@ -120,27 +106,6 @@ export function FormInput<T extends Record<string, unknown>>({
 
 /**
  * Компонент для выпадающих списков в форме
- *
- * @example
- * // Базовый выпадающий список
- * <FormSelect
- *   form={form}
- *   name="country"
- *   label="Country"
- *   options={["USA", "Canada", "UK"]}
- * />
- *
- * @example
- * // Выпадающий список с объектами значение/метка
- * <FormSelect
- *   form={form}
- *   name="role"
- *   label="User Role"
- *   options={[
- *     { value: "admin", label: "Administrator" },
- *     { value: "user", label: "Regular User" }
- *   ]}
- * />
  */
 export function FormSelect<T extends Record<string, unknown>>({
                                                                 form,
@@ -180,7 +145,6 @@ export function FormSelect<T extends Record<string, unknown>>({
             </FormControl>
             <SelectContent>
               {options.map((option) => {
-                // Обработка как строк, так и объектов { value, label }
                 const value = typeof option === 'string' ? option : option.value;
                 const label = typeof option === 'string' ? option : option.label;
 
@@ -284,8 +248,3 @@ function renderFormElement(
       return <Input type="text" {...inputFieldProps} />;
   }
 }
-
-/**
- * Экспорт всех компонентов формы из одного файла
- */
-export { FormInput as FormTextInput }; // Альтернативное имя для обратной совместимости

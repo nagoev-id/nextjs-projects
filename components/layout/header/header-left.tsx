@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { JSX, memo } from 'react';
-import { Github } from 'lucide-react';
+import { Bug } from 'lucide-react';
 
 
 interface HeaderLeftProps {
@@ -17,7 +17,7 @@ interface HeaderLeftProps {
  * @param {string | undefined} props.ariaLabelLink - ARIA-метка для ссылки
  * @returns {JSX.Element} Компонент левой части заголовка
  */
-const HeaderLeft = memo(({ title, ariaLabelLink = '' }: HeaderLeftProps): JSX.Element => (
+export const HeaderLeft = memo(({ title, ariaLabelLink = '' }: HeaderLeftProps): JSX.Element => (
   <div className="grid place-items-center md:inline-flex items-center gap-2">
     <Link
       href="https://github.com/nagoev-id"
@@ -25,7 +25,7 @@ const HeaderLeft = memo(({ title, ariaLabelLink = '' }: HeaderLeftProps): JSX.El
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Github size={30} aria-hidden="true" />
+      <Bug size={30} aria-hidden="true" />
     </Link>
     <Link
       className="font-semibold"
@@ -36,5 +36,3 @@ const HeaderLeft = memo(({ title, ariaLabelLink = '' }: HeaderLeftProps): JSX.El
     </Link>
   </div>
 ));
-
-export default HeaderLeft;

@@ -1,51 +1,28 @@
+'use client';
 import { useCallback, useMemo, useState } from 'react';
 
 /**
- * @interface PaginationResult
- * @template T - Тип данных элементов для пагинации
- * @description Интерфейс, описывающий результат работы хука пагинации
+ * Интерфейс результата работы хука пагинации
  */
 interface PaginationResult<T> {
   /** Текущая активная страница (начиная с 0) */
   currentPage: number;
-  /** Массив страниц с данными, где каждая страница - это массив элементов типа T */
+  /** Массив страниц с данными */
   paginatedData: T[][];
   /** Функция для перехода к следующей или предыдущей странице */
   handlePaginationClick: (direction: 'next' | 'prev') => void;
-  /** Функция для перехода на конкретную страницу по её номеру */
+  /** Функция для перехода на конкретную страницу */
   handlePaginationNumberClick: (pageNumber: number) => void;
 }
 
 /**
  * Хук для реализации пагинации данных
- *
- * @template T - Тип данных элементов для пагинации
- * @param {T[]} data - Массив данных, которые нужно разбить на страницы
- * @param {number} itemsPerPage - Количество элементов на одной странице
- * @returns {PaginationResult<T>} Объект с данными и функциями для управления пагинацией
- *
- * @example
- * // Пример использования хука
- * const users = [...]; // массив пользователей
- * const {
- *   currentPage,
- *   paginatedData,
- *   handlePaginationClick,
- *   handlePaginationNumberClick
- * } = usePagination(users, 10);
- *
- * // Отображение текущей страницы пользователей
- * const currentUsers = paginatedData[currentPage] || [];
  */
-const usePagination = <T, >(data: T[], itemsPerPage: number): PaginationResult<T> => {
-
-  /** Состояние для хранения текущей страницы (начиная с 0) */
+export const usePagination = <T, >(data: T[], itemsPerPage: number): PaginationResult<T> => {
+  // Текущая страница
   const [currentPage, setCurrentPage] = useState<number>(0);
 
-  /**
-   * Разбивает исходный массив данных на страницы
-   * @type {T[][]} Двумерный массив, где каждый вложенный массив - это страница с элементами
-   */
+  // Разбиение данных на страницы
   const paginatedData = useMemo<T[][]>(() => {
     return data.reduce((acc: T[][], item: T, index: number) => {
       const pageIndex = Math.floor(index / itemsPerPage);
@@ -57,18 +34,12 @@ const usePagination = <T, >(data: T[], itemsPerPage: number): PaginationResult<T
     }, []);
   }, [data, itemsPerPage]);
 
-  /**
-   * Обработчик для перехода к следующей или предыдущей странице
-   * @param {('next'|'prev')} direction - Направление перехода: 'next' - вперед, 'prev' - назад
-   */
+  // Переход к следующей/предыдущей странице
   const handlePaginationClick = useCallback((direction: 'next' | 'prev') => {
     setCurrentPage((prev) => prev + (direction === 'next' ? 1 : -1));
   }, []);
 
-  /**
-   * Обработчик для перехода на конкретную страницу по её номеру
-   * @param {number} pageNumber - Номер страницы для перехода
-   */
+  // Переход на конкретную страницу
   const handlePaginationNumberClick = useCallback((pageNumber: number) => {
     setCurrentPage(pageNumber);
   }, []);
@@ -80,5 +51,3 @@ const usePagination = <T, >(data: T[], itemsPerPage: number): PaginationResult<T
     handlePaginationNumberClick,
   };
 };
-
-export default usePagination;

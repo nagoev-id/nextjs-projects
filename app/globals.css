@@ -120,3 +120,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Hide scrollbar for webkit browsers */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.overflow-x-auto {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for Internet Explorer, Edge */
+.overflow-x-auto {
+  -ms-overflow-style: none;
+}

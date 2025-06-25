@@ -1,6 +1,6 @@
 'use client';
 
-import { Card } from '@/components/ui/card';
+import { Card } from '@/components/ui';
 import { HeartHandshake } from 'lucide-react';
 import Link from 'next/link';
 import { JSX } from 'react';
@@ -8,7 +8,7 @@ import { JSX } from 'react';
 /**
  * Компонент футера приложения
  */
-const Footer = (): JSX.Element => {
+export const Footer = (): JSX.Element => {
   const getCurrentYear = () => new Date().getFullYear();
 
   return (
@@ -26,5 +26,3 @@ const Footer = (): JSX.Element => {
     </footer>
   );
 };
-
-export default Footer;

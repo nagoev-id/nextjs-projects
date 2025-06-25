@@ -3,8 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 /**
- * Проверяет, доступно ли localStorage в текущем окружении
- * @returns {boolean} true, если localStorage доступен, иначе false
+ * Проверяет доступность localStorage
  */
 const isLocalStorageAvailable = (): boolean => {
   try {
@@ -19,43 +18,34 @@ const isLocalStorageAvailable = (): boolean => {
 };
 
 /**
- * Пользовательский хук для использования localStorage с типовой безопасностью
- * @template T Тип хранимого значения
- * @param {string} key Ключ, по которому значение будет храниться в localStorage
- * @param {T} initialValue Начальное значение, используемое если в хранилище ничего нет
- * @returns {[T, (value: T | ((val: T) => T)) => void, () => void]} Кортеж, содержащий: хранимое значение, функцию установки значения и функцию удаления
+ * Хук для работы с localStorage с типовой безопасностью
+ * @returns [хранимое значение, функция установки, функция удаления]
  */
-const useStorage = <T, >(key: string, initialValue: T): [T, (value: T | ((val: T) => T)) => void, () => void] => {
-  // Состояние для хранения нашего значения
+export const useStorage = <T, >(key: string, initialValue: T): [T, (value: T | ((val: T) => T)) => void, () => void] => {
+  // Инициализация состояния из localStorage или initialValue
   const [storedValue, setStoredValue] = useState<T>(() => {
     if (typeof window === 'undefined' || !isLocalStorageAvailable()) {
       return initialValue;
     }
 
     try {
-      // Получаем из localStorage по ключу
       const item = window.localStorage.getItem(key);
-      // Разбираем сохраненный JSON или возвращаем initialValue, если ничего нет
       return item ? (JSON.parse(item) as T) : initialValue;
     } catch (error) {
-      // В случае ошибки также возвращаем initialValue
       console.error(`Error reading localStorage key "${key}":`, error);
       return initialValue;
     }
   });
 
-  // Возвращаем обёрнутую версию функции-сеттера useState, которая сохраняет новое значение в localStorage
+  // Функция для обновления значения в state и localStorage
   const setValue = useCallback((value: T | ((val: T) => T)) => {
     try {
-      // Позволяем значению быть функцией, чтобы сохранить тот же API, что и у useState
       const valueToStore = typeof value === 'function'
         ? (value as (val: T) => T)(storedValue)
         : value;
 
-      // Сохраняем состояние
       setStoredValue(valueToStore);
 
-      // Сохраняем в localStorage
       if (typeof window !== 'undefined' && isLocalStorageAvailable()) {
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       }
@@ -64,7 +54,7 @@ const useStorage = <T, >(key: string, initialValue: T): [T, (value: T | ((val: T
     }
   }, [key, storedValue]);
 
-  // Функция для удаления элемента из localStorage
+  // Функция для удаления значения из localStorage
   const removeItem = useCallback(() => {
     try {
       if (typeof window !== 'undefined' && isLocalStorageAvailable()) {
@@ -76,16 +66,14 @@ const useStorage = <T, >(key: string, initialValue: T): [T, (value: T | ((val: T
     }
   }, [initialValue, key]);
 
-  // Слушаем изменения этого ключа localStorage в других вкладках/окнах
+  // Синхронизация с другими вкладками
   useEffect(() => {
     if (typeof window === 'undefined' || !isLocalStorageAvailable()) {
       return;
     }
 
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key !== key) {
-        return;
-      }
+      if (e.key !== key) return;
 
       if (e.newValue !== null) {
         try {
@@ -94,20 +82,13 @@ const useStorage = <T, >(key: string, initialValue: T): [T, (value: T | ((val: T
           console.error(`Error parsing localStorage change for key "${key}":`, error);
         }
       } else {
-        // Элемент был удален
         setStoredValue(initialValue);
       }
     };
 
-    // Слушаем события хранилища
     window.addEventListener('storage', handleStorageChange);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
+    return () => window.removeEventListener('storage', handleStorageChange);
   }, [initialValue, key]);
 
   return [storedValue, setValue, removeItem];
 };
-
-export default useStorage;

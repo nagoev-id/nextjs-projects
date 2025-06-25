@@ -1,21 +1,14 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui';
 import { Moon, Sun } from 'lucide-react';
+import { JSX } from 'react';
 
 /**
- * @typedef {Object} ThemeOption
- * @property {string} value - Значение темы ('light', 'dark', 'system')
- * @property {string} label - Отображаемое название темы
+ * @description
+ * Тип для опций выбора темы, используемый в компоненте ThemeToggle.
  */
-
 type ThemeOption = {
   value: 'light' | 'dark' | 'system';
   label: string;
@@ -34,14 +27,13 @@ const options: ThemeOption[] = [
 /**
  * Компонент переключателя темы
  *
- * @type {React.FC}
  * @returns {JSX.Element} Отрендеренный компонент переключателя темы
  *
  * @description
  * Этот компонент создает выпадающее меню для переключения между светлой, темной и системной темами.
  * Он использует хук useTheme из библиотеки next-themes для управления темой приложения.
  */
-const ThemeToggle = () => {
+export const ThemeToggle = (): JSX.Element => {
   const { setTheme } = useTheme();
   return (
     <DropdownMenu>
@@ -64,5 +56,3 @@ const ThemeToggle = () => {
     </DropdownMenu>
   );
 };
-
-export default ThemeToggle;

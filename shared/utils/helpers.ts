@@ -89,52 +89,6 @@ export const HELPERS = {
       ? `rgba(${r}, ${g}, ${b}, ${Math.max(0, Math.min(1, alpha))})`
       : `rgb(${r}, ${g}, ${b})`;
   },
-
-  /**
-   * Валидирует числовое значение по заданным ограничениям
-   * @param {number} value - Числовое значение для проверки
-   * @param {object} options - Параметры валидации
-   * @param {number} [options.min=1] - Минимальное допустимое значение (включительно)
-   * @param {number} [options.max=Number.MAX_SAFE_INTEGER] - Максимальное допустимое значение (включительно)
-   * @param {boolean} [options.integer=true] - Должно ли значение быть целым числом
-   * @param {object} [options.customMessages] - Пользовательские сообщения об ошибках
-   * @returns {string|null} Сообщение об ошибке или null, если значение валидно
-   */
-  isValidateNumber: (
-    value: number,
-    options: {
-      min?: number;
-      max?: number;
-      integer?: boolean;
-      customMessages?: {
-        notNumber?: string;
-        notInteger?: string;
-        outOfRange?: string;
-      };
-    } = {},
-  ): string | null => {
-    const {
-      min = 1,
-      max = Number.MAX_SAFE_INTEGER,
-      integer = true,
-      customMessages = {},
-    } = options;
-
-    if (isNaN(value)) {
-      return customMessages.notNumber || 'Please enter a valid number';
-    }
-
-    if (integer && !Number.isInteger(value)) {
-      return customMessages.notInteger || 'Please enter a valid whole number';
-    }
-
-    if (value < min || value > max) {
-      return customMessages.outOfRange || `Please enter a number from ${min} to ${max}`;
-    }
-
-    return null;
-  },
-
   /**
    * Делает первую букву строки заглавной
    * @param {string|undefined} str - Исходная строка
@@ -152,12 +106,16 @@ export const HELPERS = {
    * @param {keyof typeof PROJECTS_LIST | string} projectKey - Ключ проекта
    * @returns {object} Объект с метаданными проекта
    */
-  projectMetadata: (projectKey: keyof typeof PROJECTS_LIST | string) => ({
-    title: PROJECTS_LIST[projectKey]?.title || projectKey || 'Project',
-    description: PROJECTS_LIST[projectKey]?.description || '',
-    keywords: PROJECTS_METADATA.keywords,
-    authors: PROJECTS_METADATA.authors,
-  }),
+  projectMetadata: (projectKey: keyof typeof PROJECTS_LIST | string): object => {
+    const isValidKey = Object.keys(PROJECTS_LIST).includes(projectKey);
+
+    return {
+      title: isValidKey ? PROJECTS_LIST[projectKey as keyof typeof PROJECTS_LIST].title : (projectKey || 'Project'),
+      description: isValidKey ? PROJECTS_LIST[projectKey as keyof typeof PROJECTS_LIST].description : '',
+      keywords: PROJECTS_METADATA.keywords,
+      authors: PROJECTS_METADATA.authors,
+    };
+  },
 
   /**
    * Показывает анимацию конфетти на экране
@@ -168,7 +126,6 @@ export const HELPERS = {
    * HELPERS.showConfetti();
    */
   showConfetti: function(): void {
-    // Используем функцию вместо стрелочной функции, чтобы иметь доступ к this
     const confettiOptions = {
       angle: HELPERS.getRandomNumber(55, 125),
       spread: HELPERS.getRandomNumber(50, 70),

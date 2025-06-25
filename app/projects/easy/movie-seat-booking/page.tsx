@@ -30,7 +30,7 @@
 
 import { Card, Label, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui';
 import { JSX, memo, useCallback, useEffect, useMemo, useState } from 'react';
-import useStorage from '@/shared/hooks/use-storage';
+import { useStorage } from '@/shared';
 
 /**
  * Тип для данных о фильме

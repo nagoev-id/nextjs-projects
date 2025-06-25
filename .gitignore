@@ -135,4 +135,4 @@ tmp/
 *.tmp
 *.temp
 
-app/projects/hard/dog-tinder
+app/projects/hard/_exclude

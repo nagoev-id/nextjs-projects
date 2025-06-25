@@ -1,6 +1,7 @@
+'use client';
 import { PROJECTS_LIST } from '@/shared';
+import React, { JSX, ReactNode, useEffect, useRef, useState } from 'react';
 import { Footer, Header, Main } from '@/components/layout';
-import React, { JSX, ReactNode } from 'react';
 
 /**
  * @interface ProjectLayoutProps
@@ -15,12 +16,12 @@ interface ProjectLayoutProps {
   projectKey: keyof typeof PROJECTS_LIST;
   showAbout?: boolean;
   customHeader?: ReactNode;
+  mainClassName?: string;
 }
 
 /**
  * Компонент макета проекта
  *
- * @type {React.FC<ProjectLayoutProps>}
  * @param {ProjectLayoutProps} props - Пропсы компонента
  * @param {ReactNode} props.children - Дочерние элементы
  * @param {keyof typeof PROJECTS_LIST} props.projectKey - Ключ проекта
@@ -35,23 +36,63 @@ interface ProjectLayoutProps {
  *
  * @see {@link PROJECTS_LIST} Список проектов с их описаниями
  */
-const ProjectLayout: React.FC<Readonly<ProjectLayoutProps>> = ({
-                                                                 children,
-                                                                 projectKey,
-                                                                 showAbout = false,
-                                                                 customHeader,
-                                                               }: ProjectLayoutProps): JSX.Element => (
-  <>
-    {customHeader || (
-      <Header
-        title={PROJECTS_LIST[projectKey]?.title || 'Project'}
-        description={PROJECTS_LIST[projectKey]?.description || ''}
-        showAbout={showAbout}
-      />
-    )}
-    <Main>{children}</Main>
-    <Footer />
-  </>
-);
+export const ProjectLayout = ({
+                                children,
+                                projectKey,
+                                showAbout = false,
+                                customHeader,
+                                mainClassName = '',
+                              }: ProjectLayoutProps): JSX.Element => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const [mainHeight, setMainHeight] = useState<string>('auto');
 
-export default ProjectLayout;
+  useEffect(() => {
+    const calculateMainHeight = () => {
+      if (containerRef.current && headerRef.current && footerRef.current) {
+        const headerHeight = headerRef.current.offsetHeight;
+        const footerHeight = footerRef.current.offsetHeight;
+        setMainHeight(`calc(100vh - ${headerHeight}px - ${footerHeight}px - 1px)`);
+      }
+    };
+
+    calculateMainHeight();
+
+    const resizeObserver = new ResizeObserver(calculateMainHeight);
+
+    if (headerRef.current) resizeObserver.observe(headerRef.current);
+    if (footerRef.current) resizeObserver.observe(footerRef.current);
+    if (containerRef.current) resizeObserver.observe(containerRef.current);
+
+    window.addEventListener('resize', calculateMainHeight);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', calculateMainHeight);
+    };
+  }, []);
+
+  return (
+    <div ref={containerRef} className="flex flex-col h-screen overflow-hidden">
+      <div ref={headerRef}>
+        {customHeader || (
+          <Header
+            title={PROJECTS_LIST[projectKey]?.title || 'Project'}
+            description={PROJECTS_LIST[projectKey]?.description || ''}
+            showAbout={showAbout}
+          />
+        )}
+      </div>
+      <Main
+        className={`${mainClassName} overflow-auto`}
+        style={{ height: mainHeight }}
+      >
+        {children}
+      </Main>w
+      <div ref={footerRef}>
+        <Footer />
+      </div>
+    </div>
+  );
+};

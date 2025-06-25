@@ -1,9 +1,10 @@
-import { useState, useCallback } from 'react';
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+'use client';
+import { useCallback, useState } from 'react';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 /**
  * Тип данных, возвращаемых хуком useAxios
- * 
+ *
  * @template T - Тип данных, ожидаемых от API
  * @property {T | null} data - Полученные данные или null, если запрос не выполнен
  * @property {boolean} loading - Флаг загрузки данных
@@ -19,11 +20,11 @@ type UseAxiosResult<T> = {
 
 /**
  * Кастомный хук для выполнения HTTP-запросов с использованием axios
- * 
+ *
  * @template T - Тип данных, ожидаемых от API (по умолчанию unknown)
  * @returns {UseAxiosResult<T>} Объект с данными, состоянием загрузки, ошибкой и функцией запроса
  */
-export default function useAxios<T = unknown>(): UseAxiosResult<T> {
+export const useAxios = <T = unknown>(): UseAxiosResult<T> => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
@@ -44,4 +45,4 @@ export default function useAxios<T = unknown>(): UseAxiosResult<T> {
   }, []);
 
   return { data, loading, error, fetchData };
-}
+};

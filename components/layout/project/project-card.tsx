@@ -1,8 +1,7 @@
 'use client';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
-import { useMemo } from 'react';
+import { JSX, useMemo } from 'react';
+import { Badge, Card, CardDescription, CardHeader, CardTitle } from '@/components/ui';
 
 /**
  * @interface ProjectCardProps
@@ -20,16 +19,21 @@ interface ProjectCardProps {
 }
 
 /**
- * @typedef {Object} LevelConfig
- * @property {string} label - Отображаемая метка уровня сложности
- * @property {string} className - CSS-классы для стилизации бейджа уровня сложности
+ * @interface LevelConfig
+ * @description Интерфейс для конфигурации стилей и меток уровней сложности
+ * @property {string} label - Метка уровня сложности
+ * @property {string} className - CSS классы для стилизации бейджа уровня сложности
  */
+interface LevelConfig {
+  label: string;
+  className: string;
+}
 
 /**
  * @type {Object.<string, LevelConfig>}
  * @description Конфигурация стилей и меток для различных уровней сложности
  */
-const levelConfig = {
+const levelConfig: Record<string, LevelConfig> = {
   easy: {
     label: 'Easy',
     className: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-800',
@@ -46,7 +50,7 @@ const levelConfig = {
 
 /**
  * Компонент карточки проекта
- * 
+ *
  * @type {React.FC<ProjectCardProps>}
  * @param {ProjectCardProps} props - Пропсы компонента
  * @returns {JSX.Element} Отрендеренная карточка проекта
@@ -55,11 +59,7 @@ const levelConfig = {
  * Этот компонент отображает карточку проекта с заголовком, описанием и бейджем уровня сложности.
  * Он использует компоненты из библиотеки Shadcn UI и Next.js Link для создания интерактивной карточки.
  */
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, href, level }) => {
-  /**
-   * Мемоизированные значения метки и класса для бейджа уровня сложности
-   * @type {{label: string, className: string}}
-   */
+export const ProjectCard = ({ title, description, href, level }: ProjectCardProps): JSX.Element => {
   const { label, className } = useMemo(() => {
     const normalizedLevel = level.toLowerCase();
     return levelConfig[normalizedLevel as keyof typeof levelConfig] || {
@@ -82,5 +82,3 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, href, lev
     </Card>
   );
 };
-
-export default ProjectCard;

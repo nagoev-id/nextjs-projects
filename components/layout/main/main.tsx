@@ -1,5 +1,5 @@
 'use client';
-import { ReactNode } from 'react';
+import { JSX, ReactNode } from 'react';
 
 /**
  * @interface MainProps
@@ -10,12 +10,15 @@ import { ReactNode } from 'react';
 interface MainProps {
   children: ReactNode;
   className?: string;
+  containerClassName?: string;
+  style?: {
+    height: string;
+  };
 }
 
 /**
  * Компонент Main - основной контейнер для содержимого страницы
- * 
- * @type {React.FC<MainProps>}
+ *
  * @param {Object} props - Пропсы компонента
  * @param {ReactNode} props.children - Дочерние элементы для отображения
  * @param {string} [props.className] - Дополнительные CSS классы
@@ -26,10 +29,10 @@ interface MainProps {
  * Он использует классы Tailwind CSS для стилизации и обеспечивает
  * отзывчивый макет с максимальной шириной и центрированием содержимого.
  */
-const Main: React.FC<MainProps> = ({ children, className = '' }) => (
-  <main className={`flex-grow flex flex-col p-4 xl:px-0 max-w-6xl w-full mx-auto ${className}`}>
-    {children}
+export const Main = ({ children, className = '', containerClassName = '' }: MainProps): JSX.Element => (
+  <main className={`flex flex-col h-screen p-4 xl:px-0 ${className}`}>
+    <div className={`max-w-6xl w-full mx-auto flex-grow ${containerClassName}`}>
+      {children}
+    </div>
   </main>
 );
-
-export default Main;

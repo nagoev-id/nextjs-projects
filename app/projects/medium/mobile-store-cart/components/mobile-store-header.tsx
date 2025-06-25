@@ -52,7 +52,6 @@ const MobileStoreHeader = memo(({
         {/* Левая часть заголовка: логотип, название и описание */}
         <HeaderLeft
           title={title || ''}
-          description={description}
           ariaLabelLink={ariaLabelLink}
         />
 
@@ -70,7 +69,7 @@ const MobileStoreHeader = memo(({
           {/* Модальное окно с информацией о проекте */}
           {showAbout && (
             <li>
-              <HeaderAbout title={title || ''} />
+              <HeaderAbout title={title || ''} description={description} />
             </li>
           )}
 

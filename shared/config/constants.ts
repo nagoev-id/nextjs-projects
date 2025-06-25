@@ -564,34 +564,40 @@ export const PROJECTS_LIST: ListOfProjects = {
   },
 
   // Hard projects
-  [ProjectLabel.TodoList_H]: {
-    title: 'TodoList_H',
-    description: 'Organize your tasks efficiently with our comprehensive TodoList application.',
-    href: 'hard/todo-list',
-    level: ProjectLevel.hard,
-  },
-  [ProjectLabel.DogTinderSDB]: {
-    title: 'Dog Tinder (SDB)',
-    description: '',
-    href: 'hard/dog-tinder',
-    level: ProjectLevel.hard,
-  },
-  [ProjectLabel.PhotoGallery_0]: {
-    title: 'Photo Gallery',
-    description: 'A photo gallery application for organizing, viewing, and managing your images with advanced filtering and search capabilities.',
-    href: 'hard/photo-gallery',
-    level: ProjectLevel.hard,
-  },
-  [ProjectLabel.Chat_0]: {
-    title: 'Chat',
-    description: '',
-    href: 'hard/chat',
-    level: ProjectLevel.hard,
-  },
-  [ProjectLabel.PetsTinder_0]: {
-    title: 'Pets Tinder',
-    description: '',
-    href: 'hard/pets-tinder',
-    level: ProjectLevel.hard,
-  },
+  // [ProjectLabel.TodoList_H]: {
+  //   title: 'TodoList_H',
+  //   description: 'Organize your tasks efficiently with our comprehensive TodoList application.',
+  //   href: 'hard/todo-list',
+  //   level: ProjectLevel.hard,
+  // },
+  // [ProjectLabel.PhotoGallery_0]: {
+  //   title: 'Photo Gallery',
+  //   description: 'A photo gallery application for organizing, viewing, and managing your images with advanced filtering and search capabilities.',
+  //   href: 'hard/photo-gallery',
+  //   level: ProjectLevel.hard,
+  // },
+  // [ProjectLabel.Chat_0]: {
+  //   title: 'Chat',
+  //   description: '',
+  //   href: 'hard/chat',
+  //   level: ProjectLevel.hard,
+  // },
+  // [ProjectLabel.PetsTinder_0]: {
+  //   title: 'Pets Tinder',
+  //   description: '',
+  //   href: 'hard/pets-tinder',
+  //   level: ProjectLevel.hard,
+  // },
+  // [ProjectLabel.HabitTracker_0]: {
+  //   title: 'Habit Tracker',
+  //   description: '',
+  //   href: 'hard/habit-tracker',
+  //   level: ProjectLevel.hard,
+  // },
+  // [ProjectLabel.AgeCalculator_0]: {
+  //   title: 'Age Calculator',
+  //   description: '',
+  //   href: 'hard/age-calculator',
+  //   level: ProjectLevel.hard,
+  // },
 };

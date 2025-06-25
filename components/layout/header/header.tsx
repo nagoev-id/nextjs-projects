@@ -1,12 +1,11 @@
 'use client';
 
-import { HeaderAbout, HeaderLeft, ThemeToggle } from '@/components/layout';
-import { Card } from '@/components/ui/card';
 import Link from 'next/link';
 import { Ellipsis, ExternalLink, Tally1, Tally2, Tally3 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { JSX, useMemo } from 'react';
 import {
+  Button,
+  Card,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -14,6 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui';
+import { HeaderAbout, HeaderLeft, ThemeToggle } from '@/components/layout';
+
 
 type MenuItem = {
   type: 'item' | 'label' | 'separator';
@@ -22,6 +23,7 @@ type MenuItem = {
   icon?: JSX.Element;
   onClick?: () => void;
 }
+
 
 type MenuSection = {
   label?: {
@@ -32,13 +34,12 @@ type MenuSection = {
   items: MenuItem[];
 }
 
-/**
- * @typedef {Object} HeaderProps
- * @property {string} [title='Collections of React Apps'] - Заголовок шапки
- * @property {string} [description] - Описание под заголовком
- * @property {boolean} [showAbout=false] - Флаг для отображения кнопки "About"
- * @property {boolean} [showBackButton=true] - Флаг для отображения кнопки "Back to Home"
- * @property {string} [ariaLabelLink] - ARIA-метка для ссылки на главную страницу
+/*
+  * @typedef {Object} HeaderProps
+  * @property {string|null|undefined} [title] - Заголовок шапки сайта
+  * @property {string|null|undefined} [description] - Описание шапки сайта
+  * @property {boolean} [showAbout] - Флаг для отображения секции "About"
+  * @property {string} [ariaLabelLink] - ARIA метка для ссылки в шапке
  */
 type HeaderProps = {
   title?: string | null | undefined;
@@ -50,7 +51,6 @@ type HeaderProps = {
 /**
  * Компонент шапки сайта
  *
- * @type {React.FC<HeaderProps>}
  * @param {HeaderProps} props - Пропсы компонента
  * @returns {JSX.Element} Отрендеренный компонент шапки
  *
@@ -58,7 +58,12 @@ type HeaderProps = {
  * Этот компонент использует компоненты из библиотеки Shadcn UI для создания
  * адаптивной шапки сайта с навигацией, переключателем темы и модальным окном "About".
  */
-const Header = ({ title = 'Collections of React Apps', showAbout, description, ariaLabelLink }: HeaderProps = {}) => {
+export const Header = ({
+                  title = 'Collections of React Apps',
+                  showAbout,
+                  description,
+                  ariaLabelLink,
+                }: HeaderProps = {}): JSX.Element => {
 
   const menuSections: MenuSection[] = useMemo(() => [
     {
@@ -186,7 +191,4 @@ const Header = ({ title = 'Collections of React Apps', showAbout, description, a
       </Card>
     </header>
   );
-
 };
-
-export default Header;

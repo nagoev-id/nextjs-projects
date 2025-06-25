@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 
 /**
@@ -13,7 +14,7 @@ import { useEffect, useState } from 'react';
  * @param {number} delay - Задержка в миллисекундах перед обновлением дебаунсированного значения
  * @returns {T} Дебаунсированное значение, которое обновляется после указанной задержки
  */
-const useDebounce = <T,>(value: T, delay: number): T => {
+export const useDebounce = <T,>(value: T, delay: number): T => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
   useEffect(() => {
@@ -28,5 +29,3 @@ const useDebounce = <T,>(value: T, delay: number): T => {
 
   return debouncedValue;
 };
-
-export default useDebounce;

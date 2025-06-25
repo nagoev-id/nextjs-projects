@@ -25,7 +25,7 @@ interface HeaderAboutProps {
  * @param {string} props.title - Заголовок проекта
  * @returns {JSX.Element} Компонент диалога с информацией о проекте
  */
-const HeaderAbout = memo(({ title = '', description = '' }: HeaderAboutProps): JSX.Element => (
+export const HeaderAbout = memo(({ title = '', description = '' }: HeaderAboutProps): JSX.Element => (
   <Dialog>
     <DialogTrigger asChild>
       <Button variant="outline">
@@ -47,5 +47,3 @@ const HeaderAbout = memo(({ title = '', description = '' }: HeaderAboutProps): J
     </DialogContent>
   </Dialog>
 ));
-
-export default HeaderAbout;
