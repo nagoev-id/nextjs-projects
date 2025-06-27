@@ -89,7 +89,7 @@ export const ProjectLayout = ({
         style={{ height: mainHeight }}
       >
         {children}
-      </Main>w
+      </Main>
       <div ref={footerRef}>
         <Footer />
       </div>
