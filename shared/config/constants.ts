@@ -434,6 +434,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/drink-water-tracker',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.AgeCalculator_0]: {
+    title: 'Age Calculator',
+    description: 'Calculate exact age in years, months, and days based on birth date.',
+    href: 'easy/age-calculator',
+    level: ProjectLevel.easy,
+  },
 
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {
