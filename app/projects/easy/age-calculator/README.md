@@ -3,12 +3,7 @@
 A comprehensive age calculator built with Next.js and React that provides detailed age information and fun facts based on birth date.
 
 ![Age Calculator Demo](./preview/age-calculator-preview.png)
-
-<video width="100%" controls>
-  <source src="./preview/age-calculator.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
+<video src="./preview/age-calculator.mp4" controls="controls" style="max-width: 730px;">
 
 ## Features
 
