@@ -1,21 +1,7 @@
 import React, { useMemo } from 'react';
 import { Card } from '@/components/ui';
-import { HeadlineCard } from '@/app/projects/easy/age-calculator/components/headline-card';
-
-type AgeResult = {
-  years: number;
-  months: number;
-  days: number;
-  totalDays: number;
-}
-
-type PlanetAges = {
-  mercury: number;
-  venus: number;
-  mars: number;
-  jupiter: number;
-  saturn: number;
-}
+import { HeadlineCard } from '@/app/projects/easy/age-calculator/components';
+import { AgeResult, PlanetAges } from '@/app/projects/easy/age-calculator/utils';
 
 interface PlanetAgesCardProps {
   age: AgeResult;

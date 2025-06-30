@@ -1,9 +1,9 @@
 'use client';
 
-import { JSX, useCallback, useMemo, useState, useEffect } from 'react';
-import { Button, Card, Form } from '@/components/ui';
+import { JSX, useCallback, useEffect, useMemo, useState } from 'react';
+import { Button, Calendar, Card, Form, Input, Label, Popover, PopoverContent, PopoverTrigger } from '@/components/ui';
 import { useForm } from 'react-hook-form';
-import { FormInput, FormSelect } from '@/components/layout';
+import { FormSelect } from '@/components/layout';
 import {
   AgeResultCard,
   BirthdayCountdownCard,
@@ -12,65 +12,49 @@ import {
   NextBirthdayCard,
   PlanetAgesCard,
 } from '@/app/projects/easy/age-calculator/components';
+import {
+  AgeResult,
+  calcTime,
+  calculateAge,
+  calculateHalfBirthday,
+  calculateLifeStats,
+  calculateNextBirthday,
+  calculatePlanetAges,
+  dobFields,
+  formSchema,
+  FormSchema,
+  FunFacts,
+} from '@/app/projects/easy/age-calculator/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+import { CalendarIcon } from 'lucide-react';
 
-// Types
-interface AgeResult {
-  years: number;
-  months: number;
-  days: number;
-  totalDays: number;
+type ResultType = {
+  age: AgeResult;
+  funFacts: FunFacts;
+  birthDate: Date;
+  currentDate: Date
 }
 
-interface PlanetAges {
-  mercury: number;
-  venus: number;
-  mars: number;
-  jupiter: number;
-  saturn: number;
+// Функции для работы с датами
+function formatDate(date: Date | undefined): string {
+  if (!date) {
+    return '';
+  }
+
+  return date.toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  });
 }
 
-interface LifeStats {
-  breathsTaken: number;
-  heartbeats: number;
-  laughs: number;
-  sleepYears: number;
-  hairLength: number;
-  nailLength: number;
+function isValidDate(date: Date | undefined): boolean {
+  if (!date) {
+    return false;
+  }
+  return !isNaN(date.getTime());
 }
-
-interface FunFacts {
-  nextBirthday: {
-    months: number;
-    days: number;
-    dayOfWeek: string;
-  };
-  birthdayCountdown: {
-    days: number;
-    time: string;
-  };
-  halfBirthday: {
-    date: string;
-    dayOfWeek: string;
-  };
-  planetAges: PlanetAges;
-  lifeStats: LifeStats;
-}
-
-interface FormValues {
-  day: string;
-  month: string;
-  year: string;
-  currentDate: string;
-
-  [key: string]: unknown;
-}
-
-// Constants
-const DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
-];
 
 const AgeCalculatorPage = (): JSX.Element => {
   const currentDate = useMemo(() => {
@@ -83,10 +67,18 @@ const AgeCalculatorPage = (): JSX.Element => {
     };
   }, []);
 
-  const [result, setResult] = useState<{ age: AgeResult; funFacts: FunFacts; birthDate: Date; currentDate: Date } | null>(null);
+  const [result, setResult] = useState<ResultType | null>(null);
   const [countdown, setCountdown] = useState<string>('');
 
-  const form = useForm<FormValues>({
+  // Состояния для календаря
+  const [open, setOpen] = useState<boolean>(false);
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [month, setMonth] = useState<Date | undefined>(new Date());
+  const [value, setValue] = useState<string>(formatDate(new Date()));
+
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+    mode: 'onChange',
     defaultValues: {
       day: currentDate.day,
       month: currentDate.month,
@@ -95,7 +87,6 @@ const AgeCalculatorPage = (): JSX.Element => {
     },
   });
 
-  // Real-time countdown update
   useEffect(() => {
     if (!result) return;
 
@@ -107,19 +98,15 @@ const AgeCalculatorPage = (): JSX.Element => {
           ? 1 : 0
       );
       const nextBirthdayDate = new Date(nextBirthdayYear, result.birthDate.getMonth(), result.birthDate.getDate());
-      
+
       const birthdayDiff = nextBirthdayDate.getTime() - now.getTime();
-      
+
       if (birthdayDiff <= 0) {
         setCountdown('00 : 00 : 00');
         return;
       }
 
-      const hours = Math.floor((birthdayDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((birthdayDiff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((birthdayDiff % (1000 * 60)) / 1000);
-
-      setCountdown(`${String(hours).padStart(2, '0')} : ${String(minutes).padStart(2, '0')} : ${String(seconds).padStart(2, '0')}`);
+      setCountdown(calcTime(birthdayDiff));
     };
 
     updateCountdown();
@@ -128,129 +115,11 @@ const AgeCalculatorPage = (): JSX.Element => {
     return () => clearInterval(interval);
   }, [result]);
 
-  // Age calculation
-  const calculateAge = useCallback((birthDate: Date, currentDate: Date): AgeResult => {
-    let years = currentDate.getFullYear() - birthDate.getFullYear();
-    let months = currentDate.getMonth() - birthDate.getMonth();
-    let days = currentDate.getDate() - birthDate.getDate();
-
-    // Adjust for negative days
-    if (days < 0) {
-      months--;
-      const prevMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
-      days += prevMonthDate.getDate();
-    }
-
-    // Adjust for negative months
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
-
-    // Calculate total days
-    const diffTime = Math.abs(currentDate.getTime() - birthDate.getTime());
-    const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-    return { years, months, days, totalDays };
-  }, []);
-
-  // Get month name helper
-  const getMonthName = useCallback((monthIndex: number): string => {
-    return MONTHS[monthIndex];
-  }, []);
-
-  // Calculate next birthday with improved accuracy
-  const calculateNextBirthday = useCallback((birthDate: Date, currentDate: Date) => {
-    const nextBirthdayYear = currentDate.getFullYear() + (
-      currentDate.getMonth() > birthDate.getMonth() ||
-      (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() >= birthDate.getDate())
-        ? 1 : 0
-    );
-    const nextBirthdayDate = new Date(nextBirthdayYear, birthDate.getMonth(), birthDate.getDate());
-
-    // Calculate more accurate months and days until next birthday
-    let monthsUntil = nextBirthdayDate.getMonth() - currentDate.getMonth();
-    let daysUntil = nextBirthdayDate.getDate() - currentDate.getDate();
-
-    if (daysUntil < 0) {
-      monthsUntil--;
-      const daysInPrevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
-      daysUntil += daysInPrevMonth;
-    }
-
-    if (monthsUntil < 0) {
-      monthsUntil += 12;
-    }
-
-    // Calculate total days until next birthday
-    const birthdayDiff = nextBirthdayDate.getTime() - currentDate.getTime();
-    const totalDaysUntil = Math.ceil(birthdayDiff / (1000 * 60 * 60 * 24));
-
-    // Calculate initial time until birthday (will be updated by useEffect)
-    const birthdayHours = Math.floor((birthdayDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const birthdayMinutes = Math.floor((birthdayDiff % (1000 * 60 * 60)) / (1000 * 60));
-    const birthdaySeconds = Math.floor((birthdayDiff % (1000 * 60)) / 1000);
-
-    return {
-      nextBirthday: {
-        months: monthsUntil,
-        days: daysUntil,
-        dayOfWeek: DAYS_OF_WEEK[nextBirthdayDate.getDay()],
-      },
-      birthdayCountdown: {
-        days: totalDaysUntil,
-        time: `${String(birthdayHours).padStart(2, '0')} : ${String(birthdayMinutes).padStart(2, '0')} : ${String(birthdaySeconds).padStart(2, '0')}`,
-      },
-    };
-  }, []);
-
-  // Calculate half birthday
-  const calculateHalfBirthday = useCallback((birthDate: Date, currentDate: Date) => {
-    const halfBirthdayDate = new Date(currentDate.getFullYear(),
-      (birthDate.getMonth() + 6) % 12,
-      birthDate.getDate());
-
-    if (halfBirthdayDate < currentDate) {
-      halfBirthdayDate.setFullYear(halfBirthdayDate.getFullYear() + 1);
-    }
-
-    return {
-      halfBirthday: {
-        date: `${halfBirthdayDate.getDate()} ${getMonthName(halfBirthdayDate.getMonth())}`,
-        dayOfWeek: DAYS_OF_WEEK[halfBirthdayDate.getDay()],
-      },
-    };
-  }, [getMonthName]);
-
-  // Calculate planet ages
-  const calculatePlanetAges = useCallback((totalDays: number): PlanetAges => {
-    return {
-      mercury: Math.round((totalDays / 87.97) * 100) / 100,
-      venus: Math.round((totalDays / 224.7) * 100) / 100,
-      mars: Math.round((totalDays / 686.98) * 100) / 100,
-      jupiter: Math.round((totalDays / 4332.59) * 100) / 100,
-      saturn: Math.round((totalDays / 10755.7) * 100) / 100,
-    };
-  }, []);
-
-  // Calculate life statistics
-  const calculateLifeStats = useCallback((totalDays: number): LifeStats => {
-    return {
-      breathsTaken: Math.round(totalDays * 24 * 60 * 12), // ~12 breaths per minute
-      heartbeats: Math.round(totalDays * 24 * 60 * 70),   // ~70 beats per minute
-      laughs: Math.round(totalDays * 15),                 // ~15 laughs per day
-      sleepYears: Math.round(totalDays * 8 / 365 * 10) / 10, // ~8 hours of sleep per day
-      hairLength: Math.round(totalDays * 0.5 * 10) / 10,  // ~0.5 mm per day
-      nailLength: Math.round(totalDays * 0.1 * 10) / 10,  // ~0.1 mm per day
-    };
-  }, []);
-
-  // Calculate all fun facts with corrected currentDate usage
   const calculateFunFacts = useCallback((birthDate: Date, age: AgeResult, currentDate: Date): FunFacts => {
     const birthdayInfo = calculateNextBirthday(birthDate, currentDate);
     const halfBirthdayInfo = calculateHalfBirthday(birthDate, currentDate);
-    const planetAges = calculatePlanetAges(age.totalDays);
-    const lifeStats = calculateLifeStats(age.totalDays);
+    const planetAges = calculatePlanetAges(age.totalDays ?? 0);
+    const lifeStats = calculateLifeStats(age.totalDays ?? 0);
 
     return {
       ...birthdayInfo,
@@ -258,48 +127,99 @@ const AgeCalculatorPage = (): JSX.Element => {
       planetAges,
       lifeStats,
     };
-  }, [calculateNextBirthday, calculateHalfBirthday, calculatePlanetAges, calculateLifeStats]);
+  }, []);
 
-  // Form submission handler
-  const onSubmit = useCallback((formValues: FormValues) => {
+  const onSubmit = useCallback((formValues: FormSchema) => {
     const { day, month, year, currentDate: formCurrentDate } = formValues;
 
-    // Create date objects
     const birthDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
     const currentDate = new Date(formCurrentDate);
 
-    // Validate birth date
     if (birthDate > currentDate) {
-      alert('Birth date cannot be in the future!');
+      toast.error('Birth date cannot be in the future!', { richColors: true });
       return;
     }
 
-    // Calculate age and fun facts
     const age = calculateAge(birthDate, currentDate);
     const funFacts = calculateFunFacts(birthDate, age, currentDate);
 
-    // Update state with results
     setResult({ age, funFacts, birthDate, currentDate });
-  }, [calculateAge, calculateFunFacts]);
-
-  // Form fields configuration
-  const dobFields = useMemo(() => [
-    { name: 'day', label: 'Day', length: 31 },
-    { name: 'month', label: 'Month', length: 12 },
-    { name: 'year', label: 'Year', transform: (i: number) => new Date().getFullYear() - i, length: 100 },
-  ], []);
+  }, [calculateFunFacts]);
 
   return (
     <Card className="p-3 max-w-xl w-full mx-auto">
       <Form {...form}>
         <form className="grid gap-3" onSubmit={form.handleSubmit(onSubmit)}>
-          <FormInput
-            form={form}
-            name="currentDate"
-            label="Current Date"
-            type="date"
-          />
-          <div className="grid sm:grid-cols-3 gap-2">
+          {/* Поле выбора текущей даты с календарем */}
+          <div className="flex flex-col gap-3">
+            <Label htmlFor="current-date" className="px-1">
+              Current Date
+            </Label>
+            <div className="relative flex gap-2">
+              <Input
+                id="current-date"
+                value={value}
+                placeholder="June 01, 2025"
+                className="bg-background pr-10"
+                onChange={(e) => {
+                  const inputDate = new Date(e.target.value);
+                  setValue(e.target.value);
+                  if (isValidDate(inputDate)) {
+                    setDate(inputDate);
+                    setMonth(inputDate);
+                    // Обновляем значение в форме
+                    form.setValue('currentDate', inputDate.toISOString().split('T')[0]);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    setOpen(true);
+                  }
+                }}
+              />
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    type="button"
+                    id="date-picker"
+                    variant="ghost"
+                    className="absolute top-1/2 right-2 size-6 -translate-y-1/2"
+                  >
+                    <CalendarIcon className="size-3.5" />
+                    <span className="sr-only">Select date</span>
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="w-auto overflow-hidden p-0"
+                  align="end"
+                  alignOffset={-8}
+                  sideOffset={10}
+                >
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    captionLayout="dropdown"
+                    month={month}
+                    onMonthChange={setMonth}
+                    onSelect={(selectedDate) => {
+                      setDate(selectedDate);
+                      setValue(formatDate(selectedDate));
+                      if (selectedDate) {
+                        form.setValue('currentDate', selectedDate.toISOString().split('T')[0]);
+                      }
+                      setOpen(false);
+                    }}
+                    fromYear={1900}
+                    toYear={new Date().getFullYear()}
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
+          </div>
+
+          {/* Поля для выбора даты рождения */}
+          <div className="grid sm:grid-cols-3 items-start gap-2">
             {dobFields.map(({ name, label, length, transform }) => (
               <FormSelect
                 key={name}
@@ -318,6 +238,7 @@ const AgeCalculatorPage = (): JSX.Element => {
               />
             ))}
           </div>
+
           <Button type="submit">Calculate Age</Button>
         </form>
       </Form>
@@ -326,11 +247,11 @@ const AgeCalculatorPage = (): JSX.Element => {
         <div className="grid gap-2">
           <AgeResultCard age={result.age} />
           <NextBirthdayCard nextBirthday={result.funFacts.nextBirthday} />
-          <BirthdayCountdownCard 
+          <BirthdayCountdownCard
             birthdayCountdown={{
               days: result.funFacts.birthdayCountdown.days,
-              time: countdown || result.funFacts.birthdayCountdown.time
-            }} 
+              time: countdown || result.funFacts.birthdayCountdown.time,
+            }}
           />
           <HalfBirthdayCard halfBirthday={result.funFacts.halfBirthday} />
           <PlanetAgesCard age={result.age} planetAges={result.funFacts.planetAges} />

@@ -1,13 +1,6 @@
 import { Card } from '@/components/ui';
 import { HeadlineCard } from '@/app/projects/easy/age-calculator/components/headline-card';
-
-interface NextBirthdayProps {
-  nextBirthday: {
-    months: number;
-    days: number;
-    dayOfWeek: string;
-  };
-}
+import { FunFacts } from '@/app/projects/easy/age-calculator/utils';
 
 interface TimeUnitProps {
   value: number;
@@ -27,7 +20,7 @@ const DayOfWeek = ({ day }: { day: string }) => (
   </div>
 );
 
-export const NextBirthdayCard = ({ nextBirthday }: NextBirthdayProps) => {
+export const NextBirthdayCard = ({ nextBirthday }: { nextBirthday: FunFacts['nextBirthday'] }) => {
   const timeUnits = [
     { value: nextBirthday.months, unit: 'months' },
     { value: nextBirthday.days, unit: 'days' },
@@ -35,7 +28,7 @@ export const NextBirthdayCard = ({ nextBirthday }: NextBirthdayProps) => {
 
   return (
     <Card className="p-4 gap-2">
-      <HeadlineCard text='Your upcoming birthday in' />
+      <HeadlineCard text="Your upcoming birthday in" />
       <div className="grid grid-cols-3 text-center">
         {timeUnits.map(({ value, unit }) => (
           <TimeUnit key={unit} value={value} unit={unit} />

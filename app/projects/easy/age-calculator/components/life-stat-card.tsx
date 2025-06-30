@@ -1,18 +1,8 @@
 import React, { useMemo } from 'react';
 import { Card } from '@/components/ui';
-import { LifeStat } from '@/app/projects/easy/age-calculator/components/life-stat';
-import { HeadlineCard } from '@/app/projects/easy/age-calculator/components/headline-card';
+import { HeadlineCard, LifeStat } from '@/app/projects/easy/age-calculator/components';
+import { LifeStats, LifeStatsKey } from '@/app/projects/easy/age-calculator/utils';
 
-interface LifeStats {
-  breathsTaken: number;
-  heartbeats: number;
-  laughs: number;
-  sleepYears: number;
-  hairLength: number;
-  nailLength: number;
-}
-
-type LifeStatsKey = keyof LifeStats;
 
 interface LifeStatConfig {
   icon: string;

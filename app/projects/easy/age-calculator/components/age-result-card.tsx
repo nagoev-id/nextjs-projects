@@ -1,12 +1,9 @@
 import { Card } from '@/components/ui';
-import { HeadlineCard } from '@/app/projects/easy/age-calculator/components/headline-card';
+import { AgeResult } from '@/app/projects/easy/age-calculator/utils';
+import { HeadlineCard } from '@/app/projects/easy/age-calculator/components';
 
 interface AgeResultCardProps {
-  age: {
-    years: number;
-    months: number;
-    days: number;
-  }
+  age: AgeResult;
 }
 
 interface AgeUnitProps {
@@ -30,7 +27,7 @@ export const AgeResultCard = ({ age }: AgeResultCardProps) => {
 
   return (
     <Card className="p-4 gap-2">
-      <HeadlineCard text='Age' />
+      <HeadlineCard text="Age" />
       <div className="grid sm:grid-cols-3 text-center">
         {ageUnits.map(({ value, unit }) => (
           <AgeUnit key={unit} value={value} unit={unit} />
