@@ -11,6 +11,7 @@ A comprehensive age calculator built with Next.js and React that provides detail
 - **Half Birthday**: Find out when your half birthday occurs
 - **Planetary Ages**: Discover your age on other planets in our solar system
 - **Life Statistics**: View interesting facts about your life such as breaths taken, heartbeats, and more
+- **Data Persistence**: Automatically saves your calculations and form data to localStorage
 - **Responsive Design**: Works seamlessly on both desktop and mobile devices
 
 ## Implementation Details
@@ -36,8 +37,12 @@ AgeCalculator
 
 ### State Management
 
-- Uses React's `useState` hook to track calculation results
+- Uses Redux Toolkit for global state management
 - Implements `useForm` from React Hook Form for form handling
+- **localStorage Integration**: Uses custom `useStorage` hook for automatic data persistence
+  - Saves calculation results and form state automatically
+  - Restores previous data on page reload
+  - Synchronizes data across browser tabs
 - Uses `useCallback` and `useMemo` for optimized performance
 - Implements proper TypeScript types for type safety
 
@@ -54,11 +59,23 @@ AgeCalculator
 The component uses:
 
 - Next.js for the framework
-- React hooks for state management
+- Redux Toolkit for global state management
 - React Hook Form for form handling
+- **Custom useStorage hook** for localStorage integration with type safety
 - TypeScript for type safety
 - UI components from a shared component library
 - TailwindCSS for styling and responsive design
+
+### Data Persistence
+
+The age calculator automatically saves and restores:
+
+- Calculation results (age, fun facts, birthday countdowns)
+- Current date selection
+- Calendar state (selected date and month)
+- Form input values
+
+Data is stored in localStorage with the key `age-calculator-data` and is automatically synchronized across browser tabs.
 
 ## Accessibility
 

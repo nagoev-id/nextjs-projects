@@ -568,6 +568,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'medium/mobile-store-cart',
     level: ProjectLevel.medium,
   },
+  [ProjectLabel.AgeCalculator_1]: {
+    title: 'Age Calculator',
+    description: 'Calculate exact age in years, months, and days based on birth date.',
+    href: 'medium/age-calculator',
+    level: ProjectLevel.medium,
+  },
 
   // Hard projects
   // [ProjectLabel.TodoList_H]: {
