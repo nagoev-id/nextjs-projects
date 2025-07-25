@@ -440,6 +440,12 @@ export const PROJECTS_LIST: ListOfProjects = {
     href: 'easy/age-calculator',
     level: ProjectLevel.easy,
   },
+  [ProjectLabel.AspectRatio]: {
+    title: 'Aspect Ratio',
+    description: '',
+    href: 'easy/aspect-ratio',
+    level: ProjectLevel.easy,
+  },
 
   // Medium projects
   [ProjectLabel.WeatherWithRedux]: {

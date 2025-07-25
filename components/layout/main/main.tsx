@@ -30,7 +30,7 @@ interface MainProps {
  * отзывчивый макет с максимальной шириной и центрированием содержимого.
  */
 export const Main = ({ children, className = '', containerClassName = '' }: MainProps): JSX.Element => (
-  <main className={`flex flex-col h-screen p-4 xl:px-0 ${className}`}>
+  <main className={`flex flex-col p-4 xl:px-0 ${className}`}>
     <div className={`max-w-6xl w-full mx-auto flex-grow ${containerClassName}`}>
       {children}
     </div>

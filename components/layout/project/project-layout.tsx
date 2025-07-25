@@ -1,6 +1,6 @@
 'use client';
 import { PROJECTS_LIST } from '@/shared';
-import React, { JSX, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { JSX, ReactNode } from 'react';
 import { Footer, Header, Main } from '@/components/layout';
 
 /**
@@ -43,56 +43,19 @@ export const ProjectLayout = ({
                                 customHeader,
                                 mainClassName = '',
                               }: ProjectLayoutProps): JSX.Element => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
-  const [mainHeight, setMainHeight] = useState<string>('auto');
-
-  useEffect(() => {
-    const calculateMainHeight = () => {
-      if (containerRef.current && headerRef.current && footerRef.current) {
-        const headerHeight = headerRef.current.offsetHeight;
-        const footerHeight = footerRef.current.offsetHeight;
-        setMainHeight(`calc(100vh - ${headerHeight}px - ${footerHeight}px - 1px)`);
-      }
-    };
-
-    calculateMainHeight();
-
-    const resizeObserver = new ResizeObserver(calculateMainHeight);
-
-    if (headerRef.current) resizeObserver.observe(headerRef.current);
-    if (footerRef.current) resizeObserver.observe(footerRef.current);
-    if (containerRef.current) resizeObserver.observe(containerRef.current);
-
-    window.addEventListener('resize', calculateMainHeight);
-
-    return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener('resize', calculateMainHeight);
-    };
-  }, []);
-
   return (
-    <div ref={containerRef} className="flex flex-col h-screen overflow-hidden">
-      <div ref={headerRef}>
-        {customHeader || (
-          <Header
-            title={PROJECTS_LIST[projectKey]?.title || 'Project'}
-            description={PROJECTS_LIST[projectKey]?.description || ''}
-            showAbout={showAbout}
-          />
-        )}
-      </div>
-      <Main
-        className={`${mainClassName} overflow-auto`}
-        style={{ height: mainHeight }}
-      >
+    <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
+      {customHeader || (
+        <Header
+          title={PROJECTS_LIST[projectKey]?.title || 'Project'}
+          description={PROJECTS_LIST[projectKey]?.description || ''}
+          showAbout={showAbout}
+        />
+      )}
+      <Main className={`${mainClassName} overflow-auto`}>
         {children}
       </Main>
-      <div ref={footerRef}>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };

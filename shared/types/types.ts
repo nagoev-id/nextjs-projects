@@ -120,6 +120,7 @@ export enum ProjectLabel {
   WaterTracker = 'WaterTracker',
   AgeCalculator_0 = 'AgeCalculator_0',
   AgeCalculator_1 = 'AgeCalculator_1',
+  AspectRatio = 'AspectRatio',
   // TodoList_H = 'TodoList_H',
   // PhotoGallery_0 = 'PhotoGallery_0',
   // Chat_0 = 'Chat_0',
