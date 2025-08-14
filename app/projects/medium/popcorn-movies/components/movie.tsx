@@ -110,6 +110,8 @@ const Movie = ({ movie, isHome = true }: MovieProps): JSX.Element => {
     </>
   ));
   
+  MovieInfo.displayName = 'MovieInfo';
+  
   return (
     <li className="">
       <Card className="h-full overflow-hidden flex flex-col p-0 shadow-sm rounded-sm gap-0 transition-shadow hover:shadow-md">

@@ -24,19 +24,19 @@ const convertHundreds = (num: number): string => {
   let result = '';
 
   if (num >= 100) {
-    result += `${ONES[Math.floor(num / 100)]} hundred`;
+    result = `${result}${ONES[Math.floor(num / 100)]} hundred`;
     num %= 100;
-    if (num > 0) result += ' ';
+    if (num > 0) result = `${result} `;
   }
 
   if (num >= 20) {
-    result += TENS[Math.floor(num / 10)];
+    result = `${result}${TENS[Math.floor(num / 10)]}`;
     num %= 10;
-    if (num > 0) result += ' ';
+    if (num > 0) result = `${result} `;
   }
 
   if (num > 0) {
-    result += ONES[num];
+    result = `${result}${ONES[num]}`;
   }
 
   return result;

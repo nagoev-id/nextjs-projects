@@ -80,6 +80,8 @@ const CountryCard = React.memo(({ name, image, index }: {
   </Card>
 ));
 
+CountryCard.displayName = 'CountryCard';
+
 
 const CountriesExplorerPage = (): JSX.Element => {
   const { data: countries, isLoading, isError } = useGetQuery('');
@@ -185,7 +187,7 @@ const CountriesExplorerPage = (): JSX.Element => {
     }
 
     // Добавляем разделители
-    for (let i of range) {
+    for (const i of range) {
       if (l) {
         if (i - l === 2) {
           rangeWithDots.push(l + 1);

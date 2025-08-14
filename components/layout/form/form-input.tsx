@@ -46,7 +46,7 @@ type BaseFormElementProps<T extends Record<string, unknown>> = {
  * Свойства для компонента ввода текста
  */
 type FormInputProps<T extends Record<string, unknown>> = BaseFormElementProps<T> & {
-  type?: 'input' | 'textarea' | 'date' | 'number' | 'password' | 'email' | 'color' | 'file' | 'tel';
+  type?: 'input' | 'textarea' | 'date' | 'datetime-local' | 'number' | 'password' | 'email' | 'color' | 'file' | 'tel';
   inputProps?: BaseExtraProps;
   min?: string;
   max?: string;
@@ -167,7 +167,7 @@ export function FormSelect<T extends Record<string, unknown>>({
  * Вспомогательная функция для рендеринга различных типов элементов формы
  */
 function renderFormElement(
-  type: 'input' | 'textarea' | 'date' | 'number' | 'password' | 'email' | 'color' | 'file' | 'tel' | undefined,
+  type: 'input' | 'textarea' | 'date' | 'datetime-local' | 'number' | 'password' | 'email' | 'color' | 'file' | 'tel' | undefined,
   field: any,
   placeholder?: string | undefined,
   inputProps?: BaseExtraProps | undefined,
@@ -198,6 +198,16 @@ function renderFormElement(
       return (
         <Input
           type="date"
+          {...inputFieldProps}
+          min={min || undefined}
+          max={max || undefined}
+        />
+      );
+
+    case 'datetime-local':
+      return (
+        <Input
+          type="datetime-local"
           {...inputFieldProps}
           min={min || undefined}
           max={max || undefined}

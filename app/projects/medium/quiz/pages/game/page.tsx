@@ -44,48 +44,34 @@ const GamePage = (): JSX.Element | null => {
     answered: false,
   });
 
-  useEffect(() => {
-    if (questions.length === 0) {
-      router.push('/projects/medium/quiz');
-    }
-    if (quizCompleted) {
-      router.push('/projects/medium/quiz/pages/result');
-    }
-  }, [questions.length, router, quizCompleted]);
-
-  // Возвращаем null, если нет вопросов
-  if (questions.length === 0) {
-    return null;
-  }
-
   /**
    * Текущий вопрос
    * @type {Question}
    */
-  const currentQuestion = useMemo(() =>
-      questions[currentQuestionIndex] as Question,
-    [questions, currentQuestionIndex],
-  );
+  const currentQuestion = useMemo(() => {
+    if (questions.length === 0) return null;
+    return questions[currentQuestionIndex] as Question;
+  }, [questions, currentQuestionIndex]);
 
   /**
    * Правильный ответ на текущий вопрос
    * @type {string}
    */
-  const correctAnswer = useMemo(() =>
-      decodeURIComponent(currentQuestion.correct_answer),
-    [currentQuestion],
-  );
+  const correctAnswer = useMemo(() => {
+    if (!currentQuestion) return '';
+    return decodeURIComponent(currentQuestion.correct_answer);
+  }, [currentQuestion]);
 
   /**
    * Все варианты ответов для текущего вопроса
    * @type {string[]}
    */
-  const allAnswers = useMemo(() =>
-      [...currentQuestion.incorrect_answers, currentQuestion.correct_answer]
-        .sort()
-        .map(answer => decodeURIComponent(answer)),
-    [currentQuestion],
-  );
+  const allAnswers = useMemo(() => {
+    if (!currentQuestion) return [];
+    return [...currentQuestion.incorrect_answers, currentQuestion.correct_answer]
+      .sort()
+      .map(answer => decodeURIComponent(answer));
+  }, [currentQuestion]);
 
   /**
    * Обработчик изменения выбранного ответа
@@ -140,9 +126,23 @@ const GamePage = (): JSX.Element | null => {
     [score, questions.length],
   );
 
+  useEffect(() => {
+    if (questions.length === 0) {
+      router.push('/projects/medium/quiz');
+    }
+    if (quizCompleted) {
+      router.push('/projects/medium/quiz/pages/result');
+    }
+  }, [questions.length, router, quizCompleted]);
+
+  // Возвращаем null, если нет вопросов
+  if (questions.length === 0) {
+    return null;
+  }
+
   return (
     <Card className="gap-2 max-w-2xl mx-auto w-full p-3  rounded-md">
-      {!quizCompleted && (
+      {!quizCompleted && currentQuestion && (
         <>
           <h2 className="text-xl font-bold text-center">Question {currentQuestionIndex + 1} / {questions.length}</h2>
           <p className="text-center">{decodeURIComponent(currentQuestion.question)}</p>

@@ -39,11 +39,6 @@ const DetailPage = (): JSX.Element => {
    */
   const handleGoBack = useCallback(() => router.back(), [router]);
 
-  // Если коктейль не найден, показываем сообщение об ошибке
-  if (!cocktail) {
-    return <p>Error loading cocktail</p>;
-  }
-
   /**
    * @description Извлечение списка ингредиентов из объекта коктейля
    * @type {Array<string>}
@@ -52,10 +47,16 @@ const DetailPage = (): JSX.Element => {
    * // ['Водка', 'Апельсиновый сок', 'Лед']
    */
   const ingredients = useMemo(() => {
+    if (!cocktail) return [];
     return Object.entries(cocktail)
       .filter(([key, value]) => key.startsWith('strIngredient') && value)
       .map(([, value]) => value);
   }, [cocktail]);
+
+  // Если коктейль не найден, показываем сообщение об ошибке
+  if (!cocktail) {
+    return <p>Error loading cocktail</p>;
+  }
 
   return (
     <>

@@ -167,10 +167,10 @@ const QuizPage = (): JSX.Element => {
       }, { amount: values.amount } as FormSchema);
 
     try {
-      // @ts-ignore
+      // @ts-expect-error - API response type needs to be properly typed
       const { data } = await handleGetQuestions(filteredValues);
       if (data) {
-        // @ts-ignore
+        // @ts-expect-error - Redux action payload type needs to be properly typed
         dispatch(setQuestions(data));
         dispatch(resetQuiz());
         router.push('/projects/medium/quiz/pages/game');

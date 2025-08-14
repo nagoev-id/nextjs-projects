@@ -36,3 +36,5 @@ export const HeaderLeft = memo(({ title, ariaLabelLink = '' }: HeaderLeftProps):
     </Link>
   </div>
 ));
+
+HeaderLeft.displayName = 'HeaderLeft';

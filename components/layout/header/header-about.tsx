@@ -47,3 +47,5 @@ export const HeaderAbout = memo(({ title = '', description = '' }: HeaderAboutPr
     </DialogContent>
   </Dialog>
 ));
+
+HeaderAbout.displayName = 'HeaderAbout';

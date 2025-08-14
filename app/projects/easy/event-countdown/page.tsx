@@ -23,9 +23,19 @@ const EventCountdownPage = (): JSX.Element => {
     reminder: 1, // Reminder in days before the event
   }]);
 
+  const handleSubmit = (data: {
+    name: string;
+    datetime: string;
+    theme: string;
+    reminder: number;
+  }) => {
+    // Handle form submission
+    console.log('Form submitted:', data);
+  };
+
   return (
     <Card>
-      <CountdownForm />
+      <CountdownForm onSubmit={handleSubmit} />
     </Card>
   );
 };

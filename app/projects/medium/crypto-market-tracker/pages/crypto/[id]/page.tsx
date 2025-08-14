@@ -159,7 +159,7 @@ const DetailPage = (): JSX.Element => {
         {cryptoData.description.en ? (
           <div 
             className="prose max-w-none dark:prose-invert"
-                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(cryptoData.description.en) }} 
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(cryptoData.description.en) }} 
           />
         ) : (
           <p>No description available.</p>

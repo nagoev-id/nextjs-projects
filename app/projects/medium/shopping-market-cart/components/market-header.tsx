@@ -77,4 +77,6 @@ const MarketHeader = memo(({
   );
 });
 
+MarketHeader.displayName = 'MarketHeader';
+
 export default MarketHeader;

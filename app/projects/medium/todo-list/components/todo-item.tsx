@@ -196,5 +196,6 @@ const TodoItem = React.memo(({ todo, onComplete, onDelete, onUpdate }: TodoItem)
   );
 });
 
+TodoItem.displayName = 'TodoItem';
 
 export default TodoItem;

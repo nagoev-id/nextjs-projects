@@ -19,11 +19,6 @@ const Word = (): JSX.Element | null => {
   const { word, correctLetters } = useAppSelector(selectHangmanData);
 
   /**
-   * Если слово еще не загружено, не отображаем компонент
-   */
-  if (!word) return null;
-
-  /**
    * Проверяет, должна ли буква быть отображена (угадана пользователем)
    *
    * @param {string} letter - Проверяемая буква
@@ -32,6 +27,11 @@ const Word = (): JSX.Element | null => {
   const isLetterRevealed = useCallback((letter: string): string => {
     return correctLetters.includes(letter) ? letter : '';
   }, [correctLetters]);
+
+  /**
+   * Если слово еще не загружено, не отображаем компонент
+   */
+  if (!word) return null;
 
   return (
     <div className="inline-flex justify-center gap-1 font-bold text-lg uppercase">

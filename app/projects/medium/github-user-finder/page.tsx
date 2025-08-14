@@ -59,6 +59,8 @@ const UserCard = React.memo(({ user }: { user: User }) => (
   </Card>
 ));
 
+UserCard.displayName = 'UserCard';
+
 const GitHubUserFinderPage = (): JSX.Element => {
   const [searchUsers, { isLoading, isError, isSuccess, data: users }] = useLazyGetQuery();
   const form = useForm<FormSchema>({

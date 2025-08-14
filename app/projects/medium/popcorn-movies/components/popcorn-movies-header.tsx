@@ -102,4 +102,6 @@ const PopcornMoviesHeader = memo(({
   );
 });
 
+PopcornMoviesHeader.displayName = 'PopcornMoviesHeader';
+
 export default PopcornMoviesHeader;

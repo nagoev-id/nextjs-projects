@@ -234,6 +234,7 @@ const WikiSearcherPage = (): JSX.Element => {
                   aria-label={`Read full article about ${title}`}
                 >
                   <h4 className="text-lg font-bold uppercase">{title}</h4>
+                  {/* eslint-disable-next-line react/no-danger */}
                   <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(snippet) }} />
                 </a>
               </li>

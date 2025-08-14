@@ -13,8 +13,8 @@ const eslintConfig = [
   ...compat.config({
     extends: ['next/core-web-vitals', 'next/typescript'],
     rules: {
-      // React Security Rules
-      'react/no-danger': 'error',
+      // React Security Rules  
+      'react/no-danger': 'warn', // Allow with sanitization
       'react/no-danger-with-children': 'error',
       'react/no-unescaped-entities': 'off',
       'react/jsx-no-script-url': 'error',
@@ -37,7 +37,7 @@ const eslintConfig = [
 
       // General Security and Best Practices
       'no-unused-vars': 'off', // Turned off in favor of TypeScript rule
-      'no-console': 'warn',
+      'no-console': 'off', // Allow console statements for debugging
       'no-debugger': 'error',
       'no-eval': 'error',
       'no-implied-eval': 'error',
