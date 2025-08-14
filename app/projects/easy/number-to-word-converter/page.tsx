@@ -23,7 +23,7 @@ const NumberToWordConverter = () => {
   const onSubmit = useCallback((formData: FormSchema) => {
     try {
       setState(convertNumberToWords(formData.number));
-    } catch (error) {
+    } catch {
       toast.error('An error occurred during conversion', { richColors: true });
       setState(null);
     }
