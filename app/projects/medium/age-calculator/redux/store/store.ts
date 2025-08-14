@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { dobReducer } from '@/app/projects/medium/age-calculator/redux';
+import { dobReducer } from '@/app/projects/medium/age-calculator/redux/slices/dob-slice';
 
 export const store = configureStore({
   reducer: {
