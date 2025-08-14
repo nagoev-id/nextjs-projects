@@ -24,7 +24,7 @@ const convertHundreds = (num: number): string => {
   let result = '';
 
   if (num >= 100) {
-    result += ONES[Math.floor(num / 100)] + ' hundred';
+    result += `${ONES[Math.floor(num / 100)]} hundred`;
     num %= 100;
     if (num > 0) result += ' ';
   }
@@ -51,7 +51,7 @@ export const convertNumberToWords = (number: number): string => {
   if (number === 0) return 'zero';
 
   if (number < 0) {
-    return 'negative ' + convertNumberToWords(-number);
+    return `negative ${convertNumberToWords(-number)}`;
   }
 
   let result = '';
@@ -65,9 +65,9 @@ export const convertNumberToWords = (number: number): string => {
       const scale = SCALES[scaleIndex];
 
       if (scale) {
-        result = chunkText + ' ' + scale + (result ? ' ' + result : '');
+        result = `${chunkText} ${scale}${result ? ` ${result}` : ''}`;
       } else {
-        result = chunkText + (result ? ' ' + result : '');
+        result = `${chunkText}${result ? ` ${result}` : ''}`;
       }
     }
 

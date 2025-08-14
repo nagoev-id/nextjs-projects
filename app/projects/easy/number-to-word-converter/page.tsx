@@ -24,7 +24,6 @@ const NumberToWordConverter = () => {
     try {
       setState(convertNumberToWords(formData.number));
     } catch (error) {
-      console.error('An error occurred during conversion', error);
       toast.error('An error occurred during conversion', { richColors: true });
       setState(null);
     }
