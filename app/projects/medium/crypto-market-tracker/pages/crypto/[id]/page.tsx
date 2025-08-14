@@ -48,6 +48,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { JSX, useMemo } from 'react';
 import { CryptoData, useGetByIdQuery } from '@/app/projects/medium/crypto-market-tracker/features';
+import DOMPurify from 'dompurify';
 
 /**
  * Компонент страницы с детальной информацией о криптовалюте
@@ -158,7 +159,7 @@ const DetailPage = (): JSX.Element => {
         {cryptoData.description.en ? (
           <div 
             className="prose max-w-none dark:prose-invert"
-            dangerouslySetInnerHTML={{ __html: cryptoData.description.en }} 
+                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(cryptoData.description.en) }} 
           />
         ) : (
           <p>No description available.</p>

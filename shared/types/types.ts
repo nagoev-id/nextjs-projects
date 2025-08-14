@@ -121,12 +121,8 @@ export enum ProjectLabel {
   AgeCalculator_0 = 'AgeCalculator_0',
   AgeCalculator_1 = 'AgeCalculator_1',
   AspectRatio = 'AspectRatio',
-  // TodoList_H = 'TodoList_H',
-  // PhotoGallery_0 = 'PhotoGallery_0',
-  // Chat_0 = 'Chat_0',
-  // PetsTinder_0 = 'PetsTinder_0',
-  // HabitTracker_0 = 'HabitTracker_0',
-  // AgeCalculator_0 = 'AgeCalculator_0',
+  EventCountdown = 'EventCountdown',
+  NumberToWordConverter = 'NumberToWordConverter',
 }
 
 /**

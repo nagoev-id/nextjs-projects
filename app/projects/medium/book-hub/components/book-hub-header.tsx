@@ -101,4 +101,6 @@ const BookHubHeader = memo(({
   );
 });
 
+BookHubHeader.displayName = 'BookHubHeader';
+
 export default BookHubHeader;

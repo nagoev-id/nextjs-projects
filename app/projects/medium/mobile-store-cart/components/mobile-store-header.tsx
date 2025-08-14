@@ -42,51 +42,53 @@ const MobileStoreHeader = memo(({
                                   showAbout = false,
                                   showBackButton = true,
                                   ariaLabelLink,
-                                }: HeaderProps = {}): JSX.Element => (
-  <header role="banner">
-    <Card className="p-0 rounded-none">
-      <nav
-        className="grid gap-2.5 md:flex md:justify-between md:items-center p-4 xl:px-0 max-w-6xl w-full mx-auto"
-        aria-label="The main navigation"
-      >
-        {/* Левая часть заголовка: логотип, название и описание */}
-        <HeaderLeft
-          title={title || ''}
-          ariaLabelLink={ariaLabelLink}
-        />
+                                }: HeaderProps = {}) => {
+  return (
+    <header role="banner">
+      <Card className="p-0 rounded-none">
+        <nav
+          className="grid gap-2.5 md:flex md:justify-between md:items-center p-4 xl:px-0 max-w-6xl w-full mx-auto"
+          aria-label="The main navigation"
+        >
+          {/* Левая часть заголовка: логотип, название и описание */}
+          <HeaderLeft
+            title={title || ''}
+            ariaLabelLink={ariaLabelLink}
+          />
 
-        {/* Правая часть заголовка: навигационные элементы */}
-        <ul className="flex gap-2 justify-center items-center" role="list">
-          {/* Кнопка возврата на главную */}
-          {showBackButton && (
+          {/* Правая часть заголовка: навигационные элементы */}
+          <ul className="flex gap-2 justify-center items-center" role="list">
+            {/* Кнопка возврата на главную */}
+            {showBackButton && (
+              <li>
+                <Link href="/">
+                  <Button variant="outline">Back to Home</Button>
+                </Link>
+              </li>
+            )}
+
+            {/* Модальное окно с информацией о проекте */}
+            {showAbout && (
+              <li>
+                <HeaderAbout title={title || ''} description={description} />
+              </li>
+            )}
+
+            {/* Переключатель темы */}
             <li>
-              <Link href="/">
-                <Button variant="outline">Back to Home</Button>
-              </Link>
+              <ThemeToggle />
             </li>
-          )}
 
-          {/* Модальное окно с информацией о проекте */}
-          {showAbout && (
-            <li>
-              <HeaderAbout title={title || ''} description={description} />
+            {/* Компонент корзины */}
+            <li className="flex gap-1.5 items-center">
+              <Cart />
             </li>
-          )}
-
-          {/* Переключатель темы */}
-          <li>
-            <ThemeToggle />
-          </li>
-
-          {/* Компонент корзины */}
-          <li className="flex gap-1.5 items-center">
-            <Cart />
-          </li>
-        </ul>
-      </nav>
-    </Card>
-  </header>
-));
+          </ul>
+        </nav>
+      </Card>
+    </header>
+  );
+});
 
 MobileStoreHeader.displayName = 'MobileStoreHeader';
 

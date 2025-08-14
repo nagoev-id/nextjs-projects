@@ -208,7 +208,7 @@ const CalculatorPage = (): JSX.Element => {
    */
   const handleDecimalClick = useCallback((): void => {
     if (isNewInputExpected || output.includes('.')) return;
-    setOutput(prevOutput => prevOutput + '.');
+    setOutput(prevOutput => `${prevOutput}.`);
   }, [isNewInputExpected, output]);
 
   /**

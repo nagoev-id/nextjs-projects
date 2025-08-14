@@ -299,9 +299,10 @@ const RockPaperScissorsPage = () => {
       {/* Сообщение о результате */}
       <div
         className="text-center font-medium text-xl"
-        dangerouslySetInnerHTML={{ __html: game.message }}
         aria-live="polite"
-      />
+      >
+        {game.message}
+      </div>
 
       {/* Кнопки выбора */}
       {!game.isFinished && (
